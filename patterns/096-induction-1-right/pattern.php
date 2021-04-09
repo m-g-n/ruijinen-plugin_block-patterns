@@ -1,0 +1,7 @@
+<!-- wp:snow-monkey-blocks/section-with-bgimage {"textColor":"#fff","className":"is-style-RJE-section-with-bgimage-horizon-1-right"} -->
+<div class="wp-block-snow-monkey-blocks-section-with-bgimage smb-section smb-section-with-bgimage smb-section-with-bgimage--left smb-section-with-bgimage--fit is-style-RJE-section-with-bgimage-horizon-1-right" style="color:#fff"><div class="smb-section-with-bgimage__bgimage smb-section-with-bgimage__bgimage--lg"><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>images/induction-sample-1.png" alt="" class="wp-image-0" style="opacity:1"/></div><div class="c-container"><div class="smb-section__subtitle">採用について</div><h2 class="smb-section__title">Want to Join?</h2><div class="smb-section__lede">今、次の目標が見えていますか。<br>分からなくなってしまった、というあなた。<br>私たちと一緒に、働きませんか？<br>きっと、次の一歩を踏み出せるはずです。</div><div class="smb-section__body"><!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button {"borderRadius":5,"textColor":"white","className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-white-color has-text-color" style="border-radius:5px">Read More</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div></div></div>
+<!-- /wp:snow-monkey-blocks/section-with-bgimage -->

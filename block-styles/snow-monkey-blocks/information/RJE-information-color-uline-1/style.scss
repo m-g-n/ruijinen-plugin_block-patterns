@@ -1,0 +1,28 @@
+@charset 'utf-8';
+
+@import '../../../../src/css/block-styles';
+
+.smb-information.is-style-RJE-information-color-uline-1 {
+    .smb-information__item {
+        padding-bottom: 2.5rem;
+        border-bottom: 1px solid #CFCFCF;
+        @include mq(sm) {
+            &> .c-row>.c-row__col:first-child {
+                max-width: 6.5rem;
+                flex-basis: 6.5rem;
+            }
+            &> .c-row>.c-row__col:last-child {
+                max-width: calc(100% - 6.5rem);
+                flex-basis: calc(100% - 6.5rem);
+            }
+        }
+    }
+    .smb-information__item__label {
+        color: var(--accent-color,#cd162c);
+        font-size: 1.125rem;
+        font-weight: bold;
+        @include mq(sm) {
+            font-size: 1.5rem;
+        }
+    }
+}

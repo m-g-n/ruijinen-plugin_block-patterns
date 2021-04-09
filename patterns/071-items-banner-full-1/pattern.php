@@ -1,0 +1,9 @@
+<!-- wp:snow-monkey-blocks/items {"md":2,"isGlue":true,"className":"is-style-RJE-items-alignfull-1"} -->
+<div class="wp-block-snow-monkey-blocks-items smb-items smb-items--glue is-style-RJE-items-alignfull-1"><div class="c-row" data-columns="1" data-md-columns="2" data-lg-columns="2"><!-- wp:snow-monkey-blocks/items--banner {"url":"/","maskOpacity":0.5,"className":"is-style-RJE-items\u002d\u002dbanner-1"} -->
+<div class="wp-block-snow-monkey-blocks-items--banner c-row__col is-style-RJE-items--banner-1"><div class="smb-items__banner smb-items__banner--default"><div class="smb-items__banner__figure"><div class="smb-items__banner__figure__mask"></div><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>images/items-sample-1.png" alt="" class="wp-image-0" style="opacity:0.5"/></div><div class="smb-items__banner__body"><div class="smb-items__banner__title">タイトルが入ります</div><div class="smb-items__banner__lede">説明文が入ります。リンクと画像も再設定してください。</div></div><div class="smb-items__banner__action"><a href="/">タイトルが入ります</a></div></div></div>
+<!-- /wp:snow-monkey-blocks/items--banner -->
+
+<!-- wp:snow-monkey-blocks/items--banner {"url":"/","maskOpacity":0.5,"className":"is-style-RJE-items\u002d\u002dbanner-1"} -->
+<div class="wp-block-snow-monkey-blocks-items--banner c-row__col is-style-RJE-items--banner-1"><div class="smb-items__banner smb-items__banner--default"><div class="smb-items__banner__figure"><div class="smb-items__banner__figure__mask"></div><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>images/items-sample-2.png" alt="" class="wp-image-0" style="opacity:0.5"/></div><div class="smb-items__banner__body"><div class="smb-items__banner__title">タイトルが入ります</div><div class="smb-items__banner__lede">説明文が入ります。リンクと画像も再設定してください。</div></div><div class="smb-items__banner__action"><a href="/">タイトルが入ります</a></div></div></div>
+<!-- /wp:snow-monkey-blocks/items--banner --></div></div>
+<!-- /wp:snow-monkey-blocks/items -->

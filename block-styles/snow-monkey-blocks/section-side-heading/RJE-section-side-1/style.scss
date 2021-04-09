@@ -1,0 +1,97 @@
+@charset 'utf-8';
+
+@import '../../../../src/css/block-styles';
+
+.is-style-RJE-section-side-1{
+	padding: 24px 0;
+	.c-container{
+		padding: 0 24px;
+		.smb-section__title{
+			font-size: 28px;
+			line-height: 1.6;
+			&::after{
+				content: none;
+			}
+		}
+		.smb-section-side-heading__body{
+			height: 100%;
+			position: relative;
+			padding-top: 16px;
+			margin-top: 24px;
+			&::before{
+				content: "";
+				width: 160px;
+				height: 1px;
+				background-color: #CFCFCF;
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: block;
+			}
+		}
+	}
+	@include mq(sm) {
+		.c-container{
+			.smb-section-side-heading__body{
+				border-left: solid 1px #CFCFCF;
+				padding-left: 48px;
+				padding-top: 0;
+				margin-top: 0;
+				&::before{
+					content: none;
+				}
+			}
+		}
+	}
+	@include mq(lg) {
+		padding: 80px 0;
+		.c-container{
+			padding: 0 86px;
+			.smb-section__title{
+				font-size: 40px;
+			}
+		}
+	}
+}
+@include mq(md) {
+	.l-body--one-column,
+	.alignwide{
+		.is-style-RJE-section-side-1{
+			.c-container{
+				.smb-section__title{
+					font-size: 32px;
+				}
+			}
+		}
+	}
+}
+@include mq(lg) {
+	/* スリム */
+	.l-body--left-sidebar,
+	.l-body--right-sidebar,
+	.l-body--one-column-slim,
+	.l-body--blank-slim {
+		.is-style-RJE-section-side-1{
+			.c-container{
+				padding: 0 40px;
+				.smb-section__title{
+					font-size: 28px;
+				}
+			}
+		}
+	}
+	.l-body--blank-content,
+	.l-body--blank,
+	.l-body--one-column-full,
+	.l-body--one-column,
+	.alignwide,
+	.alignfull{
+		.is-style-RJE-section-side-1{
+			.c-container{
+				.smb-section__title{
+					font-size: 40px;
+				}
+			}
+		}
+	}
+}

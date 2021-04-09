@@ -1,0 +1,52 @@
+@charset 'utf-8';
+
+@import '../../../../src/css/block-styles';
+
+.wp-block-snow-monkey-blocks-items--banner.is-style-RJE-items--banner-1 {
+    .smb-items__banner__figure {
+        overflow: hidden;
+        min-height: 512px;
+        &> img {
+            width: auto;
+            min-width: 100%;
+            min-height: 512px;
+            -o-object-fit: cover;
+            object-fit: cover;
+        }
+    }
+    .smb-items__banner__body {
+        padding: 8%;
+    }
+    .smb-items__banner__title {
+        font-size: 1.625rem;
+        font-weight: bold;
+        line-height: 1.8;
+    }
+    .smb-items__banner__lede {
+        margin-top: 2.5rem;
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+    .c-row[data-columns]:not(.c-row--margin)>& {
+        padding-bottom: 0;
+    }
+    .c-row[data-columns="1"]:not(.c-row--margin)>& {
+        margin-bottom: 1px;
+    }
+    @include mq(sm) {
+        .c-row[data-md-columns="1"]:not(.c-row--margin)>& {
+            margin-bottom: 1px;
+        }
+        .c-row:not([data-md-columns="1"]):not(.c-row--margin)>& {
+            margin-bottom: 0px;
+        }
+    }
+    @include mq(lg) {
+        .c-row[data-lg-columns="1"]:not(.c-row--margin)>& {
+            margin-bottom: 1px;
+        }
+        .c-row:not([data-lg-columns="1"]):not(.c-row--margin)>& {
+            margin-bottom: 0px;
+        }
+    }
+}

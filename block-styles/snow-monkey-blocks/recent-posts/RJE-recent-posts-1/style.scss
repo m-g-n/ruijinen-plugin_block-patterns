@@ -1,0 +1,101 @@
+@charset 'utf-8';
+
+@import '../../../../src/css/block-styles';
+
+.smb-recent-posts.is-style-RJE-recent-posts-1 {
+    .c-entries.c-entries--rich-media {
+        margin-right: -3.5%;
+        margin-left: -3.5%;
+        .c-entries__item {
+            margin-bottom: 2.5rem;
+            padding-right: 3.5%;
+            padding-left: 3.5%;
+            @include mq(sm) {
+                margin-bottom: 7%;
+            }
+            @include mq(lg) {
+                > a:active,
+                > a:focus,
+                > a:hover {
+                    .c-entry-summary__body {
+                        opacity: 1;
+                        filter: brightness(95%);
+                    }
+                }
+            }
+        }
+        .c-entry-summary__figure {
+            margin-bottom: 0;
+            &::before {
+                padding-top: 400px;
+            }
+            .c-entry-summary__term {
+                right: inherit;
+                left: 0;
+                display: flex;
+                justify-content: center;
+                max-width: 208px;
+                min-width: 114px;
+                padding: 0.5rem;
+                font-size: 0.75rem;
+                line-height: 1.4;
+                word-break: break-word;
+            }
+        }
+        .c-entry-summary__body {
+            position: relative;
+            width: 90%;
+            margin-top: -100px;
+            margin-left: 10%;
+            padding: 1.5rem 6%;
+            background-color: #ffffff;
+            transition: filter .2s ease-out;
+        }
+        .c-entry-summary__header {
+            margin-bottom: 0.5rem;
+        }
+        .c-entry-summary__title {
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .c-entry-summary__content {
+            color: inherit;
+            font-size: 0.75rem;
+            line-height: 1.8;
+        }
+        .c-entry-summary__meta {
+            margin-top: 1rem;
+            color: #898989;
+            font-size: 0.75rem;
+            line-height: 1.8;
+            text-align: right;
+        }
+        .c-meta__item {
+            max-width: 45%;
+            vertical-align: middle;
+            &:not(:last-child) {
+                margin-right: 0;
+                margin-left: 0.625rem;
+            }
+            &.c-meta__item--author {
+                position: relative;
+                margin-left: 0;
+                padding-left: 28px;
+                text-align: left;
+                white-space: normal;
+                img {
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    margin-top: -12px;
+                    margin-right: 4px;
+                }
+            }
+            &.c-meta__item--published {
+                margin-left: 4%;
+                padding-left: 5%;
+                border-left: 1px solid #CFCFCF;
+            }
+        }
+    }
+}

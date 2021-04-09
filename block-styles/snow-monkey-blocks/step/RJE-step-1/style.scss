@@ -1,0 +1,77 @@
+@charset 'utf-8';
+
+@import '../../../../src/css/block-styles';
+
+.is-style-RJE-step-1{
+	.smb-step__body>.smb-step__item{
+		padding: 0;
+		margin-bottom: 48px;
+		line-height: 1.8;
+	}
+	.smb-step__item{
+		&::before{
+			content: none;
+		}
+		&__title{
+			font-size: 18px;
+			margin: 0 0 24px;
+			position: relative;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		&__body{
+			padding-left: 0;
+		}
+		&__number{
+			background: transparent;
+			overflow: visible;
+			box-sizing: border-box;
+			width: 110px;
+			margin: 0 0 8px;
+			flex: 0 0 18px;
+			&::before{
+				content: counter(item, decimal-leading-zero);
+				font-size: 18px;
+				color: var(--accent-color, #000);
+				font-weight: 800;
+				position: absolute;
+				left: 0;
+				top: auto;
+				width: 30px;
+				text-align: center;
+			}
+			&::after{
+				content: "";
+				width: 48px;
+				height: 1px;
+				background-color: #CFCFCF;
+				position: absolute;
+				right: 20px;
+				top: auto;
+			}
+		}
+		@include mq(md) {
+			&__body{
+				padding-left: 120px;
+			}
+			&__title{
+				font-size: 24px;
+				position: relative;
+				flex-direction: row;
+				align-items: center;
+			}
+			&__number{
+				background: transparent;
+				overflow: visible;
+				box-sizing: border-box;
+				width: 120px;
+				margin: 0;
+				flex: 0 0 120px;
+				&::before{
+					font-size: 24px;
+					width: 40px;
+				}
+			}
+		}
+	}
+}

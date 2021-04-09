@@ -1,0 +1,7 @@
+@charset 'utf-8';
+
+@import '../../../../src/css/block-styles';
+
+.editor-styles-wrapper .block-editor-block-list__layout{
+	@import './style.scss';
+}

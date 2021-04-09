@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+.rje-widget-btn-area {
+	text-align: center;
+	margin-top: 15px !important;
+}
+.rje-widget-btn-area li {
+	display: inline-block;
+	margin: 0 5px;
+}
+.rje-widget-btn-area .rje-widget-btn {
+	min-width: 80px;
+	text-align: center;
+}
+
+.rje-nortification-text {
+	padding: 15px;
+	background-color: #f7f7f7;
+	border: 1px solid #ccd0d4;
+	border-radius: 4px;
+	margin-bottom: 15px;
+}

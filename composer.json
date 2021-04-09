@@ -1,0 +1,14 @@
+{
+    "name": "mgn_megane/block-pattern-plugin",
+    "authors": [
+        {
+            "name": "mgn",
+            "email": "info@m-g-n.me",
+            "homepage": "https://rui-jin-en.com/"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "inc2734/wp-github-plugin-updater": "^3.1"
+    }
+}
