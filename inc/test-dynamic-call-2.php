@@ -22,9 +22,6 @@ class RegisterBlockPatterns {
 
 	// デフォルトの値を設定
 	public function __construct() {
-		$this->load_style_handle = array();
-		$this->style_front_deps  = array( 'snow-monkey', 'snow-monkey-blocks', 'snow-monkey-snow-monkey-blocks', 'snow-monkey-blocks-background-parallax' );
-		$this->style_editor_deps = array( 'snow-monkey-snow-monkey-blocks-editor' );
 
 		// TODO：動的に値を引っ張れないか
 		$this->cat               = array( 'RJE-company' ); // デフォルトのカテゴリ
@@ -39,64 +36,13 @@ class RegisterBlockPatterns {
 			),
 		);
 
-		add_action( 'plugins_loaded', array( $this, 'init' ) );
-
+		// TODO：ここで実行でいいか検討
 		$this->get_hook_id(); // フックID取得処理
-	}
 
-	/**
-	 * パターン登録に関する事前設定処理
-	 */
-	public function init() {
-		add_action( 'init', array( $this, 'register_block_pattern_category' ), 10 );
-		add_action( 'init', array( $this, 'add_action_register_patterns' ), 15 );
-		add_action( 'init', array( $this, 'register_block_style' ), 20 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_style_front' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_style_editor' ) );
-	}
+		// TODO：移動する
+		$this->register_block_pattern_category(); // カテゴリ宣言
 
-	/**
-	 * ブロックパターンカテゴリーの登録
-	 */
-	// TODO：あとで適切な場所に移動
-	public function register_block_pattern_category() {
-		register_block_pattern_category( 'RJE-company', array( 'label' => '[類人猿] 企業サイト' ) );
-	}
-
-	/**
-	 * ブロックスタイルの登録
-	 */
-	public function register_block_style() {
-		foreach ( $this->load_style_handle as $handle => $use_patterns ) {
-			foreach ( glob( RJE_PLUGIN_PATH . 'block-styles/*/*/' . $handle . '/register.php' ) as $file ) {
-				require_once $file;
-			}
-		}
-	}
-
-	/**
-	 * 表示用のCSSの設定
-	 */
-	public function enqueue_style_front() {
-		foreach ( $this->load_style_handle as $handle => $use_patterns ) {
-			wp_enqueue_style( $handle . '-front' );
-		}
-	}
-
-	/**
-	 * 編集画面用のCSSの設定
-	 */
-	public function enqueue_style_editor() {
-		foreach ( $this->load_style_handle as $handle => $use_patterns ) {
-			wp_enqueue_style( $handle . '-editor' );
-		}
-	}
-
-//TODO：宣言→登録に各種文言変更する
-	/**
-	 * 各パターンの実行処理を動的に出力したメソッドに格納、パターン登録フックに動的メソッドをそれぞれ掛ける
-	 */
-	public function add_action_register_patterns () {
+		// TODO：別途メソッドに振り分けるか？
 		foreach ( $this->register_patterns as $properties ) {
 			$method_name = 'register_' . $properties['key']; // 作成するメソッド名
 			// 各ブロックパターン宣言のメソッドを作成
@@ -108,6 +54,11 @@ class RegisterBlockPatterns {
 			);
 			add_action( 'RJE_register_petterns', array( $this, $method_name ), $properties['order'] ); // フックをかける
 		}
+	}
+
+	// TODO：あとで適切な場所に移動
+	public function register_block_pattern_category() {
+		register_block_pattern_category( 'RJE-company', array( 'label' => '[類人猿] 企業サイト' ) );
 	}
 
 	/**
@@ -135,7 +86,7 @@ class RegisterBlockPatterns {
 	 *
 	 * @param $args 登録したいパターンの情報
 	 */
-	public function register_block_pattern( $args ) {
+	public static function register_block_pattern( $args ) {
 		// TODO：引数でarg引っ張れるようにする
 		$args = array(
 			'key'   => 'test_pettern1',
@@ -150,19 +101,20 @@ class RegisterBlockPatterns {
 			return;
 		}
 
-		// 使用ブロックスタイル定義.
-		foreach ( $args['style'] as $block_style_name ) {
-			$this->load_style_handle[ $block_style_name ][] = $pattern_title;
-		}
+		// 使用ブロックスタイル定義
+		// FIXME: 指定のメソッドがないため動かないと予測
+		// foreach ( $use_block_style as $block_style_name ) {
+		// $this->load_style_handle[ $block_style_name ][] = $pattern_title;
+		// }
 
-		// パターン内容を取得.
+		// パターン内容を取得
 		$contents = '';
 		ob_start();
 		require_once RJE_PLUGIN_PATH . 'patterns/' . $args['key'] . '/pattern.php';
 		$contents = ob_get_contents();
 		ob_end_clean();
 
-		// パターン登録.
+		// パターン登録
 		register_block_pattern(
 			'RJE-pattern/' . $args['key'],
 			array(
