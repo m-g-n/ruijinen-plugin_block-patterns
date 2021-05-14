@@ -39,35 +39,20 @@ require_once RJE_PLUGIN_PATH . 'inc/notification-widget.php';
 // Composerの読み込み.
 require_once RJE_PLUGIN_PATH . 'vendor/autoload.php';
 
+//汎用クラス.
+require_once RJE_PLUGIN_PATH . 'inc/common-class.php';
+
+//TODO:コメント・ファイル名変更
 //テスト - 動的メソッド追加
-//TODO:テスト後消す
 require_once RJE_PLUGIN_PATH . 'inc/test-dynamic-call-2.php';
 
 
 
-class hogefuag {
-	public function aaaaa(){
-		//iroiro
-	}
-}
-$class_desu = new hogefuag();
-
-add_action(
-	'register_petterns',
-	array($class_desu, 'aaaaa')
-);
-
-remove_action('register_petterns','aaaaa');
-
-do_action('register_petterns', $args);
 
 
 
-
-
-$action_list = $wp_filter['register_petterns'];
-var_dump($action_list); //これで優先度は取得できた
-
-
-
-
+/**
+ * 類人猿のブロックパターンを宣言
+ */
+//TODO：しかるべき場所に移動する
+do_action('RJE_register_petterns', $args);
