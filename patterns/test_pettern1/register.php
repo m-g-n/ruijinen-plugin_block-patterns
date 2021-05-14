@@ -6,10 +6,8 @@
  */
 
 $pattern_category = array( 'RJE-company' );
-$pattern_title    = 'シンプルな情報1';
-$use_block_style  = array(
-	'RJE-information-1',
-);
+$pattern_title    = 'テストパターンX';
+$use_block_style  = array();
 
 
 foreach ( $use_block_style as $block_style_name ) {
