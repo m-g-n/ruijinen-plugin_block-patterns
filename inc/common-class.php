@@ -22,7 +22,6 @@ trait DynamicMethodDeclaration {
 
 	public function addMethod( string $name, \Closure $method ): void {
 		$this->__dynamicMethods[ $name ] = $method->bindTo( $this, self::class );
-		var_dump($this->__dynamicMethods);
 	}
 
 	public function __call( string $name, array $arguments ) {

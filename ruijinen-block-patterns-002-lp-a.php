@@ -32,8 +32,6 @@ add_action( 'plugins_loaded', 'rje_pattern_load_textdomain' );
 require_once RJE_PLUGIN_PATH . 'inc/activate.php';
 // 自動アップデート.
 require_once RJE_PLUGIN_PATH . 'inc/auto-update.php';
-// ブロックスタイル及びブロックパターンの設定の読み込み.
-// require_once RJE_PLUGIN_PATH . 'inc/load-register-block.php';
 // 管理画面に通知を表示.
 require_once RJE_PLUGIN_PATH . 'inc/notification-widget.php';
 // Composerの読み込み.
@@ -48,11 +46,25 @@ require_once RJE_PLUGIN_PATH . 'inc/test-dynamic-call-2.php';
 
 
 
+//LPブロックパターン用のカテゴリを登録
+add_action(
+	'init',
+	function () {
+		register_block_pattern_category( 'RJE-lp', array( 'label' => '[類人猿] LPサイト' ) );
+	},
+	10
+);
 
+//LPブロックパターンの登録.
+$register_lp_pattern                    = new Ruijinen\Pattern\Common\RegisterBlockPatterns();
+$register_lp_pattern->register_patterns = array( // 登録する全パターンの情報
+	array(
+		'key'   => 'test_pettern1',
+		'title' => 'テストパターンX',
+		'order' => 10,
+		'cat'   => array( 'RJE-lp' ),
+		'style' => array(),
+	),
+);
+add_action( 'plugins_loaded', array( $register_lp_pattern, 'init' ) );
 
-
-/**
- * 類人猿のブロックパターンを宣言
- */
-//TODO：しかるべき場所に移動する
-do_action('RJE_register_petterns', $args);
