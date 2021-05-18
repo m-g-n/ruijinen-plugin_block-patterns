@@ -1,0 +1,7 @@
+@mixin heading1{
+	font-size: (32 / 16) * 1rem;
+	font-weight: 700;
+	letter-spacing: 1.12;
+	line-height: 1.8;
+	color: color: var(--_color-text,#333);
+}

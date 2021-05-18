@@ -1,2 +1,6 @@
 @import 'variable/variable';
 @import 'mixin/mixin';
+
+h1{
+	@include heading1;
+}

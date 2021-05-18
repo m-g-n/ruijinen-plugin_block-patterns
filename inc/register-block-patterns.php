@@ -1,6 +1,6 @@
 <?php
 
-// TODO：パターンごとにプラグインわけわけになるので、名前空間か接頭辞つけてかぶらないようにする
+//TODO：名前空間の再考
 namespace Ruijinen\Pattern\Common;
 
 // TODO：クラス名を変更する
@@ -18,6 +18,7 @@ class RegisterBlockPatterns {
 	public $hook_id; // WPから割当られたフックのID.
 	public $register_patterns; // 登録するパターンの全情報.
 	public $target_pattern; //登録するパターン（単独）.
+	public $file_path; //呼び出されたプラグインのパス.
 
 	// デフォルトの値を設定.
 	public function __construct() {
@@ -31,7 +32,6 @@ class RegisterBlockPatterns {
 	 * ブロックパターンの登録に関する処理を実行する
 	 */
 	public function init() {
-		// add_action( 'init', array( $this, 'register_block_pattern_category' ), 10 ); //パターンカテゴリー登録
 		add_action( 'init', array( $this, 'register_block_patterns' ), 15 ); //パターン登録
 		add_action( 'init', array( $this, 'register_block_style' ), 20 ); //ブロックスタイル登録
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_style_front' ) ); //フロント用のCSS
@@ -81,7 +81,7 @@ class RegisterBlockPatterns {
 		// パターン内容を取得
 		$contents = '';
 		ob_start();
-		require_once RJE_PLUGIN_PATH . 'patterns/' . $args['key'] . '/pattern.php';
+		require_once $this->file_path . 'patterns/' . $args['key'] . '/pattern.php';
 		$contents = ob_get_contents();
 		ob_end_clean();
 
@@ -102,7 +102,7 @@ class RegisterBlockPatterns {
 	 */
 	public function register_block_style() {
 		foreach ( $this->load_style_handle as $handle => $use_patterns ) {
-			foreach ( glob( RJE_PLUGIN_PATH . 'block-styles/*/*/' . $handle . '/register.php' ) as $file ) {
+			foreach ( glob( $this->file_path . 'block-styles/*/*/' . $handle . '/register.php' ) as $file ) {
 				require_once $file;
 			}
 		}
@@ -149,18 +149,10 @@ class RegisterBlockPatterns {
 }
 
 
-
-
-		// //パターン登録周りの処理について実行.
-		// add_action( 'plugins_loaded', array( $this, 'init' ) );
-
-
-
-
 /**
- * 類人猿のブロックパターンを宣言
+ * 類人猿のブロックパターンを登録するアクション
  */
-// //TODO：しかるべき場所に移動する
+//TODO：しかるべき場所に移動する
 add_action(
 	'wp_loaded',
 	function(){
