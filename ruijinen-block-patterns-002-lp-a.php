@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin name: 類人猿ブロックパターン（テスト！）
+ * Plugin name: 類人猿ブロックパターン（LPパターン 開発なう！）
  * Description: Snow Monkeyサイトをより素敵にするブロックパターンが入っています
  * Version: 0.0.1
  * Author: mgn Inc.,
  * Author URI: https://rui-jin-en.com/
  * License: GPL-2.0+
  *
- * @package ruijinen-block-patterns-beta
+ * @package ruijinen-block-patterns
  */
 
 
@@ -41,13 +41,11 @@ require_once RJE_PLUGIN_PATH . 'inc/notification-widget.php';
 // Composerの読み込み.
 require_once RJE_PLUGIN_PATH . 'vendor/autoload.php';
 // ブロック登録に関する処理のクラス.
-// require_once RJE_PLUGIN_PATH . 'inc/register-block-patterns.php';
 require_once RJE_PLUGIN_PATH . 'inc/register-block-patterns.php';
 
 
 
 // TODO：以下外部ファイルから呼び込む形にしてみても
-
 define( 'RJE_P002LP_KEY', 'RJE_P002LP' ); // どの類人猿プロダクトなのかを示すキー
 
 // LPブロックパターン用のカテゴリを登録
@@ -63,25 +61,25 @@ add_action(
 add_filter( 'rje_register_patterns_args', 'rje_P002lp_hero_media_and_text', 10 );
 add_filter( 'rje_register_patterns_args', 'rje_P002lp_hero_media_and_text__alignright', 10 );
 
+
 function rje_P002lp_hero_media_and_text( $args ) {
 	$args[] = array(
-		'key'   => RJE_P002LP_KEY.'_hero_media_and_text',
+		'key'   => RJE_P002LP_KEY . '_hero_media_and_text',
 		'title' => 'Heroイメージ（メディアと文章)',
 		'cat'   => array( RJE_P002LP_KEY ),
-		'style' => array( RJE_P002LP_KEY.'_hero_media_and_text' ),
+		'style' => array( RJE_P002LP_KEY . '_hero_media_and_text' ),
 	);
 	return $args;
 }
 function rje_P002lp_hero_media_and_text__alignright( $args ) {
 	$args[] = array(
-		'key'   => RJE_P002LP_KEY.'_hero_media_and_text__alignright',
+		'key'   => RJE_P002LP_KEY . '_hero_media_and_text__alignright',
 		'title' => 'Heroイメージ（メディアと文章) - 右寄せ',
 		'cat'   => array( RJE_P002LP_KEY ),
 		'style' => array( RJE_P002LP_KEY.'_hero_media_and_text' ),
 	);
 	return $args;
 }
-
 
 //実行
 $rje_p002lp_register_pattern = new Ruijinen\Pattern\RegisterBlockPatterns();

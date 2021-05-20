@@ -1,6 +1,6 @@
 <?php
 /**
- * @package ruijinen-block-patterns-beta
+ * @package ruijinen-block-patterns
  * @author mgn
  * @license GPL-2.0+
  */

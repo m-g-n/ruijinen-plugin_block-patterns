@@ -1,6 +1,13 @@
 <?php
+/**
+ * ブロックパターンの登録処理
+ * 
+ * @package ruijinen-block-patterns
+ * @author mgn
+ * @license GPL-2.0+
+ */
 
-//TODO：名前空間の再考
+
 namespace Ruijinen\Pattern;
 
 // TODO：クラス名を変更する
@@ -13,8 +20,7 @@ class RegisterBlockPatterns {
 	public $load_style_handle = ''; //登録するブロックスタイル情報.
 	public $style_front_deps  = '';
 	public $style_editor_deps = '';
-	public $hook_id; // WPから割当られたフックのID.
-	public $file_path; //呼び出されたプラグインのパス.
+	public $file_path; //クラスを実行したプラグインのパス.
 
 	public function __construct() {
 		//プロパティ初期値設定.
@@ -39,24 +45,24 @@ class RegisterBlockPatterns {
 	public function register_patterns () {
 		$patterns = apply_filters( 'rje_register_patterns_args', array(), $patterns );
 		foreach ( $patterns as $pattern ) {
-			//例外処理
+			// 例外処理.
 			if ( ! $pattern['key'] || ! $pattern['cat'] || ! $pattern['title'] ) {
 				continue;
 			}
 
-			// 使用するブロックスタイルを設定
+			// 使用するブロックスタイルを設定.
 			foreach ( $pattern['style'] as $block_style_name ) {
 				$this->load_style_handle[ $block_style_name ][] = $pattern['title'];
 			}
 
-			// パターンの内容を取得
+			// パターンの内容を取得.
 			$contents = '';
 			ob_start();
 			require_once $this->file_path . 'patterns/' . $pattern['key'] . '/pattern.php';
 			$contents = ob_get_contents();
 			ob_end_clean();
 
-			// パターン登録
+			// パターン登録.
 			register_block_pattern(
 				'RJE-pattern/' . $pattern['key'],
 				array(
