@@ -12,7 +12,7 @@ class RegisterBlockPatterns {
 	use \Ruijinen\Pattern\Common\DynamicMethodDeclaration; // 動的メソッド生成traitを使用
 
 	// プロパティ.
-	public $load_style_handle = '';
+	public $load_style_handle = ''; //登録するブロックスタイル情報.
 	public $style_front_deps  = '';
 	public $style_editor_deps = '';
 	public $hook_id; // WPから割当られたフックのID.
@@ -33,10 +33,10 @@ class RegisterBlockPatterns {
 	 */
 	public function init() {
 		add_action( 'init', array( $this, 'register_block_patterns' ), 15 ); //パターン登録
-		add_action( 'init', array( $this, 'register_block_style' ), 20 ); //ブロックスタイル登録
+		add_action( 'init', array( $this, 'get_hook_id' ), 50 ); //フックのID値取得
+		add_action( 'wp_loaded', array( $this, 'register_block_style' ), 100 ); //ブロックスタイル登録（パターン登録後ではないと動かないため優先度低）
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_style_front' ) ); //フロント用のCSS
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_style_editor' ) ); //エディタ用のCSS
-		add_action( 'init', array( $this, 'get_hook_id' ), 50 ); //フックのID値取得
 	}
 
 
@@ -75,7 +75,7 @@ class RegisterBlockPatterns {
 
 		// 使用ブロックスタイル定義
 		foreach ( $args['style'] as $block_style_name ) {
-			$this->load_style_handle[ $block_style_name ][] = $pattern_title;
+			$this->load_style_handle[ $block_style_name ][] = $args['title'];
 		}
 
 		// パターン内容を取得

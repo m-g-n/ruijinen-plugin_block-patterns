@@ -1,7 +1,56 @@
+//見出しのスタイル
+$base-font-size: 16;
+
 @mixin heading1{
-	font-size: (32 / 16) * 1rem;
-	font-weight: 700;
-	letter-spacing: 1.12;
+	font-size: (24 / $base-font-size) * 1rem;
+	font-weight: bold;
+	letter-spacing: 0.12em;
 	line-height: 1.8;
-	color: color: var(--_color-text,#333);
+	@include mq(sm){
+		font-size: (32 / $base-font-size) * 1rem;
+	}
+}
+@mixin heading2{
+	font-size: (20 / $base-font-size) * 1rem;
+	font-weight: bold;
+	letter-spacing: 0.12em;
+	line-height: 1.8;
+	@include mq(sm){
+		font-size: (24 / $base-font-size) * 1rem;
+	}
+}
+@mixin heading3{
+	font-size: (18 / $base-font-size) * 1rem;
+	font-weight: bold;
+	letter-spacing: 0.12em;
+	line-height: 1.8;
+	@include mq(sm){
+		font-size: (20 / $base-font-size) * 1rem;
+	}
+}
+@mixin heading4{
+	font-weight: bold;
+	letter-spacing: 0.12em;
+	line-height: 1.8;
+	@include mq(sm){
+		font-size: (18 / $base-font-size) * 1rem;
+	}
+}
+
+//段落のスタイル
+@mixin paragraph{
+	font-size: 0.875rem;
+	letter-spacing: 0.05em;
+	line-height: 2;
+	@include mq(sm){
+		font-size: 1rem;
+	}
+}
+
+//ボタンのスタイル
+@mixin button{
+	min-width: 225px; //TODO: 最低幅で対応するかを検討する
+	padding: 0.625rem;
+	border: 1px solid;
+	border-radius: 6.25rem;
 }

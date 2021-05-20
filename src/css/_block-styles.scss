@@ -1,6 +1,28 @@
 @import 'variable/variable';
 @import 'mixin/mixin';
 
-h1{
-	@include heading1;
+// ------------------------------------------------------
+// 類人猿LPパターンブロックのデフォルトスタイル
+// TODO：全部のブロックスタイルにincludeされてしまうので、別ファイルへの移設を検討する
+// ------------------------------------------------------
+[class*="RJE_P002LP"] {
+	p{
+		@include paragraph;
+	}
+	h1{
+		@include heading1;
+	}
+	h2{
+		@include heading2;
+	}
+	h3{
+		@include heading3;
+	}
+	h4{
+		@include heading4;
+	}
+	.smb-btn{
+		@include button;
+	}
 }
+
