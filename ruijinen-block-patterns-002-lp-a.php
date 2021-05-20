@@ -71,6 +71,13 @@ $register_lp_pattern->register_patterns = array( // 登録する全パターン�
 		'cat'   => array( RJE_P002LP_KEY ),
 		'style' => array( RJE_P002LP_KEY.'_hero_media_and_text' ),
 	),
+	array(
+		'key'   => RJE_P002LP_KEY.'_hero_media_and_text__alignright',
+		'title' => 'Heroイメージ（メディアと文章) - 右寄せ',
+		'order' => 11,
+		'cat'   => array( RJE_P002LP_KEY ),
+		'style' => array( RJE_P002LP_KEY.'_hero_media_and_text' ),
+	),
 );
 $register_lp_pattern->file_path = RJE_PLUGIN_PATH;
 add_action( 'plugins_loaded', array( $register_lp_pattern, 'init' ) );

@@ -52,7 +52,7 @@ class RegisterBlockPatterns {
 			$this->addMethod(
 				$method_name,
 				function() {
-					$this->register_block_pattern();
+					$this->register_block_pattern($this->target_pattern);
 				}
 			);
 			add_action( 'RJE_register_petterns', array( $this, $method_name ), $properties['order'] ); // フックをかける.
@@ -63,10 +63,10 @@ class RegisterBlockPatterns {
 	/**
 	 * 指定したパターンの登録処理
 	 */
-	public function register_block_pattern() {
+	public function register_block_pattern($args) {
+		var_dump($args);
 		//登録したいパターン情報を取得
 		$args = $this->target_pattern;
-
 		// 例外処理
 		// TODO:どこかでエラーでそう、正しい判断のものを書いたほうが良さそう
 		if ( ! $args['key'] || ! $args['cat'] || ! $args['title'] ) {
