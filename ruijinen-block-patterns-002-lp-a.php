@@ -14,7 +14,7 @@
 /**
  * 定数を宣言
  */
-//TODO：定数の名称を再検討
+// TODO：定数の名称を再検討
 define( 'RJE_PLUGIN_URL', plugins_url( '', __FILE__ ) );  // このプラグインのURL.
 define( 'RJE_PLUGIN_PATH', plugin_dir_path( __FILE__ ) ); // このプラグインのパス.
 define( 'RJE_BASENAME', plugin_basename( __FILE__ ) );    // このプラグインのベースネーム.
@@ -40,19 +40,17 @@ require_once RJE_PLUGIN_PATH . 'inc/auto-update.php';
 require_once RJE_PLUGIN_PATH . 'inc/notification-widget.php';
 // Composerの読み込み.
 require_once RJE_PLUGIN_PATH . 'vendor/autoload.php';
-//汎用クラス.
-require_once RJE_PLUGIN_PATH . 'inc/common-class.php';
-//ブロック登録に関する処理のクラス.
+// ブロック登録に関する処理のクラス.
+// require_once RJE_PLUGIN_PATH . 'inc/register-block-patterns.php';
 require_once RJE_PLUGIN_PATH . 'inc/register-block-patterns.php';
-
 
 
 
 // TODO：以下外部ファイルから呼び込む形にしてみても
 
-define( 'RJE_P002LP_KEY', 'RJE_P002LP' ); //どの類人猿プロダクトなのかを示すキー
+define( 'RJE_P002LP_KEY', 'RJE_P002LP' ); // どの類人猿プロダクトなのかを示すキー
 
-//LPブロックパターン用のカテゴリを登録
+// LPブロックパターン用のカテゴリを登録
 add_action(
 	'init',
 	function () {
@@ -61,23 +59,31 @@ add_action(
 	10
 );
 
-//LPブロックパターンの登録.
-$register_lp_pattern                    = new Ruijinen\Pattern\Common\RegisterBlockPatterns();
-$register_lp_pattern->register_patterns = array( // 登録する全パターンの情報
-	array(
+//登録するパターンの指定
+add_filter( 'rje_register_patterns_args', 'rje_P002lp_hero_media_and_text', 10 );
+add_filter( 'rje_register_patterns_args', 'rje_P002lp_hero_media_and_text__alignright', 10 );
+
+function rje_P002lp_hero_media_and_text( $args ) {
+	$args[] = array(
 		'key'   => RJE_P002LP_KEY.'_hero_media_and_text',
 		'title' => 'Heroイメージ（メディアと文章)',
-		'order' => 10,
 		'cat'   => array( RJE_P002LP_KEY ),
 		'style' => array( RJE_P002LP_KEY.'_hero_media_and_text' ),
-	),
-	array(
+	);
+	return $args;
+}
+function rje_P002lp_hero_media_and_text__alignright( $args ) {
+	$args[] = array(
 		'key'   => RJE_P002LP_KEY.'_hero_media_and_text__alignright',
 		'title' => 'Heroイメージ（メディアと文章) - 右寄せ',
-		'order' => 11,
 		'cat'   => array( RJE_P002LP_KEY ),
 		'style' => array( RJE_P002LP_KEY.'_hero_media_and_text' ),
-	),
-);
-$register_lp_pattern->file_path = RJE_PLUGIN_PATH;
-add_action( 'plugins_loaded', array( $register_lp_pattern, 'init' ) );
+	);
+	return $args;
+}
+
+
+//実行
+$rje_p002lp_register_pattern = new Ruijinen\Pattern\RegisterBlockPatterns();
+$rje_p002lp_register_pattern->file_path = RJE_PLUGIN_PATH;
+$rje_p002lp_register_pattern->register_patterns();
