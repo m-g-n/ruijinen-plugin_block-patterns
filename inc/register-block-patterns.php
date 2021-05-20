@@ -27,14 +27,17 @@ class RegisterBlockPatterns {
 		$this->load_style_handle = array();
 		$this->style_front_deps  = array( 'snow-monkey', 'snow-monkey-blocks', 'snow-monkey-snow-monkey-blocks', 'snow-monkey-blocks-background-parallax' );
 		$this->style_editor_deps = array( 'snow-monkey-snow-monkey-blocks-editor' );
+		//処理実行
+		$this->init();
 	}
 
 	/**
 	 * ブロックパターンの登録に関する処理を実行する
 	 */
 	public function init() {
-		add_action( 'init', array( $this, 'register_patterns' ), 15 ); //パターン登録
-		add_action( 'wp_loaded', array( $this, 'register_block_style' ), 100 ); //ブロックスタイル登録（パターン登録後ではないと動かないため優先度低）
+		//TODO： パターン登録実行のトリガーを自分のこちらのCLASS内でできないか検討
+		// add_action( 'init', array( $this, 'register_patterns' ), 10 ); //パターン登録
+		add_action( 'init', array( $this, 'register_block_style' ), 15 ); //ブロックスタイル登録
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_style_front' ) ); //フロント用のCSS
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_style_editor' ) ); //エディタ用のCSS
 	}
