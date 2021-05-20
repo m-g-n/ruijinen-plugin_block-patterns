@@ -60,9 +60,9 @@ add_action(
 //登録するパターンの指定
 add_filter( 'rje_register_patterns_args', 'rje_P002lp_hero_media_and_text', 10 );
 add_filter( 'rje_register_patterns_args', 'rje_P002lp_hero_media_and_text__alignright', 10 );
+add_filter( 'rje_register_patterns_args', 'rje_P002lp_hero_one_column', 10 );
 
-
-function rje_P002lp_hero_media_and_text( $args ) {
+function rje_P002lp_hero_media_and_text ( $args ) {
 	$args[] = array(
 		'key'   => RJE_P002LP_KEY . '_hero_media_and_text',
 		'title' => 'Heroイメージ（メディアと文章)',
@@ -71,7 +71,7 @@ function rje_P002lp_hero_media_and_text( $args ) {
 	);
 	return $args;
 }
-function rje_P002lp_hero_media_and_text__alignright( $args ) {
+function rje_P002lp_hero_media_and_text__alignright ( $args ) {
 	$args[] = array(
 		'key'   => RJE_P002LP_KEY . '_hero_media_and_text__alignright',
 		'title' => 'Heroイメージ（メディアと文章) - 右寄せ',
@@ -80,8 +80,18 @@ function rje_P002lp_hero_media_and_text__alignright( $args ) {
 	);
 	return $args;
 }
+function rje_P002lp_hero_one_column ( $args ) {
+	$args[] = array(
+		'key'   => RJE_P002LP_KEY . '_hero_one_column',
+		'title' => 'Heroイメージ（1カラム)',
+		'cat'   => array( RJE_P002LP_KEY ),
+		'style' => array( RJE_P002LP_KEY.'_hero_one_column' ),
+	);
+	return $args;
+}
 
 //実行
 $rje_p002lp_register_pattern = new Ruijinen\Pattern\RegisterBlockPatterns();
 $rje_p002lp_register_pattern->file_path = RJE_PLUGIN_PATH;
 $rje_p002lp_register_pattern->register_patterns();
+

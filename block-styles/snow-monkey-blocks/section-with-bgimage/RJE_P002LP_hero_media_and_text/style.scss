@@ -10,12 +10,11 @@
 // 初期設定
 // ------------------------------------------------------
 @charset 'utf-8';
-@import '../../../../src/css/block-styles'; //TODO：パスはディレクトリーに合わせて変更すること
+@import '../../../../src/css/block-styles';
 
 // ------------------------------------------------------
 // 変数
 // ------------------------------------------------------
-$this_breakpoint: sm; //このパターンの大きなブレイクポイント
 $figure-width: 64%; //PC・タブレット時のメディアのコンテナ幅
 $content-width: (100% - $figure-width);  //PC・タブレット時のメディアのコンテナ幅
 
@@ -25,7 +24,7 @@ $content-width: (100% - $figure-width);  //PC・タブレット時のメディ�
 .is-style-RJE_P002LP_hero_media_and_text{
 	padding-top: 2em;
 	padding-bottom: 2em;
-	@include mq($this_breakpoint){
+	@include mq(sm){
 		padding-top: 2vw;
 		padding-bottom: 2vw;
 	}
@@ -55,8 +54,6 @@ $content-width: (100% - $figure-width);  //PC・タブレット時のメディ�
 		}
 		@include mq(lg){
 			max-width: 80%;
-			// padding-right: 0;
-			// padding-left: 0;
 		}
 	}
 	//セクションボディ
