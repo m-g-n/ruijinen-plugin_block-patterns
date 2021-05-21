@@ -1,0 +1,81 @@
+// ======================================================
+//
+//   ブロックスタイル：類人猿P002_LP 伝えたいこと（ノーマル)
+//
+// - デフォルトは左寄せ
+//
+// ======================================================
+
+// ------------------------------------------------------
+// 初期設定
+// ------------------------------------------------------
+@charset 'utf-8';
+@import '../../../../src/css/block-styles';
+
+// ------------------------------------------------------
+// 変数
+// ------------------------------------------------------
+
+
+// ------------------------------------------------------
+// スタイル
+// ------------------------------------------------------
+.is-style-RJE_P002LP_message_normal{
+	//セクションタイトル
+	.smb-section__title{
+		&::after{
+			display: none;
+		}
+	}
+	//大枠
+	> .c-container{
+		padding-right: 0;
+		padding-left: 0;
+		//サブタイトル
+		> .smb-section__subtitle{
+			margin-bottom: 1.25rem;
+			opacity: 0.6;
+			&::after{
+				content: "";
+				display: block;
+				width: 2em;
+				height: 1px;
+				margin-top: 0.84em;
+				background-color: var(--accent-color,#cd162c);
+			}
+		}
+		//タイトル
+		> .smb-section__title{
+			@include heading2;
+		}
+		> .smb-section__body{
+			margin-top: 1.25rem;
+		}
+	}
+	//ブロークングリッド
+	.smb-section-break-the-grid{
+		padding-top: 0;
+		padding-bottom: 0;
+		> .c-container{
+			padding-right: 0;
+			padding-left: 0;
+		}
+		.smb-section__title{
+			@include heading3;
+		}
+	}
+	.smb-section-break-the-grid__content {
+		left: 8%;
+		margin-top: 8.75rem;
+		padding: 2.5rem;
+		background-color: rgba(#fff,0.6); 
+		p{
+			line-height: 2.5;
+		}
+	}
+	//画像
+	.smb-section-break-the-grid__figure{
+		width: calc(100% + 10rem);
+		margin-left: -10rem;
+	}
+}

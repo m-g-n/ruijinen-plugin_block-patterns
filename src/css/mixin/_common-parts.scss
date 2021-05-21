@@ -49,8 +49,30 @@ $base-font-size: 16;
 
 //ボタンのスタイル
 @mixin button{
+	
+}
+//ボタンスタイル - ノーマル
+@mixin button--normal{
+	min-width: 225px; //TODO: 最低幅で対応するかを検討する
+	padding: 0.625rem;
+	border-radius: 6.25rem;
+	line-height: 1.5;
+}
+//ボタンスタイル - ゴースト
+@mixin button--ghost{
 	min-width: 225px; //TODO: 最低幅で対応するかを検討する
 	padding: 0.625rem;
 	border: 1px solid;
 	border-radius: 6.25rem;
+	line-height: 1.5;
+}
+//ボタンのスタイル - SMBボタン テキストの場合
+@mixin button--text{
+	padding-right: 0;
+	padding-left: 0;
+	line-height: 1.5;
+	.smb-btn__label{
+		padding-bottom: 0.625em;
+		border-bottom: 1px solid;
+	}
 }

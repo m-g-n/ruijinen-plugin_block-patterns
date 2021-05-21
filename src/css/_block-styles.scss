@@ -21,8 +21,23 @@
 	h4{
 		@include heading4;
 	}
-	.smb-btn{
-		@include button;
+	//ボタン - ノーマル
+	:not(.is-style-text):not(.is-style-ghost) > .smb-btn,
+	:not(.is-style-outline):not(.is-style-sme-shadowed) > .wp-block-button__link{ 
+		@include button--normal;
+	}
+	//ボタン - ゴースト
+	.is-style-ghost > .smb-btn,
+	.is-style-outline > .wp-block-button__link{
+		@include button--ghost;
+	}
+	//ボタン - テキスト
+	.is-style-text > .smb-btn{
+		@include button--text;
+	}
+	//ボタン - 影付き
+	.is-style-sme-shadowed > .wp-block-button__link{
+		@include button--normal;
 	}
 }
 
