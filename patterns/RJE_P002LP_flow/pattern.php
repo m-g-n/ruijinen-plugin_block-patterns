@@ -1,0 +1,15 @@
+<!-- wp:snow-monkey-blocks/section-with-bgimage {"lgImageID":28,"lgImageMediaType":"image","maskColor":"#f4f4f4","maskOpacity":0,"align":"full","className":"is-style-RJE_P002LP_flow"} -->
+<div class="wp-block-snow-monkey-blocks-section-with-bgimage alignfull smb-section smb-section-with-bgimage smb-section-with-bgimage--left smb-section-with-bgimage--fit is-style-RJE_P002LP_flow"><div class="smb-section-with-bgimage__bgimage smb-section-with-bgimage__bgimage--lg"><div class="smb-section-with-bgimage__mask" style="background-color:#f4f4f4"></div><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>images/transparent.png" alt="" class="wp-image-28" style="opacity:0"/></div><div class="c-container"><div class="smb-section__subtitle">FLOW</div><h2 class="smb-section__title">診断から購入までの流れ</h2><div class="smb-section__body"><!-- wp:snow-monkey-blocks/panels {"lg":3} -->
+<div class="wp-block-snow-monkey-blocks-panels smb-panels" data-image-padding="false"><div class="c-row c-row--margin c-row--fill" data-columns="1" data-md-columns="1" data-lg-columns="3"><!-- wp:snow-monkey-blocks/panels--item {"imageID":290,"imageSizeSlug":"full"} -->
+<div class="wp-block-snow-monkey-blocks-panels--item c-row__col"><div class="smb-panels__item"><div class="smb-panels__item__figure"><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>images/icon1.png" alt="" width="54" height="95" class="wp-image-290"/></div><div class="smb-panels__item__body"><div class="smb-panels__item__title">診断ページで<br>質問に回答</div><div class="smb-panels__item__content">診断によって、あなたに合うシャンプーをリコメンドします。悩みや好みを教えてください</div></div></div></div>
+<!-- /wp:snow-monkey-blocks/panels--item -->
+
+<!-- wp:snow-monkey-blocks/panels--item {"imageID":291,"imageSizeSlug":"full"} -->
+<div class="wp-block-snow-monkey-blocks-panels--item c-row__col"><div class="smb-panels__item"><div class="smb-panels__item__figure"><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>images/icon2.png" alt="" width="92" height="90" class="wp-image-291"/></div><div class="smb-panels__item__body"><div class="smb-panels__item__title">リコメンドされた<br>シャンプーを購入</div><div class="smb-panels__item__content">リコメンドされたシャンプーを、まずは購入して試してみてください</div></div></div></div>
+<!-- /wp:snow-monkey-blocks/panels--item -->
+
+<!-- wp:snow-monkey-blocks/panels--item {"imageID":292,"imageSizeSlug":"full"} -->
+<div class="wp-block-snow-monkey-blocks-panels--item c-row__col"><div class="smb-panels__item"><div class="smb-panels__item__figure"><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>images/icon3.png" alt="" width="69" height="89" class="wp-image-292"/></div><div class="smb-panels__item__body"><div class="smb-panels__item__title">ご自宅に<br>シャンプーが届きます</div><div class="smb-panels__item__content">シャンプーが届いたら、早速その日から使って、髪の変化を楽しんでください！</div></div></div></div>
+<!-- /wp:snow-monkey-blocks/panels--item --></div></div>
+<!-- /wp:snow-monkey-blocks/panels --></div></div></div>
+<!-- /wp:snow-monkey-blocks/section-with-bgimage -->

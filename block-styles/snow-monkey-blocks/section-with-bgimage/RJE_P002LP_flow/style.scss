@@ -1,0 +1,283 @@
+// ======================================================
+//
+//   ブロックスタイル：類人猿P002_LP 流れ・手順
+//
+// - デフォルトは左寄せ
+//
+// ======================================================
+
+// ------------------------------------------------------
+// 初期設定
+// ------------------------------------------------------
+@charset 'utf-8';
+@import '../../../../src/css/block-styles';
+
+// ------------------------------------------------------
+// 変数・mixin
+// ------------------------------------------------------
+@mixin flow-arrow--right(){
+	top:50%;
+	right: 0;
+	margin-right: -0.75rem;
+	margin-top: -0.875rem;
+	border-width: 0.875rem 0 0.875rem 1.5rem;
+	border-color: transparent transparent transparent #ccc;
+}
+
+// ------------------------------------------------------
+// スタイル
+// ------------------------------------------------------
+.is-style-RJE_P002LP_flow{
+	padding-top: 3.75rem;
+	padding-bottom: 3.75rem;
+	@include mq(sm){
+		padding-top: 5rem;
+		padding-bottom: 5rem;
+	}
+	> .c-container{
+		// @media screen and (min-width: 65.125em) {
+		// 	padding-right: 0;
+		// 	padding-left: 0;
+		// }
+		> .smb-section__subtitle{
+			margin-bottom: 1.25rem;
+			font-weight: normal;
+			opacity: 0.6;
+			&::after{
+				content: "";
+				display: block;
+				width: 2em;
+				height: 1px;
+				margin-top: 0.75rem;
+				background-color: var(--accent-color,#cd162c);
+				opacity: 0.3;
+			}
+		}
+		>.smb-section__title{
+			@include heading2;
+			&::after{
+				display: none;
+			}
+		}
+		>.smb-section__body{
+			margin-top: 2.5rem;
+			@include mq(sm){
+				margin-top: 4rem;
+			}
+			@include mq(lg){
+				margin-top: 5rem;
+			}
+		}
+	}
+	// ------------------------------------------------------
+	// パネル
+	//
+	.smb-panels > .c-row{
+		counter-reset: flow-no;
+		margin: -1.875rem;
+		> .c-row__col{
+			position: relative;
+			margin-bottom: 0;
+			padding: 1.875rem;
+			&::after{
+				content: "";
+				position: absolute;
+				display: block;
+				width: 0;
+				height: 0;
+				border-style: solid;
+			}
+			&:last-child::after{
+				display: none;
+			}
+		}
+		&[data-columns="1"],
+		&[data-md-columns="1"],
+		&[data-lg-columns="1"]{
+			> .c-row__col::after{
+				right: 0;
+				bottom: -0.75rem;
+				left: 0;
+				margin: auto;
+				border-width: 1.5rem 0.875rem 0 0.875rem;
+				border-color: #ccc transparent transparent transparent;
+			}
+		}
+		&[data-md-columns="1"]{
+			@media screen and (min-width: 640px) and (max-width:1023px) {
+				.smb-panels__item{
+					display: flex;
+					align-items: center;
+					padding: 1.875rem 2.5rem;
+				}
+				.smb-panels__item__figure{
+					width: 20%;
+				}
+				.smb-panels__item__body{
+					width: 80%;
+					padding-top: 0;
+					padding-left: 1.5rem;
+				}
+				.smb-panels__item__title{
+					text-align: left;
+					br{
+						display: none;
+					}
+				}
+			}
+		}
+		&[data-lg-columns="1"]{
+			@include mq(lg){
+				.smb-panels__item{
+					display: flex;
+					align-items: center;
+					padding: 1.875rem 2.5rem;
+				}
+				.smb-panels__item__figure{
+					width: 20%;
+				}
+				.smb-panels__item__body{
+					width: 80%;
+					padding-top: 0;
+					padding-left: 1.5rem;
+				}
+				.smb-panels__item__title{
+					text-align: left;
+					br{
+						display: none;
+					}
+				}
+			}
+		}
+		@for $i from 2 through 6 {
+			&[data-columns="#{$i}"]{
+				// @media screen and (max-width: 639px){
+					> .c-row__col:nth-child(#{$i}n)::after{
+							display: none;
+					}
+					> .c-row__col:not(:nth-child(#{$i}n))::after{
+							top: 50%;
+							right: 0;
+							margin-right: -0.75rem;
+							margin-top: -0.875rem;
+							border-width: 0.875rem 0 0.875rem 1.5rem;
+							border-color: transparent transparent transparent #ccc;
+					}
+				// }
+			}
+			&[data-md-columns="#{$i}"]{
+				> .c-row__col:nth-child(#{$i}n)::after{
+					@media screen and (min-width: 640px) and (max-width:1023px) {
+						display: none;
+					}
+				}
+				> .c-row__col:not(:nth-child(#{$i}n))::after{
+					@media screen and (min-width: 640px) and (max-width:1023px) {
+						top: 50%;
+						right: 0;
+						margin-right: -0.75rem;
+						margin-top: -0.875rem;
+						border-width: 0.875rem 0 0.875rem 1.5rem;
+						border-color: transparent transparent transparent #ccc;
+					}
+				}
+			}
+			&[data-lg-columns="#{$i}"]{
+				> .c-row__col:nth-child(#{$i}n)::after{
+					@include mq(lg){
+						display: none;
+					}
+				}
+				> .c-row__col:not(:nth-child(#{$i}n))::after{
+					@include mq(lg){
+						top: 50%;
+						right: 0;
+						margin-right: -0.75rem;
+						margin-top: -0.875rem;
+						border-width: 0.875rem 0 0.875rem 1.5rem;
+						border-color: transparent transparent transparent #ccc;
+					}
+				}
+			}
+		}
+	}
+	.smb-panels__item{
+		position: relative;
+		padding-top: 4rem;
+		padding-right: 2.19rem;
+		padding-bottom: 2.5rem;
+		padding-left: 2.19rem;
+		box-shadow: none;
+		counter-increment: flow-no;
+		@include mq(sm){
+			padding-right: 3.75rem;
+			padding-left: 3.75rem;
+		}
+		&::before{
+			content: counter(flow-no);
+			position: absolute;
+			top: -0.25em;
+			left: 0.3em;
+			display: block;
+			font-size: 2.5rem;
+			font-weight: bold;
+			line-height: 1;
+			color: var(--accent-color,#cd162c);
+		}
+		&::after{
+			content: "";
+			position: absolute;
+			top: 1rem;
+			left: 1rem;
+			display: block;
+			width: 5rem;
+			height: 1px;
+			background: var(--accent-color,#cd162c);
+			transform: rotate(-60deg);
+		}
+	}
+	.smb-panels__item__figure{
+		>img{
+			max-height: 92px;
+			width: auto;
+		}
+	}
+	.smb-panels__item__body{
+		padding: 1.5rem 0 0 0;
+		
+	}
+	.smb-panels__item__title{
+		@include heading4;
+	}
+	.smb-panels__item__content{
+		margin-top: 1rem;
+		text-align: left;
+		@include paragraph;
+	}
+	//左寄せ
+	//中央寄せ
+	&.smb-section-with-bgimage--center{
+		> .c-container{
+			> .smb-section__subtitle{
+				&::after{
+					margin-right: auto;
+					margin-left: auto;
+				}
+			}
+		}
+	}
+	//右寄せ
+	&.smb-section-with-bgimage--right{
+		> .c-container{
+			> .smb-section__subtitle{
+				&::after{
+					margin-right: 0;
+					margin-left: auto;
+				}
+			}
+		}
+	}
+}
+
+
+
