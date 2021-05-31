@@ -64,6 +64,7 @@ add_filter( 'rje_register_patterns_args', 'rje_P002lp_hero_one_column', 10 );
 add_filter( 'rje_register_patterns_args', 'rje_P002lp_message_normal', 10 );
 add_filter( 'rje_register_patterns_args', 'rje_P002lp_message_normal__alignright', 10 );
 add_filter( 'rje_register_patterns_args', 'rje_P002lp_message_accent', 10 );
+add_filter( 'rje_register_patterns_args', 'rje_P002lp_message_accent2', 10 );
 add_filter( 'rje_register_patterns_args', 'rje_P002lp_flow', 10 );
 add_filter( 'rje_register_patterns_args', 'rje_P002lp_merit', 10 );
 
@@ -118,6 +119,15 @@ function rje_P002lp_message_accent ( $args ) {
 		'title' => '伝えたいこと（アクセント)',
 		'cat'   => array( RJE_P002LP_KEY ),
 		'style' => array( RJE_P002LP_KEY.'_message_accent' ),
+	);
+	return $args;
+}
+function rje_P002lp_message_accent2 ( $args ) {
+	$args[] = array(
+		'key'   => RJE_P002LP_KEY . '_message_accent2',
+		'title' => '伝えたいこと（アクセント2)',
+		'cat'   => array( RJE_P002LP_KEY ),
+		'style' => array( RJE_P002LP_KEY.'_message_accent2' ),
 	);
 	return $args;
 }
