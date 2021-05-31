@@ -1,0 +1,15 @@
+<!-- wp:snow-monkey-blocks/section-with-bgimage {"lgImageID":28,"lgImageMediaType":"image","maskColor":"#f4f4f4","maskOpacity":0,"align":"full","className":"is-style-RJE_P002LP_merit"} -->
+<div class="wp-block-snow-monkey-blocks-section-with-bgimage alignfull smb-section smb-section-with-bgimage smb-section-with-bgimage--left smb-section-with-bgimage--fit is-style-RJE_P002LP_merit"><div class="smb-section-with-bgimage__bgimage smb-section-with-bgimage__bgimage--lg"><div class="smb-section-with-bgimage__mask" style="background-color:#f4f4f4"></div><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>images/transparent.png" alt="" class="wp-image-28" style="opacity:0"/></div><div class="c-container"><div class="smb-section__subtitle">FEATURE</div><h2 class="smb-section__title">MATCHの特徴</h2><div class="smb-section__body"><!-- wp:snow-monkey-blocks/panels {"md":2,"lg":3} -->
+<div class="wp-block-snow-monkey-blocks-panels smb-panels" data-image-padding="false"><div class="c-row c-row--margin c-row--fill" data-columns="1" data-md-columns="2" data-lg-columns="3"><!-- wp:snow-monkey-blocks/panels--item {"imageID":290} -->
+<div class="wp-block-snow-monkey-blocks-panels--item c-row__col"><div class="smb-panels__item"><div class="smb-panels__item__figure"><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>images/icon1.png" alt="" width="54" height="95" class="wp-image-290"/></div><div class="smb-panels__item__body"><div class="smb-panels__item__title">診断やフィードバックで<br>髪質と好みを把握</div><div class="smb-panels__item__content">質問に答えたり、使用したシャンプーのフィードバックで、あなたの髪について教えてください</div></div></div></div>
+<!-- /wp:snow-monkey-blocks/panels--item -->
+
+<!-- wp:snow-monkey-blocks/panels--item {"imageID":291} -->
+<div class="wp-block-snow-monkey-blocks-panels--item c-row__col"><div class="smb-panels__item"><div class="smb-panels__item__figure"><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>images/icon2.png" alt="" width="92" height="90" class="wp-image-291"/></div><div class="smb-panels__item__body"><div class="smb-panels__item__title">幅広いラインナップから<br>あなたのベストを提案</div><div class="smb-panels__item__content">MATCHのシャンプーは種類が豊富。あなたの髪にぴったりのシャンプーを提案します</div></div></div></div>
+<!-- /wp:snow-monkey-blocks/panels--item -->
+
+<!-- wp:snow-monkey-blocks/panels--item {"imageID":292} -->
+<div class="wp-block-snow-monkey-blocks-panels--item c-row__col"><div class="smb-panels__item"><div class="smb-panels__item__figure"><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>images/icon3.png" alt="" width="69" height="89" class="wp-image-292"/></div><div class="smb-panels__item__body"><div class="smb-panels__item__title">定期的な継続購入が<br>リーズナブル</div><div class="smb-panels__item__content">継続購入がお得。フィードバックを繰り返すことで、あなたの好みのシャンプーに近づきます</div></div></div></div>
+<!-- /wp:snow-monkey-blocks/panels--item --></div></div>
+<!-- /wp:snow-monkey-blocks/panels --></div></div></div>
+<!-- /wp:snow-monkey-blocks/section-with-bgimage -->
