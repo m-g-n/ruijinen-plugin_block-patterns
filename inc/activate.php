@@ -14,7 +14,7 @@ function rje_pattern_activate() {
 	if ( is_admin() && current_user_can( 'activate_plugins' ) && ( ( 'snow-monkey' !== $theme->template && 'snow-monkey/resources' !== $theme->template ) || ( ! is_plugin_active( 'snow-monkey-blocks/snow-monkey-blocks.php' ) ) ) ) {
 		add_action( 'admin_notices', 'rje_pattern_notice' );
 
-		deactivate_plugins( RJE_BASENAME );
+		deactivate_plugins( RJE_BP_PLUGIN_BASENAME );
 
 		if ( isset( $_GET['activate'] ) ) {
 			unset( $_GET['activate'] );

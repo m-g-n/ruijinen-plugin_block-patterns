@@ -34,7 +34,7 @@ class RJEAutoUpdate {
 	 */
 	public function _activate_autoupdate() {
 		new Updater(
-			RJE_BASENAME,
+			RJE_BP_PLUGIN_BASENAME,
 			'm-g-n',
 			'ruijinen-block-patterns-beta'
 		);

@@ -20,7 +20,6 @@ class RegisterBlockPatterns {
 	public $load_style_handle = ''; //登録するブロックスタイル情報.
 	public $style_front_deps  = '';
 	public $style_editor_deps = '';
-	public $file_path; //クラスを実行したプラグインのパス.
 
 	public function __construct() {
 		//プロパティ初期値設定.
@@ -35,9 +34,8 @@ class RegisterBlockPatterns {
 	 * ブロックパターンの登録に関する処理を実行する
 	 */
 	public function init() {
-		//TODO： パターン登録実行のトリガーを自分のこちらのCLASS内でできないか検討
-		// add_action( 'init', array( $this, 'register_patterns' ), 10 ); //パターン登録
-		add_action( 'init', array( $this, 'register_block_style' ), 15 ); //ブロックスタイル登録
+		add_action( 'init', array( $this, 'register_patterns' ), 15 ); //パターン登録
+		add_action( 'init', array( $this, 'register_block_style' ), 20 ); //ブロックスタイル登録
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_style_front' ) ); //フロント用のCSS
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_style_editor' ) ); //エディタ用のCSS
 	}
@@ -46,34 +44,37 @@ class RegisterBlockPatterns {
 	 * ブロックパターンを登録
 	 */
 	public function register_patterns () {
-		$patterns = apply_filters( 'rje_register_patterns_args', array(), $patterns );
-		foreach ( $patterns as $pattern ) {
-			// 例外処理.
-			if ( ! $pattern['key'] || ! $pattern['cat'] || ! $pattern['title'] ) {
-				continue;
+		$patterns = apply_filters( 'rje_register_patterns_args', array(), 'args' );
+		if ( $patterns && is_array( $patterns ) ) {
+			foreach ( $patterns as $pattern ) {
+				// 例外処理.
+				if ( ! $pattern['key'] || ! $pattern['cat'] || ! $pattern['title'] || ! $pattern['path'] ) {
+					continue;
+				}
+
+				// 使用するブロックスタイルを設定.
+				foreach ( $pattern['style'] as $block_style_name ) {
+					$this->load_style_handle[ $block_style_name ]['path'] = $pattern['path'];
+					$this->load_style_handle[ $block_style_name ]['use_list'][] = $pattern['title'];
+				}
+
+				// パターンの内容を取得.
+				$contents = '';
+				ob_start();
+				require_once $pattern['path'] . 'patterns/' . $pattern['key'] . '/pattern.php';
+				$contents = ob_get_contents();
+				ob_end_clean();
+
+				// パターン登録.
+				register_block_pattern(
+					'RJE-pattern/' . $pattern['key'],
+					array(
+						'title'      => $pattern['title'],
+						'content'    => $contents,
+						'categories' => $pattern['cat'],
+					)
+				);
 			}
-
-			// 使用するブロックスタイルを設定.
-			foreach ( $pattern['style'] as $block_style_name ) {
-				$this->load_style_handle[ $block_style_name ][] = $pattern['title'];
-			}
-
-			// パターンの内容を取得.
-			$contents = '';
-			ob_start();
-			require_once $this->file_path . 'patterns/' . $pattern['key'] . '/pattern.php';
-			$contents = ob_get_contents();
-			ob_end_clean();
-
-			// パターン登録.
-			register_block_pattern(
-				'RJE-pattern/' . $pattern['key'],
-				array(
-					'title'      => $pattern['title'],
-					'content'    => $contents,
-					'categories' => $pattern['cat'],
-				)
-			);
 		}
 	}
 
@@ -82,7 +83,7 @@ class RegisterBlockPatterns {
 	 */
 	public function register_block_style() {
 		foreach ( $this->load_style_handle as $handle => $use_patterns ) {
-			foreach ( glob( $this->file_path . 'block-styles/*/*/' . $handle . '/register.php' ) as $file ) {
+			foreach ( glob( $use_patterns['path'] . 'block-styles/*/*/' . $handle . '/register.php' ) as $file ) {
 				require_once $file;
 			}
 		}

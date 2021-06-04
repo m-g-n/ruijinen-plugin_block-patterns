@@ -80,9 +80,9 @@ function rje_notification_content() {
 function enuqeue_notification_widget_style() {
 	wp_enqueue_style(
 		'notification-widget',
-		RJE_PLUGIN_URL . '/src/css/notification-widget.css',
+		RJE_BP_PLUGIN_URL . '/src/css/notification-widget.css',
 		array(),
-		filemtime( RJE_PLUGIN_PATH . '/src/css/notification-widget.css' )
+		filemtime( RJE_BP_PLUGIN_PATH . '/src/css/notification-widget.css' )
 	);
 }
 add_action( 'admin_enqueue_scripts', 'enuqeue_notification_widget_style' );
