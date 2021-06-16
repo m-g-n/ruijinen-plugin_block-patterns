@@ -63,7 +63,7 @@ jobs:
       - name: Zip Release 
         uses: TheDoctor0/zip-release@0.4.1
         with:
-          filename: 'release-test.zip' # ファイル名
+          filename: 'ruijinen-block-patterns.zip' # ファイル名
           exclusions: '*.git* /*node_modules/* .editorconfig /*src/*scss/*' # 除外設定
           directory: '.'
           path: '.'
@@ -77,8 +77,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./release-test.zip
-          asset_name: release-test.zip
+          asset_path: ./ruijinen-block-patterns.zip
+          asset_name: ruijinen-block-patterns.zip
           asset_content_type: application/zip
 
       # mainからdevにPR生成
