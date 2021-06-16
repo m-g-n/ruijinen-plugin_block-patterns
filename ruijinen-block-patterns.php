@@ -13,8 +13,8 @@
 /**
  * 定数を宣言
  */
-define( 'RJE_BP_PLUGIN_URL', plugins_url( '', __FILE__ ) );  // このプラグインのURL.
-define( 'RJE_BP_PLUGIN_PATH', plugin_dir_path( __FILE__ ) ); // このプラグインのパス.
+define( 'RJE_BP_PLUGIN_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) . '/' );  // このプラグインのURL.
+define( 'RJE_BP_PLUGIN_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) . '/' ); // このプラグインのパス.
 define( 'RJE_BP_PLUGIN_BASENAME', plugin_basename( __FILE__ ) ); // このプラグインのベースネーム.
 
 
