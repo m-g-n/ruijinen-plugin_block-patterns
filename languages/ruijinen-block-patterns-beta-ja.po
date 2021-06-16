@@ -27,11 +27,11 @@ msgstr ""
 #: inc/activate.php:28
 msgid "[RUI-JIN-EN Block Patterns] This Plugin must need the premium theme Snow Monkey and a plugin Snow Monkey Blocks."
 msgstr ""
-"【類人猿ブロックパターン（ベータ）】このプラグインはプレミアムテーマ Snow Monkey と Snow Monkey Blocks が必須です."
+"【類人猿ブロックパターン】このプラグインはプレミアムテーマ Snow Monkey と Snow Monkey Blocks が必須です."
 
 #. inc/notification-widget.php:14
-msgid "RUI-JIN-EN Block Patterns Beta"
-msgstr "類人猿ブロックパターン（ベータ）"
+msgid "RUI-JIN-EN Block Patterns"
+msgstr "類人猿ブロックパターン"
 
 #. inc/notification-widget.php:48
 msgid "Information"
