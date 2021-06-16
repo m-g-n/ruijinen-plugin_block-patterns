@@ -10,6 +10,7 @@
  * @package ruijinen-block-patterns
  */
 
+
 /**
  * 定数を宣言
  */

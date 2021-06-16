@@ -138,3 +138,6 @@ ai1wm-backups
 robots.txt
 
 /vendor/
+
+# CSSはコンフリクト対策でgithub側でコンパイルするため除外する
+# /dist/css/
