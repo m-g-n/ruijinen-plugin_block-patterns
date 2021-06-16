@@ -1,4 +1,4 @@
-![release](https://github.com/m-g-n/ruijinen-plugin_block-patterns/workflows/Create+Release/badge.svg)
+[![Create Release](https://github.com/m-g-n/ruijinen-plugin_block-patterns/actions/workflows/release.yml/badge.svg)](https://github.com/m-g-n/ruijinen-plugin_block-patterns/actions/workflows/release.yml)
 
 # 類人猿ブロックパターンプラグイン
 WordPressテーマ Snow Monkeyを拡張するブロックパターン集のプラグインです。
@@ -14,6 +14,9 @@ WordPressテーマ Snow Monkeyを拡張するブロックパターン集のプ�
 - npx gulp sass でCSSにコンパイル（コマンド走ったときだけCSSをコンパイル）
 
 # changelog
+0.0.0.1.1
+README.mdにreleaseCIのバッジを追加
+
 0.0.0.1
 本体のみのプラグインを作成
 github actionsの導入
