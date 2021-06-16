@@ -1,0 +1,32 @@
+name: Create release pull requests
+
+on:
+  pull_request:
+    branches:
+      - dev
+    types: [closed]
+
+jobs:
+  create-release-pr:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Ruby 2.6
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6.x
+
+      - name: Create a pull request into release-prd
+        env:
+          GIT_PR_RELEASE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_PR_RELEASE_BRANCH_PRODUCTION: main
+          GIT_PR_RELEASE_BRANCH_STAGING: dev
+          GIT_PR_RELEASE_TITLE: "0.0.x.x"
+          GIT_PR_RELEASE_TEMPLATE: .github/git-pr-release/.git-pr-release-template
+        run: |
+          gem install -N git-pr-release -v "1.2.0"
+          git-pr-release --no-fetch
