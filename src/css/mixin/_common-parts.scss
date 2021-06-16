@@ -1,0 +1,118 @@
+//見出しのスタイル
+$base-font-size: 16;
+
+@mixin heading1{
+	font-size: (24 / $base-font-size) * 1rem;
+	font-weight: bold;
+	letter-spacing: 0.12em;
+	line-height: 1.8;
+	@include mq(sm){
+		font-size: (32 / $base-font-size) * 1rem;
+	}
+}
+@mixin heading2{
+	font-size: (20 / $base-font-size) * 1rem;
+	font-weight: bold;
+	letter-spacing: 0.12em;
+	line-height: 1.8;
+	@include mq(sm){
+		font-size: (24 / $base-font-size) * 1rem;
+	}
+}
+@mixin heading3{
+	font-size: (18 / $base-font-size) * 1rem;
+	font-weight: bold;
+	letter-spacing: 0.12em;
+	line-height: 1.8;
+	@include mq(sm){
+		font-size: (20 / $base-font-size) * 1rem;
+	}
+}
+@mixin heading4{
+	font-weight: bold;
+	letter-spacing: 0.12em;
+	line-height: 1.8;
+	@include mq(sm){
+		font-size: (18 / $base-font-size) * 1rem;
+	}
+}
+
+//段落のスタイル
+@mixin paragraph{
+	font-size: 0.875rem;
+	letter-spacing: 0.05em;
+	line-height: 2;
+	@include mq(sm){
+		font-size: 1rem;
+	}
+}
+
+//ボタンのスタイル
+@mixin button{
+	
+}
+//ボタンスタイル - ノーマル
+@mixin button--normal{
+	min-width: 225px; //TODO: 最低幅で対応するかを検討する
+	padding: 0.625rem;
+	border-radius: 6.25rem;
+	line-height: 1.5;
+	transition: all 0.3s ease-out;
+	&:hover{
+		opacity: 0.7;
+	}
+}
+//ボタンスタイル - ゴースト
+@mixin button--ghost{
+	min-width: 225px; //TODO: 最低幅で対応するかを検討する
+	padding: 0.625rem;
+	border: 1px solid;
+	border-radius: 6.25rem;
+	line-height: 1.5;
+	transition: all 0.3s ease-out;
+	&:hover{
+		opacity: 0.7;
+	}
+}
+//ボタンのスタイル - SMBボタン テキストの場合
+@mixin button--text{
+	padding-right: 0;
+	padding-left: 0;
+	line-height: 1.5;
+	transition: all 0.3s ease-out;
+	.smb-btn__label{
+		padding-bottom: 0.625em;
+		border-bottom: 1px solid;
+		transition: all 0.3s ease-out;
+	}
+	&:hover{
+		opacity: 0.7;
+		.smb-btn__label{
+			opacity: 0.7;
+		}
+	}
+}
+
+//SMBセクション - タイトルのスタイル
+@mixin smb-section-title () {
+	@include heading2;
+	&::after{
+		display: none;
+	}
+}
+
+//SMBセクション - サブタイトルのスタイル
+@mixin smb-section-subtitle () {
+	margin-bottom: 1.25rem;
+	font-weight: normal;
+	opacity: 0.6;
+	&::after{
+		content: "";
+		display: block;
+		width: 2em;
+		height: 1px;
+		margin-top: 0.75rem;
+		background-color: var(--accent-color,#cd162c);
+		opacity: 0.3;
+	}
+}
