@@ -14,6 +14,10 @@ WordPressテーマ Snow Monkeyを拡張するブロックパターン集のプ�
 - npx gulp sass でCSSにコンパイル（コマンド走ったときだけCSSをコンパイル）
 
 # changelog
+0.0.0.6
+gitにてdist/cssをignore を定義（0.0.0.5ではできてなかった）
+リリース時にCSSをコンパイルするようにrelease.ymlを修正
+
 0.0.0.5
 gitにてdist/cssをignore
 

@@ -37,8 +37,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install Dependencies
         run: yarn install --prefer-offline
-      # - name: scss build
-      #   run: yarn gulp sass
+      - name: scss build
+        run: yarn gulp sass
 
       #composerの実施
       - name: Composer install
