@@ -7,6 +7,8 @@
  * @package ruijinen
  */
 
+namespace Ruijinen\Pattern\Master;
+
 use Inc2734\WP_GitHub_Plugin_Updater\Bootstrap as Updater;
 
 /**
