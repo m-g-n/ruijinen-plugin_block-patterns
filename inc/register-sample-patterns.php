@@ -64,7 +64,7 @@ class RegisterSamplePatterns {
 			'title'          => 'Heroイメージ（1カラム)',
 			'cat'            => array( RJE_R000SAMPLE_KEY ),
 			'specific-style' => false,
-			'block-style'    => array( RJE_R000SAMPLE_KEY . '_hero_one_column' ),
+			'block-style'    => array( 'RJE_R002LP_hero_one_column' ),
 			'path'           => RJE_BP_PLUGIN_PATH,
 		);
 		return $args;
@@ -75,7 +75,7 @@ class RegisterSamplePatterns {
 			'title'          => '伝えたいこと',
 			'cat'            => array( RJE_R000SAMPLE_KEY ),
 			'specific-style' => FALSE,
-			'block-style'    => array( RJE_R000SAMPLE_KEY . '_message_accent2' ),
+			'block-style'    => array( 'RJE_R002LP_message_accent2' ),
 			'path'           => RJE_BP_PLUGIN_PATH,
 		);
 		return $args;
@@ -86,7 +86,7 @@ class RegisterSamplePatterns {
 			'title'          => '流れ・手順',
 			'cat'            => array( RJE_R000SAMPLE_KEY ),
 			'specific-style' => FALSE,
-			'block-style'    => array( RJE_R000SAMPLE_KEY . '_section1', RJE_R000SAMPLE_KEY . '_flow_panels' ),
+			'block-style'    => array( 'RJE_R002LP_section1', 'RJE_R002LP_flow_panels' ),
 			'path'           => RJE_BP_PLUGIN_PATH,
 		);
 		return $args;
