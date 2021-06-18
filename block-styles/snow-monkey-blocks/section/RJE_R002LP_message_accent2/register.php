@@ -5,13 +5,13 @@
  * @license GPL-2.0+
  */
 
-$override_block_name = 'snow-monkey-blocks/section-with-bgimage';
-$block_style_label   = '類人猿R000 SAMPLEHero（1カラム)';
+$override_block_name = 'snow-monkey-blocks/section';
+$block_style_label   = '類人猿R002LP 伝えたいこと（アクセント2)';
 $basename = basename( __DIR__ );
 $front_filename  = 'dist/css/block-styles/' . $override_block_name . '/' . $basename . '/style-front.css';
 $editor_filename = 'dist/css/block-styles/' . $override_block_name . '/' . $basename . '/style-editor.css';
 
-//ブロックスタイル登録
+//ファイルパス（プラグインのルートから相対）
 register_block_style(
 	$override_block_name,
 	array(
