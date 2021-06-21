@@ -52,11 +52,16 @@ class RegisterSamplePatterns {
 	/**
 	* サンプルパターン情報を追加
 	*/
-	function register_add_pettern_args() {
-		// 登録するパターンをhookに追加
-		add_filter( 'rje_register_patterns_args', array( $this, 'rje_r000sample_hero_one_column' ), 10 );
-		add_filter( 'rje_register_patterns_args', array( $this, 'rje_r000sample_message_accent2' ), 10 );
-		add_filter( 'rje_register_patterns_args', array( $this, 'rje_r000sample_flow' ), 10 );
+	public function register_add_pettern_args() {
+		//LPパターン集の登録がなければ、サンプルパターンを登録
+		if( !function_exists('is_plugin_active') ) { 
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); //hookのタイミングで読み込んでないためこちらで先行して読み込む
+		}
+		if ( !is_plugin_active( 'ruijinen-block-patterns-r002-lp/ruijinen-block-patterns-r002-lp.php' )  ) {
+			add_filter( 'rje_register_patterns_args', array( $this, 'rje_r000sample_hero_one_column' ), 10 );
+			add_filter( 'rje_register_patterns_args', array( $this, 'rje_r000sample_message_accent2' ), 10 );
+			add_filter( 'rje_register_patterns_args', array( $this, 'rje_r000sample_flow' ), 10 );
+		}
 	}
 	public function rje_r000sample_hero_one_column( $args ) {
 		$args[] = array(
