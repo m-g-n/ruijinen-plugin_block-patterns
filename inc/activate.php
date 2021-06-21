@@ -20,8 +20,8 @@ class PluginActivate {
 			$noactivate_message = NULL; //アクティベートできなかった場合のメッセージ出力関数名
 			if ( $this->check_snow_monkey_activate() ) {
 				$noactivate_message = 'alert_notice_snow_monkey';
-			} elseif ( $this->check_rje_petterns_bata_activate() ) {
-				$noactivate_message = 'alert_notice_petterns_bata';
+			// } elseif ( $this->check_rje_petterns_bata_activate() ) {
+			// 	$noactivate_message = 'alert_notice_petterns_bata';
 			}
 			if ( $noactivate_message != NULL ) {
 				deactivate_plugins( RJE_BP_PLUGIN_BASENAME );
