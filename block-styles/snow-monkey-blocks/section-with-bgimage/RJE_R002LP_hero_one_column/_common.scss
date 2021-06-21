@@ -17,37 +17,64 @@
 		margin-bottom: 6.25em;
 	}
 	//セクション背景
-	.smb-section-with-bgimage__bgimage{
+	> .smb-section-with-bgimage__bgimage{
 		max-width: calc(100% - 2em);
-		margin-right: 1em;
-		margin-left: 1em;
+		margin-right: auto;
+		margin-left: auto;
 		@include mq(sm){
 			max-width: (100% - 8.32%);
-			margin-right: auto;
-			margin-left: auto;
+		}
+		@include mq(lg){
+			max-width: 100%;
 		}
 	}
 	//セクションの内包
-	.c-container{
+	> .c-container{
+		max-width: calc(100% - 2em);
+		margin-right: auto;
+		margin-left: auto;
 		padding-right: 1em;
 		padding-left: 1em;
-	}
-	//セクションタイトル
-	.smb-section__title{
-		@include heading1;
-		&::after{
-			display: none;
+		@include mq(sm){
+			max-width: (100% - 8.32%);
 		}
-		
-	}
-	//セクションボディ
-	.smb-section__body{
-		margin-top: 1.5em;
-		:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6)+:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6){
-			margin-top: 1em;
+		@include mq(lg){
+			max-width: 100%;
 		}
-		.smb-buttons{
-			margin-top: 4em;
+		//セクションタイトル
+		> .smb-section__title{
+			@include heading1;
+			&::after{
+				display: none;
+			}
+		}
+		//セクションボディ
+		> .smb-section__body{
+			margin-top: 1.5em;
+			:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6)+:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6){
+				margin-top: 1em;
+			}
+			.smb-buttons{
+				margin-top: 4em;
+			}
+		}
+	}
+
+	//サイドバーありのテンプレート以外 かつ セクション自体俄然幅表示
+	body:not(.page-template-left-sidebar):not(.page-template-right-sidebar) &{
+		&.alignfull{
+			//セクション背景
+			> .smb-section-with-bgimage__bgimage{
+				@include mq(lg){
+					max-width: (100% - 8.32%);
+				}
+			}
+			//内包コンテナ
+			> .c-container{
+				@include mq(lg){
+					max-width: (100% - 8.32%);
+				}
+			}
 		}
 	}
 }

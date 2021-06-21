@@ -10,15 +10,9 @@
 .is-style-RJE_R002LP_message_accent2{
 	position: relative;
 	padding: 0.625rem;
-	@include mq(md){
-		padding: 1.25rem;
-	}
-	.smb-section__inner{
+	> .smb-section__inner{
 		padding: 2.375rem 1.125rem;
 		border: 1px solid #8F8F8F;
-		@include mq(md){
-			padding: 3.75rem 3.75rem 4.75rem;
-		}
 		> .c-container{
 			> .smb-section__subtitle{
 				margin-bottom: 1.25rem;
@@ -50,4 +44,17 @@
 			}
 		}
 	}
+	//スリム幅・サイド幅以外
+	body:not(.page-template-left-sidebar):not(.page-template-right-sidebar):not(.page-template-blank-slim):not(.page-template-one-column-slim) &{
+		@include mq(md){
+			padding: 1.25rem;
+		}
+		> .smb-section__inner{
+			@include mq(md){
+				padding: 3.75rem 3.75rem 4.75rem;
+			}
+		}
+	}
 }
+
+
