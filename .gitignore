@@ -137,6 +137,7 @@ ai1wm-backups
 .DS_Store
 robots.txt
 
+# conporserファイルの除外
 /vendor/
 
 # CSSはコンフリクト対策でgithub側でコンパイルするため除外する
