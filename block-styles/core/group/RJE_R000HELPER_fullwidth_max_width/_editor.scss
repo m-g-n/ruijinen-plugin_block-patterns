@@ -1,0 +1,26 @@
+// ======================================================
+//
+// ブロックスタイル - フル幅テンプレ - コンテンツ幅にする（エディター固有のスタイル）
+//
+// ======================================================
+
+// ------------------------------------------------------
+// スタイル
+// ------------------------------------------------------
+.is-style-RJE_R000HELPER_fullwidth_max_width{
+	position: relative;
+	padding: 1.25rem;
+	border: 1px dotted #e00;
+	&::before{
+		content:"フル幅のときにこの中はコンテンツ幅に準拠します";
+		position: absolute;
+		top:-0.5rem;
+		left: 0.5rem;
+		display: block;
+		padding: 0.1em 0.4em;
+		font-size: 12px;
+		font-weight: bold;
+		background-color: #d00;
+		color: #fff;
+	}
+}
