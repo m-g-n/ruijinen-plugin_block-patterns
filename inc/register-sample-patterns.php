@@ -1,6 +1,6 @@
 <?php
 /**
- * ブロックパターンの登録処理
+ * サンプルブロックパターンの登録処理
  * 
  * @package ruijinen-block-patterns
  * @author mgn
