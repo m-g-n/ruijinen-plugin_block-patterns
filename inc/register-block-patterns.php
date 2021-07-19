@@ -17,6 +17,7 @@ class RegisterBlockPatterns {
 	// プロパティ.
 	public $load_block_style_handle = ''; //登録するブロックスタイル情報.
 	public $load_specific_style_handle = ''; //登録するパターン固有スタイル情報.
+	public $load_specific_script_handle = ''; //登録するパターン固有スクリプト情報.
 	public $style_front_deps  = '';
 	public $style_editor_deps = '';
 
@@ -24,6 +25,7 @@ class RegisterBlockPatterns {
 		//プロパティ初期値設定.
 		$this->load_block_style_handle = array();
 		$this->load_specific_style_handle = array();
+		$this->load_specific_script_handle = array();
 		$this->style_front_deps  = array( 'snow-monkey', 'snow-monkey-blocks', 'snow-monkey-snow-monkey-blocks', 'snow-monkey-blocks-background-parallax' );
 		$this->style_editor_deps = array( 'snow-monkey-snow-monkey-blocks-editor' );
 		//処理実行
@@ -37,8 +39,10 @@ class RegisterBlockPatterns {
 		add_action( 'init', array( $this, 'register_patterns' ), 15 ); //パターン登録
 		add_action( 'init', array( $this, 'register_specific_style' ), 20 ); //パターン固有のスタイル登録
 		add_action( 'init', array( $this, 'register_block_style' ), 20 ); //ブロックスタイル登録
+		add_action( 'init', array( $this, 'register_specific_script' ), 20 ); //パターン固有のスクリプト登録
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_style_front' ) ); //フロント用のCSS
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_style_editor' ) ); //エディタ用のCSS
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_script_front' ) ); //フロント用のスクリプト
 	}
 
 	/**
@@ -65,6 +69,12 @@ class RegisterBlockPatterns {
 						$this->load_block_style_handle[ $block_style_name ]['path'] = $pattern['path'];
 						$this->load_block_style_handle[ $block_style_name ]['use_list'][] = $pattern['title'];
 					}
+				}
+
+				// 使用するブロックスタイル用scriptを設定.
+				if ( !empty( $pattern['specific-script'] ) && TRUE == $pattern['specific-script'] ) {
+					$this->load_specific_script_handle[ $pattern['key'] ]['path'] = $pattern['path'];
+					$this->load_specific_script_handle[ $pattern['key'] ]['use_list'][] = $pattern['title'];
 				}
 
 				// パターンの内容を取得.
@@ -97,6 +107,18 @@ class RegisterBlockPatterns {
 			}
 		}
 	}
+
+	/**
+	 * パターン固有スクリプトの登録
+	 */
+	public function register_specific_script () {
+		foreach ( $this->load_specific_script_handle as $handle => $use_patterns ) {
+			foreach ( glob( $use_patterns['path'] . 'patterns/' . $handle . '/register-script.php' ) as $file ) {
+				require_once $file;
+			}
+		}
+	}
+
 
 	/**
 	 * ブロックスタイルの登録
@@ -134,6 +156,17 @@ class RegisterBlockPatterns {
 		//固有のパターンのスタイル
 		foreach ( $this->load_specific_style_handle as $handle => $use_patterns ) {
 			wp_enqueue_style( $handle . '-editor' );
+		}
+	}
+
+
+	/**
+	 * 指定のハンドルのscriptを読み込む（フロント用）
+	 */
+	public function enqueue_script_front() {
+		//固有のパターンのスタイル
+		foreach ( $this->load_specific_script_handle as $handle => $use_patterns ) {
+			wp_enqueue_script( $handle . '-script-front' );
 		}
 	}
 }
