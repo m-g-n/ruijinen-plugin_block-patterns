@@ -10,6 +10,6 @@
 
 <!-- wp:paragraph -->
 <p>ぜひMATCHをお試しください。</p>
-<!-- /wp:paragraph --></div></div><div class="c-row__col c-row__col--1-1 c-row__col--lg-1-2"><div class="smb-media-text__figure"><img src="<?php echo esc_url( RJE_R002LP_URL ); ?>dist/img/photo-woman1.jpg" alt="" width="1024" height="683" class="wp-image-465"/></div></div></div></div>
+<!-- /wp:paragraph --></div></div><div class="c-row__col c-row__col--1-1 c-row__col--lg-1-2"><div class="smb-media-text__figure"><img src="<?php echo esc_url( RJE_BP_PLUGIN_URL ); ?>dist/img/photo-woman1.jpg" alt="" width="1024" height="683" class="wp-image-465"/></div></div></div></div>
 <!-- /wp:snow-monkey-blocks/media-text --></div></div></div></div>
 <!-- /wp:snow-monkey-blocks/section -->
