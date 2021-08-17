@@ -26,8 +26,8 @@ class RegisterBlockPatterns {
 		$this->load_block_style_handle = array();
 		$this->load_specific_style_handle = array();
 		$this->load_specific_script_handle = array();
-		$this->style_front_deps  = array( 'snow-monkey', 'snow-monkey-blocks', 'snow-monkey-snow-monkey-blocks', 'snow-monkey-blocks-background-parallax' );
-		$this->style_editor_deps = array( 'snow-monkey-snow-monkey-blocks-editor' );
+		$this->style_front_deps  = [ \Framework\Helper::get_main_style_handle() ];
+		$this->style_editor_deps = [ \Framework\Helper::get_main_style_handle() ];
 		//処理実行
 		$this->init();
 	}
