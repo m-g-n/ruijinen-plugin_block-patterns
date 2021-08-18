@@ -14,6 +14,9 @@ WordPressテーマ Snow Monkeyを拡張するブロックパターン集のプ�
 - npx gulp sass でCSSにコンパイル（コマンド走ったときだけCSSをコンパイル）
 
 # 変更履歴
+## 0.0.0.18
+- release用PR作成CIを変更
+
 ## 0.0.0.17
 - editor用のCSS読み込みの依存関係を公式の記述に変更
 
