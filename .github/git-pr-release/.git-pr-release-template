@@ -1,4 +1,4 @@
-<%= ENV['GIT_PR_RELEASE_TITLE'] %> - <%= Time.now %>
+<%= ENV['NPM_VERSION'] %> - <%= Time.now %>
 
 ### 変更内容
 <% pull_requests.each do |pr| -%>
