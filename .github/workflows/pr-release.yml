@@ -31,5 +31,5 @@ jobs:
           GIT_PR_RELEASE_BRANCH_PRODUCTION: main
           GIT_PR_RELEASE_BRANCH_STAGING: dev
           GIT_PR_RELEASE_LABELS: release
-          NPM_VERSION: v${{ steps.package-version.outputs.current-version}}
+          NPM_VERSION: ${{ steps.package-version.outputs.current-version}}
           GIT_PR_RELEASE_TEMPLATE: .github/git-pr-release/.git-pr-release-template
