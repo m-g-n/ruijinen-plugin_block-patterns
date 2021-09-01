@@ -54,7 +54,7 @@ class RegisterHelperPatterns {
 	*/
 	public function register_add_pettern_args() {
 		add_filter( 'rje_register_patterns_args', array( $this, 'rje_r000helper_fullwidth_min_padding' ), 10 );
-		add_filter( 'rje_register_patterns_args', array( $this, 'rje_r000helper_fullwidth_max_width' ), 10 );
+		add_filter( 'rje_register_patterns_args', array( $this, 'rje_r000helper_enforcement_fullwidth' ), 10 );
 	}
 	public function rje_r000helper_fullwidth_min_padding ( $args ) {
 		$args[] = array(
@@ -67,13 +67,13 @@ class RegisterHelperPatterns {
 		);
 		return $args;
 	}
-	public function rje_r000helper_fullwidth_max_width ( $args ) {
+	public function rje_r000helper_enforcement_fullwidth ( $args ) {
 		$args[] = array(
-			'key'            => RJE_R000HELPER_KEY . '_fullwidth_max_width',
-			'title'          => 'フル幅時にコンテンツ幅になる',
+			'key'            => RJE_R000HELPER_KEY . '_enforcement_fullwidth',
+			'title'          => '強制的にフル幅にする',
 			'cat'            => array( RJE_R000HELPER_KEY ),
 			'specific-style' => false,
-			'block-style'    => array( RJE_R000HELPER_KEY . '_fullwidth_max_width' ),
+			'block-style'    => array( RJE_R000HELPER_KEY . '_enforcement_fullwidth' ),
 			'path'           => RJE_BP_PLUGIN_PATH,
 		);
 		return $args;
