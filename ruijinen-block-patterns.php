@@ -2,7 +2,7 @@
 /**
  * Plugin name: 類人猿ブロックパターン
  * Description: Snow Monkeyサイトをより素敵にするブロックパターンを提供
- * Version: 0.0.0.18
+ * Version: 0.0.0.19
  * Tested up to: 5.8
  * Requires at least: 5.8
  * Author: mgn Inc.,
@@ -41,9 +41,8 @@ require_once RJE_BP_PLUGIN_PATH . 'inc/activate.php';
 // 自動アップデート.
 require_once RJE_BP_PLUGIN_PATH . 'inc/auto-update.php';
 require_once RJE_BP_PLUGIN_PATH . 'vendor/autoload.php'; //composer読み込み.
-// 管理画面に通知を表示.
-// TODO：ウィジェット機能の実装
-// require_once RJE_BP_PLUGIN_PATH . 'inc/notification-widget.php';
+// 管理画面にウィジェットを表示.
+require_once RJE_BP_PLUGIN_PATH . 'inc/dashboard-widget.php';
 // テスト用のパターンの登録.
 require_once RJE_BP_PLUGIN_PATH . 'inc/register-sample-patterns.php';
 //ヘルパーパターンの登録.
