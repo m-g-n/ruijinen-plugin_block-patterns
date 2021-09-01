@@ -6,7 +6,7 @@
  */
 
 $override_block_name = 'core/group';
-$block_style_label   = '類人猿ヘルパー フル幅テンプレ - コンテンツ幅に準拠';
+$block_style_label   = '類人猿ヘルパー 強制全幅';
 $basename = basename( __DIR__ );
 $front_filename  = 'dist/css/block-styles/' . $override_block_name . '/' . $basename . '/style-front.css';
 $editor_filename = 'dist/css/block-styles/' . $override_block_name . '/' . $basename . '/style-editor.css';
