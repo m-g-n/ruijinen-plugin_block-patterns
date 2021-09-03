@@ -7,7 +7,7 @@
 // ------------------------------------------------------
 // スタイル
 // ------------------------------------------------------
-.is-style-RJE_R002LP_section1{
+.is-style-RJE_R002LP_section1:not(:root){
 	padding-top: 3.75rem;
 	padding-bottom: 3.75rem;
 	@include mq(sm){
