@@ -7,7 +7,7 @@
 // ------------------------------------------------------
 // スタイル
 // ------------------------------------------------------
-.is-style-RJE_R002LP_message_accent2{
+.is-style-RJE_R002LP_message_accent2:not(:root){
 	position: relative;
 	padding: 0.625rem;
 	> .smb-section__inner{
@@ -15,20 +15,7 @@
 		border: 1px solid #8F8F8F;
 		> .c-container{
 			> .smb-section__subtitle{
-				margin-bottom: 1.25rem;
-				font-weight: normal;
-				opacity: 0.6;
-				&::after{
-					content: "";
-					display: block;
-					width: 2em;
-					height: 1px;
-					margin-top: 0.75rem;
-					margin-right: auto;
-					margin-left: auto;
-					background-color: var(--accent-color,#cd162c);
-					opacity: 0.3;
-				}
+				@include smb-section-subtitle;
 			}
 			>.smb-section__title{
 				@include heading2;
@@ -38,20 +25,63 @@
 			}
 			>.smb-section__body{
 				margin-top: 2.5rem;
+				text-align: left;
 				@include mq(sm){
 					margin-top: 5rem;
 				}
 			}
 		}
 	}
-	//スリム幅・サイド幅以外
-	body:not(.page-template-left-sidebar):not(.page-template-right-sidebar):not(.page-template-blank-slim):not(.page-template-one-column-slim) &{
-		@include mq(md){
-			padding: 1.25rem;
-		}
+	//デフォルト
+	// &:not(.smb-section--left):not(.smb-section--center):not(.smb-section--right)
+
+	//左寄せ
+	&.smb-section--left{
 		> .smb-section__inner{
-			@include mq(md){
-				padding: 3.75rem 3.75rem 4.75rem;
+			> .c-container{
+				> .smb-section__lede-wrapper{
+					@include mq(lg){
+						margin-left: 0;
+					}
+				}
+				> .smb-section__subtitle::after{
+					margin-left: 0;
+				}
+			}
+		}
+	}
+
+	//中央揃え
+	&:not(.smb-section--left):not(.smb-section--center):not(.smb-section--right),
+	&.smb-section--center{
+		> .smb-section__inner{
+			> .c-container{
+				> .smb-section__lede-wrapper{
+					@include mq(lg){
+						margin-right: auto;
+						margin-left: auto;
+					}
+				}
+				> .smb-section__subtitle::after{
+						margin-right: auto;
+						margin-left: auto;
+				}
+			}
+		}
+	}
+
+	//右寄せ
+	&.smb-section--right{
+		> .smb-section__inner{
+			> .c-container{
+				> .smb-section__lede-wrapper{
+					@include mq(lg){
+						margin-right: 0;
+					}
+				}
+				> .smb-section__subtitle::after{
+					margin-right: 0;
+				}
 			}
 		}
 	}

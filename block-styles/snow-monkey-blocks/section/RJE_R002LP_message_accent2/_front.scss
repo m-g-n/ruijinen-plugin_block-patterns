@@ -7,6 +7,16 @@
 // ------------------------------------------------------
 // スタイル
 // ------------------------------------------------------
-// .example-front{
-// 	color: #f00;
-// }
+.is-style-RJE_R002LP_message_accent2{
+	//スリム幅・サイド幅以外
+	body:not(.page-template-left-sidebar):not(.page-template-right-sidebar):not(.page-template-blank-slim):not(.page-template-one-column-slim) &{
+		@include mq(md){
+			padding: 1.25rem;
+		}
+		> .smb-section__inner{
+			@include mq(md){
+				padding: 3.75rem 3.75rem 4.75rem;
+			}
+		}
+	}
+}
