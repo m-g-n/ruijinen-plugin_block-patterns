@@ -105,7 +105,6 @@ $base-font-size: 16;
 @mixin smb-section-subtitle () {
 	margin-bottom: 1.25rem;
 	font-weight: normal;
-	opacity: 0.6;
 	&::after{
 		content: "";
 		display: block;
@@ -113,6 +112,5 @@ $base-font-size: 16;
 		height: 1px;
 		margin-top: 0.75rem;
 		background-color: var(--accent-color,#cd162c);
-		opacity: 0.3;
 	}
 }

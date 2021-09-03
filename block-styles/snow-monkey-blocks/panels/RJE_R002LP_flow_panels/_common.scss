@@ -7,7 +7,7 @@
 // ------------------------------------------------------
 // スタイル
 // ------------------------------------------------------
-.is-style-RJE_R002LP_flow_panels{
+.is-style-RJE_R002LP_flow_panels:not(:root){
 	> .c-row{
 		counter-reset: flow-no;
 		margin: -1.875rem;
