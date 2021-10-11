@@ -49,10 +49,11 @@ class DashboardWidget {
 	 */
 	private function rje_news_rss() {
 		include_once(ABSPATH . WPINC . '/feed.php');
-		$rss = fetch_feed( $this->rss_url ); // RSSのURLを指定	
+		$rss      = fetch_feed( $this->rss_url ); // RSSのURLを指定
+		$maxitems = 0;
 		if ( !is_wp_error( $rss ) ) {
 			$maxitems  = $rss->get_item_quantity( $this->rss_item_num );
-			$rss_items = $rss->get_items( 0, $maxitems ); 
+			$rss_items = $rss->get_items( 0, $maxitems );
 		}
 		ob_start();
 		?>
