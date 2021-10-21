@@ -26,8 +26,11 @@ class RegisterBlockPatterns {
 		$this->load_block_style_handle = array();
 		$this->load_specific_style_handle = array();
 		$this->load_specific_script_handle = array();
-		$this->style_front_deps  = [ \Framework\Helper::get_main_style_handle() ];
-		$this->style_editor_deps = [ \Framework\Helper::get_main_style_handle() ];
+		$theme = wp_get_theme( get_template() );
+		if ( 'snow-monkey' === $theme->template || 'snow-monkey/resources' === $theme->template ) {
+			$this->style_front_deps  = [ \Framework\Helper::get_main_style_handle() ];
+			$this->style_editor_deps = [ \Framework\Helper::get_main_style_handle() ];
+		}
 		//処理実行
 		$this->init();
 	}
