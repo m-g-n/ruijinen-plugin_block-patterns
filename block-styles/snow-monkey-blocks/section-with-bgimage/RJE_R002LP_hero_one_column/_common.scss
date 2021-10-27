@@ -16,7 +16,9 @@
 		min-height: 47vw;
 		margin-bottom: 6.25em;
 	}
-	//セクション背景
+	// ------------------------------------------------------
+	// セクション背景
+	//
 	> .smb-section-with-bgimage__bgimage{
 		max-width: calc(100% - 2em);
 		margin-right: auto;
@@ -28,7 +30,9 @@
 			max-width: 100%;
 		}
 	}
-	//セクションの内包
+	// ------------------------------------------------------
+	// コンテンツコンテナ
+	//
 	> .smb-section__inner > .c-container{
 		max-width: calc(100% - 2em);
 		margin-right: auto;
@@ -41,39 +45,46 @@
 		@include mq(lg){
 			max-width: 100%;
 		}
-		//セクションタイトル
+		// ------------------------------------------------------
+		// ヘッダー
+		//
+		// ----- @deprecated - SMB v12.6.1まで -----
 		> .smb-section__title{
 			@include heading1;
 			&::after{
 				display: none;
 			}
 		}
-		//セクションボディ
+		// ----- SMB v12.6.2から -----
+		> .smb-section__contents-wrapper > .smb-section__header{
+			> .smb-section__title{
+				@include heading1;
+				&::after{
+					display: none;
+				}
+			}
+		}
+		// ------------------------------------------------------
+		// ボディ
+		//
+		// ----- @deprecated - SMB v12.6.1まで -----
 		> .smb-section__body{
 			margin-top: 1.5em;
-			:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6)+:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6){
+			> :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) + :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6){
 				margin-top: 1em;
 			}
 			.smb-buttons{
 				margin-top: 4em;
 			}
 		}
-	}
-
-	//サイドバーありのテンプレート以外 かつ セクション自体俄然幅表示
-	body:not(.page-template-left-sidebar):not(.page-template-right-sidebar) &{
-		&.alignfull{
-			//セクション背景
-			> .smb-section-with-bgimage__bgimage{
-				@include mq(lg){
-					max-width: (100% - 8.32%);
-				}
+		// ----- SMB v12.6.2から -----
+		> .smb-section__contents-wrapper > .smb-section__body{
+			margin-top: 1.5em;
+			> :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) + :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6){
+				margin-top: 1em;
 			}
-			//内包コンテナ
-			> .c-container{
-				@include mq(lg){
-					max-width: (100% - 8.32%);
-				}
+			.smb-buttons{
+				margin-top: 4em;
 			}
 		}
 	}
