@@ -6,7 +6,7 @@ $base-font-size: 16;
 	font-weight: bold;
 	letter-spacing: 0.12em;
 	line-height: 1.8;
-	@include mq(sm){
+	@include mq(lg){
 		font-size: (32 / $base-font-size) * 1rem;
 	}
 }
@@ -54,7 +54,7 @@ $base-font-size: 16;
 //ボタンスタイル - ノーマル
 @mixin button--normal{
 	min-width: 225px; //TODO: 最低幅で対応するかを検討する
-	padding: 0.625rem;
+	padding: 0.625rem 1.5rem;
 	border-radius: 6.25rem;
 	line-height: 1.5;
 	transition: all 0.3s ease-out;
@@ -65,7 +65,7 @@ $base-font-size: 16;
 //ボタンスタイル - ゴースト
 @mixin button--ghost{
 	min-width: 225px; //TODO: 最低幅で対応するかを検討する
-	padding: 0.625rem;
+	padding: 0.625rem 1.5rem;
 	border: 1px solid;
 	border-radius: 6.25rem;
 	line-height: 1.5;
@@ -111,6 +111,8 @@ $base-font-size: 16;
 		width: 2em;
 		height: 1px;
 		margin-top: 0.75rem;
+		margin-right: auto;
+		margin-left: auto;
 		background-color: var(--accent-color,#cd162c);
 	}
 }
