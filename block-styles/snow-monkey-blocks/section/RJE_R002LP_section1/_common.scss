@@ -5,6 +5,29 @@
 // ======================================================
 
 // ------------------------------------------------------
+// ローカルmixin
+// ------------------------------------------------------
+@mixin __section1_lede() {
+	margin-top: 1.5rem;
+	@include mq(lg){
+		width: 70.3%;
+		margin-top: 2.5rem;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	> .smb-section__lede{
+		margin-top: 0;
+		font-size: 0.875rem;
+		letter-spacing: 0.05em;
+		@include mq(lg){
+			font-size: 1rem;
+			line-height: 2;
+		}
+	}
+}
+
+
+// ------------------------------------------------------
 // スタイル
 // ------------------------------------------------------
 .is-style-RJE_R002LP_section1:not(:root){
@@ -14,8 +37,15 @@
 		padding-top: 5rem;
 		padding-bottom: 6rem;
 	}
+	// ------------------------------------------------------
+	// コンテンツコンテナ
+	//
 	> .smb-section__inner{
 		> .c-container{
+			// ------------------------------------------------------
+			// ヘッダー
+			//
+			// ----- @deprecated - SMB v12.6.1まで -----
 			> .smb-section__subtitle{
 				@include smb-section-subtitle;
 			}
@@ -23,46 +53,51 @@
 				@include smb-section-title;
 			}
 			> .smb-section__lede-wrapper{
-				margin-top: 1.5rem;
-				@include mq(lg){
-					width: 70.3%;
-					margin-top: 2.5rem;
-					margin-right: auto;
-					margin-left: auto;
+				@include __section1_lede;
+			}
+			// ----- SMB v13.0.0から -----
+			> .smb-section__contents-wrapper > .smb-section__header{
+				.smb-section__subtitle{
+					@include smb-section-subtitle;
 				}
-				> .smb-section__lede{
-					margin-top: 0;
-					font-size: 0.875rem;
-					letter-spacing: 0.05em;
+				.smb-section__title{
+					@include smb-section-title;
+				}
+				.smb-section__lede-wrapper{
+					@include __section1_lede;
+					text-align: left;
+				}
+			}
+			// ------------------------------------------------------
+			// ボディ
+			//
+			> .smb-section__title, // @deprecated - SMB v12.6.1まで
+			> .smb-section__lede-wrapper, // @deprecated - SMB v12.6.1まで
+			> .smb-section__contents-wrapper > .smb-section__header{ // SMB v13.0.0から -----
+				+ .smb-section__body{
+					margin-top: 2.5rem;
+					@include mq(sm){
+						margin-top: 4rem;
+					}
 					@include mq(lg){
-						font-size: 1rem;
-						line-height: 2;
+						margin-top: 5rem;
 					}
 				}
 			}
-			> .smb-section__title + .smb-section__body,
-			> .smb-section__lede-wrapper + .smb-section__body{
-				margin-top: 2.5rem;
-				@include mq(sm){
-					margin-top: 4rem;
-				}
-				@include mq(lg){
-					margin-top: 5rem;
-				}
-			}
-			> .smb-section__body{
+			> .smb-section__body, // @deprecated - SMB v12.6.1まで
+			> .smb-section__contents-wrapper > .smb-section__body{ // SMB v13.0.0から 
 				text-align: left;
 			}
 		}
 	}
 
-	//デフォルト
-	// &:not(.smb-section--left):not(.smb-section--center):not(.smb-section--right)
-
-	//左寄せ
+	// ------------------------------------------------------
+	// 左寄せ
+	//
 	&.smb-section--left{
 		> .smb-section__inner{
-			> .c-container{
+			> .c-container, // @deprecated - SMB v12.6.1まで
+			> .c-container > .smb-section__contents-wrapper > .smb-section__header{ // SMB v13.0.0から 
 				> .smb-section__lede-wrapper{
 					@include mq(lg){
 						margin-left: 0;
@@ -75,13 +110,13 @@
 		}
 	}
 
-	//中央揃え
-	// &.smb-section--center{}
-
-	//右寄せ
+	// ------------------------------------------------------
+	// 右寄せ
+	//
 	&.smb-section--right{
 		> .smb-section__inner{
-			> .c-container{
+			> .c-container, // @deprecated - SMB v12.6.1まで
+			> .c-container > .smb-section__contents-wrapper > .smb-section__header{ // SMB v13.0.0から
 				> .smb-section__lede-wrapper{
 					@include mq(lg){
 						margin-right: 0;
