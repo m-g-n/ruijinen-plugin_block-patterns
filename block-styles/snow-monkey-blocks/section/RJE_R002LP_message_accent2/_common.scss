@@ -14,6 +14,10 @@
 		padding: 2.375rem 1.125rem;
 		border: 1px solid #8F8F8F;
 		> .c-container{
+			// ------------------------------------------------------
+			// ヘッダー
+			//
+			// ----- @deprecated - SMB v12.6.1まで -----
 			> .smb-section__subtitle{
 				@include smb-section-subtitle;
 			}
@@ -23,7 +27,31 @@
 					display: none;
 				}
 			}
+			// ----- SMB v13.0.0から -----
+			> .smb-section__contents-wrapper > .smb-section__header{
+				> .smb-section__subtitle{
+					@include smb-section-subtitle;
+				}
+				>.smb-section__title{
+					@include heading2;
+					&::after{
+						display: none;
+					}
+				}
+			}
+			// ------------------------------------------------------
+			// ボディ
+			//
+			// ----- @deprecated - SMB v12.6.1まで -----
 			>.smb-section__body{
+				margin-top: 2.5rem;
+				text-align: left;
+				@include mq(sm){
+					margin-top: 5rem;
+				}
+			}
+			// ----- SMB v13.0.0から -----
+			> .smb-section__contents-wrapper >.smb-section__body{
 				margin-top: 2.5rem;
 				text-align: left;
 				@include mq(sm){
@@ -35,10 +63,13 @@
 	//デフォルト
 	// &:not(.smb-section--left):not(.smb-section--center):not(.smb-section--right)
 
-	//左寄せ
+	// ------------------------------------------------------
+	// 左寄せ
+	//
 	&.smb-section--left{
 		> .smb-section__inner{
 			> .c-container{
+				// ----- @deprecated - SMB v12.6.1まで -----
 				> .smb-section__lede-wrapper{
 					@include mq(lg){
 						margin-left: 0;
@@ -47,15 +78,29 @@
 				> .smb-section__subtitle::after{
 					margin-left: 0;
 				}
+				// ----- SMB v13.0.0から -----
+				> .smb-section__contents-wrapper > .smb-section__header{
+					> .smb-section__lede-wrapper{
+						@include mq(lg){
+							margin-left: 0;
+						}
+					}
+					> .smb-section__subtitle::after{
+						margin-left: 0;
+					}
+				}
 			}
 		}
 	}
 
-	//中央揃え
+	// ------------------------------------------------------
+	// 中央揃え
+	//
 	&:not(.smb-section--left):not(.smb-section--center):not(.smb-section--right),
 	&.smb-section--center{
 		> .smb-section__inner{
 			> .c-container{
+				// ----- @deprecated - SMB v12.6.1まで -----
 				> .smb-section__lede-wrapper{
 					@include mq(lg){
 						margin-right: auto;
@@ -66,14 +111,30 @@
 						margin-right: auto;
 						margin-left: auto;
 				}
+				// ----- SMB v13.0.0から -----
+				> .smb-section__contents-wrapper > .smb-section__header{
+					> .smb-section__lede-wrapper{
+						@include mq(lg){
+							margin-right: auto;
+							margin-left: auto;
+						}
+					}
+					> .smb-section__subtitle::after{
+							margin-right: auto;
+							margin-left: auto;
+					}
+				}
 			}
 		}
 	}
 
-	//右寄せ
+	// ------------------------------------------------------
+	// 右寄せ
+	//
 	&.smb-section--right{
 		> .smb-section__inner{
 			> .c-container{
+				// ----- @deprecated - SMB v12.6.1まで -----
 				> .smb-section__lede-wrapper{
 					@include mq(lg){
 						margin-right: 0;
@@ -81,6 +142,17 @@
 				}
 				> .smb-section__subtitle::after{
 					margin-right: 0;
+				}
+				// ----- SMB v13.0.0から -----
+				> .smb-section__contents-wrapper > .smb-section__header{
+					> .smb-section__lede-wrapper{
+						@include mq(lg){
+							margin-right: 0;
+						}
+					}
+					> .smb-section__subtitle::after{
+						margin-right: 0;
+					}
 				}
 			}
 		}
