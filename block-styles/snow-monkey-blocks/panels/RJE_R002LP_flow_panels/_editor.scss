@@ -8,14 +8,14 @@
 // スタイル
 // ------------------------------------------------------
 .is-style-RJE_R002LP_flow_panels:not(:root){
-	.wp-block-snow-monkey-blocks-panels--item--horizontal,
-	.wp-block-snow-monkey-blocks-panels--item--free{
+	.smb-panels__item--horizontal,
+	.smb-panels__item--free{
 		position: relative;
 		&::before{
 			content: "このパターン内では非推奨です";
 			position: absolute;
-			top: 1.875rem;
-			left: 1.875rem;
+			top: 0;
+			left: 0;
 			display: block;
 			padding: 0.25rem;
 			background-color: rgba(#e00, 0.7);
@@ -23,6 +23,9 @@
 			font-weight: bold;
 			color: #fff;
 			z-index: 2;
+		}
+		&::after{
+			content: none;
 		}
 	}
 }
