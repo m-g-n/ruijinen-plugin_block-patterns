@@ -33,58 +33,62 @@
 	// ------------------------------------------------------
 	// コンテンツコンテナ
 	//
-	> .smb-section__inner > .c-container{
-		max-width: calc(100% - 2em);
+	> .smb-section__inner{
 		margin-right: auto;
 		margin-left: auto;
-		padding-right: 1em;
-		padding-left: 1em;
-		@include mq(sm){
-			max-width: (100% - 8.32%);
-		}
-		@include mq(lg){
-			max-width: 100%;
-		}
-		// ------------------------------------------------------
-		// ヘッダー
-		//
-		// ----- @deprecated - SMB v12.6.1まで -----
-		> .smb-section__title{
-			@include heading1;
-			&::after{
-				display: none;
+		> .c-container{
+			max-width: calc(100% - 2em);
+			margin-right: auto;
+			margin-left: auto;
+			padding-right: 1em;
+			padding-left: 1em;
+			@include mq(sm){
+				max-width: (100% - 8.32%);
 			}
-		}
-		// ----- SMB v13.0.0から -----
-		> .smb-section__contents-wrapper > .smb-section__header{
+			@include mq(lg){
+				max-width: 100%;
+			}
+			// ------------------------------------------------------
+			// ヘッダー
+			//
+			// ----- @deprecated - SMB v12.6.1まで -----
 			> .smb-section__title{
 				@include heading1;
 				&::after{
 					display: none;
 				}
 			}
-		}
-		// ------------------------------------------------------
-		// ボディ
-		//
-		// ----- @deprecated - SMB v12.6.1まで -----
-		> .smb-section__body{
-			margin-top: 1.5em;
-			> :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) + :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6){
-				margin-top: 1em;
+			// ----- SMB v13.0.0から -----
+			> .smb-section__contents-wrapper > .smb-section__header{
+				> .smb-section__title{
+					@include heading1;
+					&::after{
+						display: none;
+					}
+				}
 			}
-			.smb-buttons{
-				margin-top: 4em;
+			// ------------------------------------------------------
+			// ボディ
+			//
+			// ----- @deprecated - SMB v12.6.1まで -----
+			> .smb-section__body{
+				margin-top: 1.5em;
+				> :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) + :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6){
+					margin-top: 1em;
+				}
+				.smb-buttons{
+					margin-top: 4em;
+				}
 			}
-		}
-		// ----- SMB v13.0.0から -----
-		> .smb-section__contents-wrapper > .smb-section__body{
-			margin-top: 1.5em;
-			> :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) + :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6){
-				margin-top: 1em;
-			}
-			.smb-buttons{
-				margin-top: 4em;
+			// ----- SMB v13.0.0から -----
+			> .smb-section__contents-wrapper > .smb-section__body{
+				margin-top: 1.5em;
+				> :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) + :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6){
+					margin-top: 1em;
+				}
+				.smb-buttons{
+					margin-top: 4em;
+				}
 			}
 		}
 	}
