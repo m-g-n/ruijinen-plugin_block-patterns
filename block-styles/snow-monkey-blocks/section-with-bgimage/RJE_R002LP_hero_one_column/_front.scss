@@ -48,7 +48,7 @@
 	// ------------------------------------------------------
 	// サイドバーありのテンプレート以外 かつ セクション自体が全幅表示
 	//
-	body:not(.page-template-left-sidebar):not(.page-template-right-sidebar) &{
+	body:not([data-has-sidebar="true"]) &{
 		&.alignfull{
 			//セクション背景
 			> .smb-section-with-bgimage__bgimage{
@@ -62,6 +62,15 @@
 					max-width: (100% - 8.32%);
 				}
 			}
+		}
+	}
+	// ------------------------------------------------------
+	// サイドバーありのテンプレート
+	//
+	body[data-has-sidebar="true"] &{
+		min-height: 90vh;
+		> .smb-section-with-bgimage__bgimage{
+			max-width: 100%;
 		}
 	}
 }
