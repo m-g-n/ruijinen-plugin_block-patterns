@@ -39,12 +39,8 @@ $base-font-size: 16;
 
 //段落のスタイル
 @mixin paragraph{
-	font-size: 0.875rem;
 	letter-spacing: 0.05em;
 	line-height: 2;
-	@include mq(sm){
-		font-size: 1rem;
-	}
 }
 
 //ボタンのスタイル
