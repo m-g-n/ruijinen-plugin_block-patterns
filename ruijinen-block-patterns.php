@@ -27,7 +27,7 @@ define( 'RJE_BP_PLUGIN_BASENAME', plugin_basename( __FILE__ ) ); // このプラ
  * テキストドメインを宣言
  */
 add_action( 
-	'plugins_loaded', 
+	'init', 
 	function () {
 		load_plugin_textdomain( 'ruijinen-block-patterns', false, dirname( RJE_BP_PLUGIN_BASENAME ) . '/languages/' );
 	}
