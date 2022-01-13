@@ -7,7 +7,7 @@
  * @license GPL-2.0+
  */
 
-namespace Ruijinen\Pattern\SamplePattern;
+namespace Ruijinen\Pattern\Master\App\Patterns;
 
 class RegisterSamplePatterns {
 
@@ -21,7 +21,7 @@ class RegisterSamplePatterns {
 	 */
 	public function init() {
 		add_action( 'init', array( $this, 'register_pattern_cat' ), 10 ); //パターンカテゴリー登録
-		add_action( 'plugins_loaded', array( $this, 'register_add_pettern_args' ) ); //サンプルパターンの情報を追加
+		$this->register_add_pettern_args(); //サンプルパターンの情報を追加
 
 		//サンプルパターン共通のスタイルを読み込む
 		add_action(
@@ -53,11 +53,8 @@ class RegisterSamplePatterns {
 	* サンプルパターン情報を追加
 	*/
 	public function register_add_pettern_args() {
-		//LPパターン集の登録がなければ、サンプルパターンを登録
-		if( !function_exists('is_plugin_active') ) { 
-			include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); //hookのタイミングで読み込んでないためこちらで先行して読み込む
-		}
-		if ( !is_plugin_active( 'ruijinen-block-patterns-r002-lp/ruijinen-block-patterns-r002-lp.php' )  ) {
+		//LPパターン集が有効でなければサンプルパターンを登録
+		if ( !class_exists( '\Ruijinen\Pattern\R002LP\Bootstrap' ) ) {
 			add_filter( 'rje_register_patterns_args', array( $this, 'rje_r000sample_hero_one_column' ), 10 );
 			add_filter( 'rje_register_patterns_args', array( $this, 'rje_r000sample_message_accent2' ), 10 );
 			add_filter( 'rje_register_patterns_args', array( $this, 'rje_r000sample_flow' ), 10 );
@@ -98,4 +95,3 @@ class RegisterSamplePatterns {
 	}
 }
 
-new RegisterSamplePatterns();
