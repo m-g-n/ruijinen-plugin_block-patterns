@@ -56,9 +56,9 @@ class Bootstrap {
 	 * Bootstrap.
 	 */
 	public function bootstrap() {
-		//クラスオブジェクト作成
-		new App\Setup\AutoUpdate();
-		new App\Setup\DashboardWidget();
+		//初期実行
+		new App\Setup\AutoUpdate(); //自動更新確認
+		new App\Setup\DashboardWidget(); //ダッシュボードウィジェット
 
 		//アクティベートチェックを行い問題がある場合はメッセージを出し離脱する.
 		$activate_check = new App\Setup\ActivateCheck();
