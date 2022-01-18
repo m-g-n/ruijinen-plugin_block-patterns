@@ -7,7 +7,7 @@
  * @license GPL-2.0+
  */
 
-namespace Ruijinen\Pattern\HelperPattern;
+namespace Ruijinen\Pattern\Master\App\Patterns;
 
 class RegisterHelperPatterns {
 
@@ -21,7 +21,7 @@ class RegisterHelperPatterns {
 	 */
 	public function init() {
 		add_action( 'init', array( $this, 'register_pattern_cat' ), 10 ); //パターンカテゴリー登録
-		add_action( 'plugins_loaded', array( $this, 'register_add_pettern_args' ) ); //ヘルパーパターンの情報を追加
+		$this->register_add_pettern_args(); //ヘルパーパターンの情報を追加
 
 		//ヘルパーパターン共通のスタイルを読み込む
 		// add_action(
@@ -79,5 +79,3 @@ class RegisterHelperPatterns {
 		return $args;
 	}
 }
-
-new RegisterHelperPatterns();

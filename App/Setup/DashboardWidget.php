@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-namespace Ruijinen\Pattern\App;
+namespace Ruijinen\Pattern\Master\App\Setup;
 
 /**
  * ブロックパターンの登録に関する処理のクラス
@@ -108,5 +108,3 @@ class DashboardWidget {
 		);
 	}
 }
-
-new DashboardWidget();
