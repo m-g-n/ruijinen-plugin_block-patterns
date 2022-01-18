@@ -10,7 +10,6 @@ namespace Ruijinen\Pattern\Master\App\Setup;
 class ActivateCheck {
 	//プロパティ
 	public $messages   = array();
-	public $alert_html = NULL;
 
 	//初期処理
 	public function __construct() {
@@ -22,7 +21,7 @@ class ActivateCheck {
 	public function check_snow_monkey_activate () {
 		$theme = wp_get_theme( get_template() );
 		if ( 'snow-monkey' != $theme->template && 'snow-monkey/resources' != $theme->template ) {
-			$this->messages['snow_monkey'] = 'Snow Monkeyテーマを有効にする必要があります';
+			$this->messages['snow_monkey'] = 'Snow Monkeyテーマが必要です';
 		}
 	}
 
@@ -30,7 +29,7 @@ class ActivateCheck {
 	public function check_snow_monkey_blocks_activate () {
 		if ( !class_exists('\Snow_Monkey\Plugin\Blocks\Bootstrap') ) {
 		// if ( is_plugin_active( 'snow-monkey-blocks/snow-monkey-blocks.php' ) ) {
-			$this->messages['snow_monkey_blocks'] = 'Snow Monkey Blocksプラグインを有効にする必要があります';
+			$this->messages['snow_monkey_blocks'] = 'Snow Monkey Blocksプラグインが必要です';
 		}
 	}
 

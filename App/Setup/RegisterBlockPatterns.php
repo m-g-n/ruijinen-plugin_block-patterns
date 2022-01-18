@@ -33,7 +33,7 @@ class RegisterBlockPatterns {
 		$this->load_specific_script_handle = array();
 		//Snow Monkeyテーマからメインスタイルのハンドルを取得
 		if ( method_exists('\Framework\Helper', 'get_main_style_handle') ) {
-			$this->style_handles = \Framework\Helper::get_main_style_handle();
+			$this->sm_style_handles = \Framework\Helper::get_main_style_handle();
 			//TODO：!!2022/03以降廃止予定のプロパティ!! - LPパターン集0.0.1.7までで呼んでいるプロパティ
 			$this->style_front_deps = $this->sm_style_handles;
 			$this->style_editor_deps = $this->sm_style_handles;

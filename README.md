@@ -14,6 +14,13 @@ WordPressテーマ Snow Monkeyを拡張するブロックパターン集のプ�
 - npx gulp sass でCSSにコンパイル（コマンド走ったときだけCSSをコンパイル）
 
 # 変更履歴
+## 0.0.1.6
+- 初期読み込みするコードをPHPクラス化
+- Snow Monkeyから呼び出すメソッドを存在確認してから呼び出す形式に変更
+- Snow Monkeyテーマ・Snow Monkey Blocksの有効チェックの処理を変更
+- load_textdomainの実行タイミングをinitに変更
+- サンプルパターンのSCSSの調整
+
 ## 0.0.1.5
 - サンプルパターン：段落ブロックで文字サイズが変更できないバグを修正
 

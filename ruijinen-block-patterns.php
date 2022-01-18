@@ -2,9 +2,9 @@
 /**
  * Plugin name: 類人猿ブロックパターン
  * Description: Snow Monkeyサイトをより素敵にするブロックパターンを提供
- * Version: 0.0.1.5
- * Tested up to: 5.8.1
- * Requires at least: 5.8.1
+ * Version: 0.0.1.6
+ * Tested up to: 5.8.3
+ * Requires at least: 5.8.3
  * Author: mgn Inc.,
  * Author URI: https://rui-jin-en.com/
  * License: GPL2 or later
@@ -33,7 +33,7 @@ define( 'RJE_BP_TEXTDOMAIN', 'ruijinen-block-patterns' ); //テキストドメ�
 /**
  * include files.
  */
-// require_once(RJE_BP_PLUGIN_PATH . 'vendor/autoload.php'); //アップデート用composer.
+require_once(RJE_BP_PLUGIN_PATH . 'vendor/autoload.php'); //アップデート用composer.
 
 //各処理用のクラスを読み込む
 foreach (glob(RJE_BP_PLUGIN_PATH.'App/**/*.php') as $filename) {

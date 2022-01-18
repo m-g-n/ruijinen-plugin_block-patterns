@@ -22,5 +22,5 @@ register_block_style(
 );
 
 //フロント・エディター用のCSSファイルを登録
-wp_register_style( 'is-style-' . $basename . '-front', RJE_BP_PLUGIN_URL . $front_filename, $this->style_front_deps, filemtime( RJE_BP_PLUGIN_PATH . $front_filename ) );
+wp_register_style( 'is-style-' . $basename . '-front', RJE_BP_PLUGIN_URL . $front_filename, $this->sm_style_handles, filemtime( RJE_BP_PLUGIN_PATH . $front_filename ) );
 wp_register_style( 'is-style-' . $basename . '-editor', RJE_BP_PLUGIN_URL . $editor_filename, $this->sm_style_handles, filemtime( RJE_BP_PLUGIN_PATH . $editor_filename ) );
