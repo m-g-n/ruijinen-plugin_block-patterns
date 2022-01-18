@@ -1,8 +1,8 @@
 // Breakpoint（Snow Monkeyのブレイクポイントを基準にしています）
 $mq-breakpoints: (
-	sm: 40em, //640px
-	md: 48em,//768px
-	max-lg: 63.9375em, //max指定時のブレイクポイント、WordPressコアにあり
-	lg: 64em, //1024px
-	xl: 80em, //1280px
+	sm: 640px, //40em
+	md: 768px,//48em
+	max-lg: 1023px, //max指定時のブレイクポイント、WordPressコアにあり 63.9375em
+	lg: 1024px, //64em
+	xl: 1280px, //80em
 ) !default;

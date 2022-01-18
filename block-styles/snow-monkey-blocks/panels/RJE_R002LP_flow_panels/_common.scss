@@ -40,24 +40,26 @@
 			}
 		}
 		&[data-md-columns="1"]{
-			@media screen and (min-width: 640px) and (max-width:1023px) {
-				.smb-panels__item{
-					display: flex;
-					align-items: center;
-					padding: 1.875rem 2.5rem;
-				}
-				.smb-panels__item__figure{
-					width: 20%;
-				}
-				.smb-panels__item__body{
-					width: 80%;
-					padding-top: 0;
-					padding-left: 1.5rem;
-				}
-				.smb-panels__item__title{
-					text-align: left;
-					br{
-						display: none;
+			@include mq(sm){
+				@include mq(lg,max,true){
+					.smb-panels__item{
+						display: flex;
+						align-items: center;
+						padding: 1.875rem 2.5rem;
+					}
+					.smb-panels__item__figure{
+						width: 20%;
+					}
+					.smb-panels__item__body{
+						width: 80%;
+						padding-top: 0;
+						padding-left: 1.5rem;
+					}
+					.smb-panels__item__title{
+						text-align: left;
+						br{
+							display: none;
+						}
 					}
 				}
 			}
@@ -87,34 +89,36 @@
 		}
 		@for $i from 2 through 6 {
 			&[data-columns="#{$i}"]{
-				// @media screen and (max-width: 639px){
-					> .c-row__col:nth-child(#{$i}n)::after{
-							display: none;
-					}
-					> .c-row__col:not(:nth-child(#{$i}n))::after{
-							top: 50%;
-							right: 0;
-							margin-right: -0.75rem;
-							margin-top: -0.875rem;
-							border-width: 0.875rem 0 0.875rem 1.5rem;
-							border-color: transparent transparent transparent #ccc;
-					}
-				// }
-			}
-			&[data-md-columns="#{$i}"]{
 				> .c-row__col:nth-child(#{$i}n)::after{
-					@media screen and (min-width: 640px) and (max-width:1023px) {
 						display: none;
-					}
 				}
 				> .c-row__col:not(:nth-child(#{$i}n))::after{
-					@media screen and (min-width: 640px) and (max-width:1023px) {
 						top: 50%;
 						right: 0;
 						margin-right: -0.75rem;
 						margin-top: -0.875rem;
 						border-width: 0.875rem 0 0.875rem 1.5rem;
 						border-color: transparent transparent transparent #ccc;
+				}
+			}
+			&[data-md-columns="#{$i}"]{
+				> .c-row__col:nth-child(#{$i}n)::after{
+					@include mq(sm){
+						@include mq(lg,max,true){
+							display: none;
+						}
+					}
+				}
+				> .c-row__col:not(:nth-child(#{$i}n))::after{
+					@include mq(sm){
+						@include mq(lg,max,true){
+							top: 50%;
+							right: 0;
+							margin-right: -0.75rem;
+							margin-top: -0.875rem;
+							border-width: 0.875rem 0 0.875rem 1.5rem;
+							border-color: transparent transparent transparent #ccc;
+						}
 					}
 				}
 			}
@@ -189,6 +193,10 @@
 		margin-top: 1rem;
 		text-align: left;
 		@include paragraph;
+		font-size: 0.875rem;
+		@include mq(sm){
+			font-size: 1rem;
+		}
 	}
 }
 
