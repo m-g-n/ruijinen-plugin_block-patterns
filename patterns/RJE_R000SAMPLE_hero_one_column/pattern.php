@@ -3,8 +3,8 @@
 <p>あなたの髪質に合わせた<br>シャンプーのパーソナライズサービス</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:image {"id":488,"sizeSlug":"large","linkDestination":"none"} -->
-<figure class="wp-block-image size-large"><img src="<?php echo esc_url( RJE_BP_PLUGIN_URL ); ?>dist/img/logo1-white.png" alt="" class="wp-image-488"/></figure>
+<!-- wp:image {"align":"center","id":488,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="<?php echo esc_url( RJE_BP_PLUGIN_URL ); ?>dist/img/logo1-white.png" alt="" class="wp-image-488"/></figure></div>
 <!-- /wp:image -->
 
 <!-- wp:snow-monkey-blocks/buttons {"contentJustification":"center"} -->
