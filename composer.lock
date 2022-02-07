@@ -50,20 +50,24 @@
                 "markdown",
                 "parser"
             ],
+            "support": {
+                "issues": "https://github.com/erusev/parsedown/issues",
+                "source": "https://github.com/erusev/parsedown/tree/1.7.x"
+            },
             "time": "2019-12-30T22:54:17+00:00"
         },
         {
             "name": "inc2734/wp-github-plugin-updater",
-            "version": "3.1.1",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/inc2734/wp-github-plugin-updater.git",
-                "reference": "9267c11f8d4db9d99d9d2e0ff18fa0c569b827f0"
+                "reference": "ef2934ec77e7e8f746bd123beccc2cf693c49c58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inc2734/wp-github-plugin-updater/zipball/9267c11f8d4db9d99d9d2e0ff18fa0c569b827f0",
-                "reference": "9267c11f8d4db9d99d9d2e0ff18fa0c569b827f0",
+                "url": "https://api.github.com/repos/inc2734/wp-github-plugin-updater/zipball/ef2934ec77e7e8f746bd123beccc2cf693c49c58",
+                "reference": "ef2934ec77e7e8f746bd123beccc2cf693c49c58",
                 "shasum": ""
             },
             "require": {
@@ -71,11 +75,13 @@
                 "php": ">=5.6"
             },
             "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3",
-                "phpcompatibility/phpcompatibility-wp": "*",
-                "phpunit/phpunit": "7.*",
-                "squizlabs/php_codesniffer": "*",
-                "wp-coding-standards/wpcs": "*"
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+                "phpcompatibility/php-compatibility": "^9.3",
+                "sirbrillig/phpcs-variable-analysis": "^2.11",
+                "squizlabs/php_codesniffer": "^3.6",
+                "wp-coding-standards/wpcs": "^2.3",
+                "wp-phpunit/wp-phpunit": "^5.8",
+                "yoast/phpunit-polyfills": "^1.0"
             },
             "type": "library",
             "autoload": {
@@ -94,7 +100,11 @@
                 }
             ],
             "description": "A library for WordPress that automatic plugin updater with GitHub API.",
-            "time": "2020-09-01T05:16:35+00:00"
+            "support": {
+                "issues": "https://github.com/inc2734/wp-github-plugin-updater/issues",
+                "source": "https://github.com/inc2734/wp-github-plugin-updater/tree/3.1.2"
+            },
+            "time": "2022-02-04T22:52:43+00:00"
         }
     ],
     "packages-dev": [],
@@ -107,5 +117,5 @@
         "php": ">=5.6"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.2.0"
 }
