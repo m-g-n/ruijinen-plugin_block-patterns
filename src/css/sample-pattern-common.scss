@@ -3,50 +3,45 @@
 // LP向けパターン共通のスタイル
 //
 // ======================================================
-@import 'variable/variable';
-@import 'mixin/mixin';
+@use "sass:math";
+@use "./import" as i;
 
 [class*="RJE_R000SAMPLE"] {
 	font-size: 0.875rem;
-	@include mq(sm){
+	@include i.mq(sm){
 		font-size: 1rem;
 	}
 	p{
-		@include paragraph;
+		@include i.paragraph;
 	}
 	h1{
-		@include heading1;
+		@include i.heading1;
 	}
 	h2{
-		@include heading2;
+		@include i.heading2;
 	}
 	h3{
-		@include heading3;
+		@include i.heading3;
 	}
 	h4{
-		@include heading4;
+		@include i.heading4;
 	}
 	//ボタン - ノーマル
 	:not(.is-style-text):not(.is-style-ghost) > .smb-btn,
 	:not(.is-style-outline):not(.is-style-sme-shadowed) > .wp-block-button__link{ 
-		@include button--normal;
+		@include i.button--normal;
 	}
 	//ボタン - ゴースト
 	.is-style-ghost > .smb-btn,
 	.is-style-outline > .wp-block-button__link{
-		@include button--ghost;
+		@include i.button--ghost;
 	}
 	//ボタン - テキスト
 	.is-style-text > .smb-btn{
-		@include button--text;
+		@include i.button--text;
 	}
 	//ボタン - 影付き
 	.is-style-sme-shadowed > .wp-block-button__link{
-		@include button--normal;
+		@include i.button--normal;
 	}
-}
-
-//HACK:Wp5.9でiframeのプレビュー画面でもスタイルが読み込まれるように下記を追記
-html :where(.editor-styles-wrapper) {
-	display: block;
 }
