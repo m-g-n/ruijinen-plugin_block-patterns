@@ -1,31 +1,33 @@
-//見出しのスタイル
-$base-font-size: 16;
+@use "sass:math";
+@use "../variable" as var;
+@use "../function/px_to_rem" as func;
+@use "mediaqueries" as *;
 
 @mixin heading1{
-	font-size: (24 / $base-font-size) * 1rem;
+	font-size: func.px_to_rem(24);
 	font-weight: bold;
 	letter-spacing: 0.12em;
 	line-height: 1.8;
 	@include mq(lg){
-		font-size: (32 / $base-font-size) * 1rem;
+		font-size: func.px_to_rem(32);
 	}
 }
 @mixin heading2{
-	font-size: (20 / $base-font-size) * 1rem;
+	font-size: func.px_to_rem(20);
 	font-weight: bold;
 	letter-spacing: 0.12em;
 	line-height: 1.8;
 	@include mq(sm){
-		font-size: (24 / $base-font-size) * 1rem;
+		font-size: func.px_to_rem(24);
 	}
 }
 @mixin heading3{
-	font-size: (18 / $base-font-size) * 1rem;
+	font-size: func.px_to_rem(18);
 	font-weight: bold;
 	letter-spacing: 0.12em;
 	line-height: 1.8;
 	@include mq(sm){
-		font-size: (20 / $base-font-size) * 1rem;
+		font-size: func.px_to_rem(20);
 	}
 }
 @mixin heading4{
@@ -33,7 +35,7 @@ $base-font-size: 16;
 	letter-spacing: 0.12em;
 	line-height: 1.8;
 	@include mq(sm){
-		font-size: (18 / $base-font-size) * 1rem;
+		font-size: func.px_to_rem(18);
 	}
 }
 
@@ -43,13 +45,9 @@ $base-font-size: 16;
 	line-height: 2;
 }
 
-//ボタンのスタイル
-@mixin button{
-	
-}
 //ボタンスタイル - ノーマル
 @mixin button--normal{
-	min-width: 225px; //TODO: 最低幅で対応するかを検討する
+	min-width: 225px;
 	padding: 0.625rem 1.5rem;
 	border-radius: 6.25rem;
 	line-height: 1.5;
@@ -60,7 +58,7 @@ $base-font-size: 16;
 }
 //ボタンスタイル - ゴースト
 @mixin button--ghost{
-	min-width: 225px; //TODO: 最低幅で対応するかを検討する
+	min-width: 225px;
 	padding: 0.625rem 1.5rem;
 	border: 1px solid;
 	border-radius: 6.25rem;

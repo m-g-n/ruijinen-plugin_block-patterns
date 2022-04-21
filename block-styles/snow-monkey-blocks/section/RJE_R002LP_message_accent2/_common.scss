@@ -5,6 +5,11 @@
 // ======================================================
 
 // ------------------------------------------------------
+// 設定・読み込み・変数など
+// ------------------------------------------------------
+@use "../../../../src/css/import" as i;
+
+// ------------------------------------------------------
 // スタイル
 // ------------------------------------------------------
 .is-style-RJE_R002LP_message_accent2:not(:root){
@@ -19,10 +24,10 @@
 			//
 			// ----- @deprecated - SMB v12.6.1まで -----
 			> .smb-section__subtitle{
-				@include smb-section-subtitle;
+				@include i.smb-section-subtitle;
 			}
 			>.smb-section__title{
-				@include heading2;
+				@include i.heading2;
 				&::after{
 					display: none;
 				}
@@ -30,10 +35,10 @@
 			// ----- SMB v13.0.0から -----
 			> .smb-section__contents-wrapper > .smb-section__header{
 				> .smb-section__subtitle{
-					@include smb-section-subtitle;
+					@include i.smb-section-subtitle;
 				}
 				>.smb-section__title{
-					@include heading2;
+					@include i.heading2;
 					&::after{
 						display: none;
 					}
@@ -46,7 +51,7 @@
 			>.smb-section__body{
 				margin-top: 2.5rem;
 				text-align: left;
-				@include mq(sm){
+				@include i.mq(sm){
 					margin-top: 5rem;
 				}
 			}
@@ -54,7 +59,7 @@
 			> .smb-section__contents-wrapper >.smb-section__body{
 				margin-top: 2.5rem;
 				text-align: left;
-				@include mq(sm){
+				@include i.mq(sm){
 					margin-top: 5rem;
 				}
 			}
@@ -71,7 +76,7 @@
 			> .c-container{
 				// ----- @deprecated - SMB v12.6.1まで -----
 				> .smb-section__lede-wrapper{
-					@include mq(lg){
+					@include i.mq(lg){
 						margin-left: 0;
 					}
 				}
@@ -81,7 +86,7 @@
 				// ----- SMB v13.0.0から -----
 				> .smb-section__contents-wrapper > .smb-section__header{
 					> .smb-section__lede-wrapper{
-						@include mq(lg){
+						@include i.mq(lg){
 							margin-left: 0;
 						}
 					}
@@ -102,7 +107,7 @@
 			> .c-container{
 				// ----- @deprecated - SMB v12.6.1まで -----
 				> .smb-section__lede-wrapper{
-					@include mq(lg){
+					@include i.mq(lg){
 						margin-right: auto;
 						margin-left: auto;
 					}
@@ -114,7 +119,7 @@
 				// ----- SMB v13.0.0から -----
 				> .smb-section__contents-wrapper > .smb-section__header{
 					> .smb-section__lede-wrapper{
-						@include mq(lg){
+						@include i.mq(lg){
 							margin-right: auto;
 							margin-left: auto;
 						}
@@ -136,7 +141,7 @@
 			> .c-container{
 				// ----- @deprecated - SMB v12.6.1まで -----
 				> .smb-section__lede-wrapper{
-					@include mq(lg){
+					@include i.mq(lg){
 						margin-right: 0;
 					}
 				}
@@ -146,7 +151,7 @@
 				// ----- SMB v13.0.0から -----
 				> .smb-section__contents-wrapper > .smb-section__header{
 					> .smb-section__lede-wrapper{
-						@include mq(lg){
+						@include i.mq(lg){
 							margin-right: 0;
 						}
 					}

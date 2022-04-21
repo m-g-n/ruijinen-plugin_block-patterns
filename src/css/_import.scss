@@ -1,0 +1,11 @@
+// ------------------------------------------------------
+// 汎用関数・mixinなどを一括読み込みさせるためのファイル.
+// ------------------------------------------------------
+
+//function.
+@forward 'function/px_to_rem'; //px値をrem値に変更して返す.
+
+//mixin
+@forward 'mixin/mediaqueries'; //メディアクエリー.
+@forward 'mixin/common-parts'; //汎用的に利用するパーツのスタイル.
+@forward 'mixin/alignfull'; //全幅のスタイル.

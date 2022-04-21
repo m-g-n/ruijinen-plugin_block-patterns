@@ -5,6 +5,11 @@
 // ======================================================
 
 // ------------------------------------------------------
+// 設定・読み込み・変数など
+// ------------------------------------------------------
+@use "../../../../src/css/import" as i;
+
+// ------------------------------------------------------
 // スタイル
 // ------------------------------------------------------
 .is-style-RJE_R002LP_hero_one_column:not(:root){
@@ -15,12 +20,12 @@
 		&.alignfull{
 			//セクション背景
 			> .smb-section-with-bgimage__bgimage{
-				@include mq(lg){
+				@include i.mq(lg){
 					max-width: (100% - 8.32%);
 				}
 			}
 			> .smb-section__inner{
-				@include mq(lg){
+				@include i.mq(lg){
 					max-width: (100% - 8.32%);
 					margin-right: auto;
 					margin-left: auto;
@@ -34,13 +39,13 @@
 	body[data-is-full-template="true"] &{
 		//セクション背景
 		> .smb-section-with-bgimage__bgimage{
-			@include mq(lg){
+			@include i.mq(lg){
 				max-width: (100% - 8.32%);
 			}
 		}
 		//内包コンテナ
 		> .smb-section__inner{
-			@include mq(lg){
+			@include i.mq(lg){
 				max-width: (100% - 8.32%);
 			}
 		}
@@ -52,13 +57,13 @@
 		&.alignfull{
 			//セクション背景
 			> .smb-section-with-bgimage__bgimage{
-				@include mq(lg){
+				@include i.mq(lg){
 					max-width: (100% - 8.32%);
 				}
 			}
 			//内包コンテナ
 			> .smb-section__inner{
-				@include mq(lg){
+				@include i.mq(lg){
 					max-width: (100% - 8.32%);
 				}
 			}
