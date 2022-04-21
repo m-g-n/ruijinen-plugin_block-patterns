@@ -38,7 +38,7 @@ jobs:
       - name: Install Dependencies
         run: yarn install --prefer-offline
       - name: scss build
-        run: yarn gulp sass
+        run: yarn build
 
       #composerの実施
       - name: Composer install

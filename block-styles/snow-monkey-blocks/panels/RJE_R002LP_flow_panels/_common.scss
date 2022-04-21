@@ -5,6 +5,11 @@
 // ======================================================
 
 // ------------------------------------------------------
+// 設定・読み込み・変数など
+// ------------------------------------------------------
+@use "../../../../src/css/import" as i;
+
+// ------------------------------------------------------
 // スタイル
 // ------------------------------------------------------
 .is-style-RJE_R002LP_flow_panels:not(:root){
@@ -40,8 +45,8 @@
 			}
 		}
 		&[data-md-columns="1"]{
-			@include mq(sm){
-				@include mq(lg,max,true){
+			@include i.mq(sm){
+				@include i.mq(lg,max,true){
 					.smb-panels__item{
 						display: flex;
 						align-items: center;
@@ -65,7 +70,7 @@
 			}
 		}
 		&[data-lg-columns="1"]{
-			@include mq(lg){
+			@include i.mq(lg){
 				.smb-panels__item{
 					display: flex;
 					align-items: center;
@@ -103,15 +108,15 @@
 			}
 			&[data-md-columns="#{$i}"]{
 				> .c-row__col:nth-child(#{$i}n)::after{
-					@include mq(sm){
-						@include mq(lg,max,true){
+					@include i.mq(sm){
+						@include i.mq(lg,max,true){
 							display: none;
 						}
 					}
 				}
 				> .c-row__col:not(:nth-child(#{$i}n))::after{
-					@include mq(sm){
-						@include mq(lg,max,true){
+					@include i.mq(sm){
+						@include i.mq(lg,max,true){
 							top: 50%;
 							right: 0;
 							margin-right: -0.75rem;
@@ -124,12 +129,12 @@
 			}
 			&[data-lg-columns="#{$i}"]{
 				> .c-row__col:nth-child(#{$i}n)::after{
-					@include mq(lg){
+					@include i.mq(lg){
 						display: none;
 					}
 				}
 				> .c-row__col:not(:nth-child(#{$i}n))::after{
-					@include mq(lg){
+					@include i.mq(lg){
 						top: 50%;
 						right: 0;
 						margin-right: -0.75rem;
@@ -149,7 +154,7 @@
 		padding-left: 2.19rem;
 		box-shadow: none;
 		counter-increment: flow-no;
-		@include mq(sm){
+		@include i.mq(sm){
 			padding-right: 3.75rem;
 			padding-left: 3.75rem;
 		}
@@ -187,18 +192,15 @@
 		
 	}
 	.smb-panels__item__title{
-		@include heading4;
+		@include i.heading4;
 	}
 	.smb-panels__item__content{
 		margin-top: 1rem;
 		text-align: left;
-		@include paragraph;
+		@include i.paragraph;
 		font-size: 0.875rem;
-		@include mq(sm){
+		@include i.mq(sm){
 			font-size: 1rem;
 		}
 	}
 }
-
-
-

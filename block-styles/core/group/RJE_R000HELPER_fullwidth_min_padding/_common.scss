@@ -5,14 +5,16 @@
 // ======================================================
 
 // ------------------------------------------------------
-// mixin
+// 設定・読み込み・変数など
 // ------------------------------------------------------
+@use "../../../../src/css/import" as i;
+
 @mixin min_padding() {
 	padding-left: .9rem;
 	padding-left: calc(var(--_container-margin-sm, .9rem) + env(safe-area-inset-left));
 	padding-right: .9rem;
 	padding-right: calc(var(--_container-margin-sm, .9rem) + env(safe-area-inset-right));
-	@include mq(lg){
+	@include i.mq(lg){
 		padding-left: 1.8rem;
 		padding-left: calc(var(--_container-margin, 1.8rem) + env(safe-area-inset-left));
 		padding-right: 1.8rem;

@@ -7,10 +7,15 @@
 
 $override_block_name = 'core/group';
 $block_style_label   = '類人猿ヘルパー フル幅テンプレ - 最低限の余白';
-$basename = basename( __DIR__ );
-$front_filename  = 'dist/css/block-styles/' . $override_block_name . '/' . $basename . '/style-front.css';
-$editor_filename = 'dist/css/block-styles/' . $override_block_name . '/' . $basename . '/style-editor.css';
 
+//各ファイルパスなどを設定.
+$basename = basename( __DIR__ );
+$dist_dir_path = 'dist/css/block-styles/' . $override_block_name . '/' . $basename . '/';
+$front_filename  = $dist_dir_path . 'style-front.css';
+$editor_filename = $dist_dir_path . 'style-editor.css';
+
+$front_filetime = ( file_exists( RJE_BP_PLUGIN_PATH . $front_filename ) ) ? filemtime( RJE_BP_PLUGIN_PATH . $front_filename ) : NULL;
+$editor_filetime = ( file_exists( RJE_BP_PLUGIN_PATH . $editor_filename ) ) ? filemtime( RJE_BP_PLUGIN_PATH . $editor_filename ) : NULL;
 
 //ファイルパス（プラグインのルートから相対）
 register_block_style(
@@ -21,6 +26,9 @@ register_block_style(
 	)
 );
 
-//フロント・エディター用のCSSファイルを登録
-wp_register_style( 'is-style-' . $basename . '-front', RJE_BP_PLUGIN_URL . $front_filename, $this->sm_style_handles, filemtime( RJE_BP_PLUGIN_PATH . $front_filename ) );
-wp_register_style( 'is-style-' . $basename . '-editor', RJE_BP_PLUGIN_URL . $editor_filename, $this->sm_style_handles, filemtime( RJE_BP_PLUGIN_PATH . $editor_filename ) );
+//フロント用のCSSファイルを登録
+wp_register_style( 'is-style-' . $basename . '-front', RJE_BP_PLUGIN_URL . $front_filename, $this->style_front_deps, $front_filetime );
+
+//エディター用のCSSファイルを登録
+add_editor_style('../../plugins/'.RJE_BP_DIRNAME.'/'.$front_filename);
+wp_register_style( 'is-style-' . $basename . '-editor', RJE_BP_PLUGIN_URL . $editor_filename, $this->style_editor_deps, $editor_filetime );
