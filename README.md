@@ -10,10 +10,14 @@ WordPressテーマ Snow Monkeyを拡張するブロックパターン集のプ�
 当プラグインディレクトリーまで移動したあと、
 
 - npm i でpackegeをインストール
-- npm watch でSCSSファイルの修正を常時監視（SCSSを修正したら即時CSSにコンパイルしてくれる）
-- npm build でCSSにコンパイル（コマンド走ったときだけCSSをコンパイル）
+- npm run watch でSCSSファイルの修正を常時監視（SCSSを修正したら即時CSSにコンパイルしてくれる）
+- npm run build でCSSにコンパイル（コマンド走ったときだけCSSをコンパイル）
 
 # 変更履歴
+## 1.11.0
+- README.mdのSCSSコンパイル コマンド間違えを修正
+- 不要で削除済のCSSファイルを読み込むコードを削除
+
 ## 1.10.0
 - バージョン番号の桁を2つ繰り上げ
 - CSSのコンパイルをgulpからDart Sassに変更
