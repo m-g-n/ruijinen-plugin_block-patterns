@@ -11,7 +11,18 @@ namespace Ruijinen\Pattern\Master\App\Patterns;
 
 class RegisterSamplePatterns {
 
+	/**
+	 * プロパティ
+	 */
+	public $sm_style_handles  = ''; //Snow Monkey のメインスタイルのハンドルを格納.
+
+	/**
+	 * construct
+	 */
 	public function __construct() {
+		if ( method_exists('\Framework\Helper', 'get_main_style_handle') ) {
+			$this->sm_style_handles = \Framework\Helper::get_main_style_handle();
+		}
 		define( 'RJE_R000SAMPLE_KEY', 'RJE_R000SAMPLE' ); // どの類人猿プロダクトなのかを示すキー
 		$this->init();
 	}
@@ -27,8 +38,8 @@ class RegisterSamplePatterns {
 		add_action(
 			'wp_enqueue_scripts',
 			function () {
-				$path = 'dist/css/sample-pattern-common.css';
-				wp_enqueue_style( RJE_R000SAMPLE_KEY . 'sample-pattern-common', RJE_BP_PLUGIN_URL . $path, array( 'snow-monkey', 'snow-monkey-blocks', 'snow-monkey-snow-monkey-blocks', 'snow-monkey-blocks-background-parallax' ), filemtime( RJE_BP_PLUGIN_PATH . $path ) );
+				$path             = 'dist/css/sample-pattern-common.css';
+				wp_enqueue_style( RJE_R000SAMPLE_KEY . 'sample-pattern-common', RJE_BP_PLUGIN_URL . $path, $this->sm_style_handles, filemtime( RJE_BP_PLUGIN_PATH . $path ) );
 			},
 			10
 		);
@@ -36,7 +47,7 @@ class RegisterSamplePatterns {
 			'enqueue_block_editor_assets',
 			function () {
 				$path = 'dist/css/sample-pattern-common.css';
-				wp_enqueue_style( RJE_R000SAMPLE_KEY . 'sample-pattern-common', RJE_BP_PLUGIN_URL . $path,  array( 'snow-monkey-snow-monkey-blocks-editor' ), filemtime( RJE_BP_PLUGIN_PATH . $path ) );
+				wp_enqueue_style( RJE_R000SAMPLE_KEY . 'sample-pattern-common', RJE_BP_PLUGIN_URL . $path, $this->sm_style_handles, filemtime( RJE_BP_PLUGIN_PATH . $path ) );
 			},
 			10
 		);
