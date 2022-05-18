@@ -27,8 +27,8 @@ register_block_style(
 );
 
 //フロント用のCSSファイルを登録
-wp_register_style( 'is-style-' . $basename . '-front', RJE_BP_PLUGIN_URL . $front_filename, $this->style_front_deps, $front_filetime );
+wp_register_style( 'is-style-' . $basename . '-front', RJE_BP_PLUGIN_URL . $front_filename, $this->sm_style_handles, $front_filetime );
 
 //エディター用のCSSファイルを登録
 add_editor_style('../../plugins/'.RJE_BP_DIRNAME.'/'.$front_filename);
-wp_register_style( 'is-style-' . $basename . '-editor', RJE_BP_PLUGIN_URL . $editor_filename, $this->style_editor_deps, $editor_filetime );
+wp_register_style( 'is-style-' . $basename . '-editor', RJE_BP_PLUGIN_URL . $editor_filename, $this->sm_style_handles, $editor_filetime );
