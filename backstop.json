@@ -1,0 +1,42 @@
+{
+  "id": "backstop_ruijinen-r001-corp",
+  "viewports": [
+    {
+      "label": "sp",
+      "width": 375,
+      "height": 667
+    },
+    {
+      "label": "md",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "label": "lg",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "label": "xg",
+      "width": 1280,
+      "height": 768
+    }
+  ],
+  "scenarios": [],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": ["browser"],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": ["--no-sandbox"]
+  },
+  "asyncCaptureLimit": 2,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}
