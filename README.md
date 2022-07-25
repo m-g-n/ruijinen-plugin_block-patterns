@@ -14,6 +14,10 @@ WordPressテーマ Snow Monkeyを拡張するブロックパターン集のプ�
 - npm run build でCSSにコンパイル（コマンド走ったときだけCSSをコンパイル）
 
 # 変更履歴
+## 1.12.0
+- 開発環境をlocalアプリからwp-envに変更
+- BackstopJSを利用した差分チェックテストの導入
+
 ## 1.11.0
 - README.mdのSCSSコンパイル コマンド間違えを修正
 - 不要で削除済のCSSファイルを読み込むコードを削除
