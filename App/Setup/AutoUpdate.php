@@ -34,7 +34,21 @@ class AutoUpdate {
 			'm-g-n',
 			'ruijinen-plugin_block-patterns',
 			[
-				'homepage' => 'https://rui-jin-en.com',
+				'description_url' => 'https://rui-jin-en.com/block_patterns/',
+				'faq_url' => 'https://rui-jin-en.com/help/',
+				'changelog_url' => 'https://rui-jin-en.com/category/product-renew/',
+				'icons' => [
+				// 'svg' => '', // svg URL. Square recommended
+				'1x' => 'https://rui-jin-en.com/wp-content/uploads/2022/02/icon-64x64-1.png', // Image URL 64×64
+				'2x' => 'https://rui-jin-en.com/wp-content/uploads/2022/02/icon-128x128-1.png', // Image URL 128×128
+				],
+				// 'banners' => [
+				// 'low' => '', // Image URL 772×250
+				// 'high' => '', // Image URL 1554×500
+				// ],
+				'tested' => '5.9', // Tested up WordPress version
+				'requires_php' => '5.6.0', // Requires PHP version
+				'requires' => '5.9', // Requires WordPress version
 			]
 		);
 	}
