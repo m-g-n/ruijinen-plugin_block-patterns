@@ -1,0 +1,52 @@
+[
+	{
+		"label": "RJE_R002LP_hero_one_column",
+		"url": "http://localhost:1001/rje_r002lp_hero_one_column",
+		"referenceUrl": "",
+		"delay": 2000,
+		"selectors": [],
+		"removeSelectors": [".l-header",".l-footer"],
+		"selectorExpansion": true,
+		"misMatchThreshold": 0.1
+	},
+	{
+		"label": "RJE_R002LP_message_accent2",
+		"url": "http://localhost:1001/rje_r002lp_message_accent2",
+		"referenceUrl": "",
+		"delay": 2000,
+		"selectors": [],
+		"removeSelectors": [".l-header",".l-footer"],
+		"selectorExpansion": true,
+		"misMatchThreshold": 0.1
+	},
+	{
+		"label": "RJE_R002LP_flow",
+		"url": "http://localhost:1001/rje_r002lp_flow",
+		"referenceUrl": "",
+		"delay": 2000,
+		"selectors": [],
+		"removeSelectors": [".l-header",".l-footer"],
+		"selectorExpansion": true,
+		"misMatchThreshold": 0.1
+	},
+	{
+		"label": "RJE_R000HELPER_enforcement_fullwidth",
+		"url": "http://localhost:1001/rje_r000helper_enforcement_fullwidth",
+		"referenceUrl": "",
+		"delay": 1000,
+		"selectors": [],
+		"removeSelectors": [".l-header",".l-footer"],
+		"selectorExpansion": true,
+		"misMatchThreshold": 0.1
+	},
+	{
+		"label": "RJE_R000HELPER_fullwidth_min_padding",
+		"url": "http://localhost:1001/rje_r000helper_fullwidth_min_padding",
+		"referenceUrl": "",
+		"delay": 1000,
+		"selectors": [],
+		"removeSelectors": [".l-header",".l-footer"],
+		"selectorExpansion": true,
+		"misMatchThreshold": 0.1
+	}
+]
