@@ -19,6 +19,9 @@ class RegisterBlockPatterns {
 	public $load_specific_style_handle = ''; //登録するパターン固有スタイル情報.
 	public $load_specific_script_handle = ''; //登録するパターン固有スクリプト情報.
 	public $sm_style_handles  = ''; //Snow Monkey のメインスタイルのハンドルを格納.
+	//TODO：ここのプロパティを廃止したい
+	public $style_front_deps  = '';
+	public $style_editor_deps = '';
 
 	/**
 	 * constructer
@@ -31,6 +34,9 @@ class RegisterBlockPatterns {
 		//Snow Monkeyテーマからメインスタイルのハンドルを取得
 		if ( method_exists('\Framework\Helper', 'get_main_style_handle') ) {
 			$this->sm_style_handles = \Framework\Helper::get_main_style_handle();
+			//TODO：ここのプロパティを廃止したい
+			$this->style_front_deps = $this->sm_style_handles;
+			$this->style_editor_deps = $this->sm_style_handles;
 		}
 		//処理実行
 		$this->init();
