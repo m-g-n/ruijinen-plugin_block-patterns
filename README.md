@@ -14,6 +14,8 @@ WordPressテーマ Snow Monkeyを拡張するブロックパターン集のプ�
 - npm run build でCSSにコンパイル（コマンド走ったときだけCSSをコンパイル）
 
 # 変更履歴
+## 1.14.0
+- GitHub Actionsの調整
 ## 1.13.0
 - 過去に使用していたクラスのプロパティを削除（LPパターン集0.0.1.7以前との互換対応を終了）
 - dist/imgについてsrc/imgからdist/imgに出力する方式に変更
