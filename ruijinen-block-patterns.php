@@ -25,6 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * declaration constant.
  */
+define( 'RJE_BP_KEY', 'RJE_R000MASTER' ); // どの類人猿プロダクトなのかを示すキー
 define( 'RJE_BP_PLUGIN_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) . '/' );  // このプラグインのURL.
 define( 'RJE_BP_PLUGIN_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) . '/' ); // このプラグインのパス.
 define( 'RJE_BP_PLUGIN_BASENAME', plugin_basename( __FILE__ ) ); // このプラグインのベースネーム.
@@ -60,6 +61,7 @@ class Bootstrap {
 		//初期実行
 		new App\Setup\AutoUpdate(); //自動更新確認
 		new App\Setup\DashboardWidget(); //ダッシュボードウィジェット
+		new App\Setup\InPluginUpdateMessage(); //更新アラートメッセージに追加でメッセージを表示
 
 		//アクティベートチェックを行い問題がある場合はメッセージを出し離脱する.
 		$activate_check = new App\Setup\ActivateCheck();
