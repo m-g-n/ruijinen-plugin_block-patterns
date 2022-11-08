@@ -71,12 +71,21 @@ class Bootstrap {
 		}
 
 		//ヘルパー・サンプルパターンの追加
-		new App\Patterns\RegisterHelperPatterns();
-		new App\Patterns\RegisterSamplePatterns();
+		global $rje_r000helper_patterns, $rje_r000sample_patterns;
+		$rje_r000helper_patterns = new App\Patterns\RegisterHelperPatterns();
+		$rje_r000sample_patterns = new App\Patterns\RegisterSamplePatterns();
+
+		//パターン情報の削除（remove_filter）
+		new App\Patterns\RemoveBlockPatterns();
 
 		//パターンの登録
 		add_theme_support( 'editor-styles' );
 		add_action( 'after_setup_theme', [ $this, 'register_patterns' ], 9999 );
+
+// TODO：テストコード
+		// $debug = new \Ruijinen\DebugHelper\Debug\ViewListFilterFromHook();
+		// $debug->error_log_list_filter('rje_register_patterns_args', true, __DIR__.'/error_log');
+
 	}
 
 	/**
