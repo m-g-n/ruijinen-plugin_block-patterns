@@ -5,7 +5,8 @@
     "https://downloads.wordpress.org/plugin/query-monitor.zip",
     "https://downloads.wordpress.org/plugin/snow-monkey-blocks.zip",
     "https://downloads.wordpress.org/plugin/wordpress-beta-tester.zip",
-    "https://downloads.wordpress.org/plugin/duplicate-post.zip"
+    "https://downloads.wordpress.org/plugin/duplicate-post.zip",
+    "https://github.com/m-g-n/ruijinen-plugin_debug_helper/releases/latest/download/ruijinen-debug-helper.zip"
   ],
 	"port": 1001,
   "env": {

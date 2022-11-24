@@ -70,22 +70,17 @@ class Bootstrap {
 			return;
 		}
 
-		//ヘルパー・サンプルパターンの追加
-		global $rje_r000helper_patterns, $rje_r000sample_patterns;
-		$rje_r000helper_patterns = new App\Patterns\RegisterHelperPatterns();
-		$rje_r000sample_patterns = new App\Patterns\RegisterSamplePatterns();
-
 		//パターン情報の削除（remove_filter）
 		new App\Patterns\RemoveBlockPatterns();
 
+		//オプションページ作成
+		new App\Setup\OptionPage();
+
 		//パターンの登録
 		add_theme_support( 'editor-styles' );
+		$this->add_patterns();
+		add_action( 'after_setup_theme', [ $this, 'unregister_patterns' ], 100 );
 		add_action( 'after_setup_theme', [ $this, 'register_patterns' ], 9999 );
-
-// TODO：テストコード
-		// $debug = new \Ruijinen\DebugHelper\Debug\ViewListFilterFromHook();
-		// $debug->error_log_list_filter('rje_register_patterns_args', true, __DIR__.'/error_log');
-
 	}
 
 	/**
@@ -99,8 +94,17 @@ class Bootstrap {
 	 * register Helper and Sample Patterns.
 	 */
 	public function add_patterns() {
-		new App\Patterns\RegisterHelperPatterns();
-		new App\Patterns\RegisterSamplePatterns();
+		//ヘルパー・サンプルパターンの追加
+		global $rje_r000helper_patterns, $rje_r000sample_patterns;
+		$rje_r000helper_patterns = new App\Patterns\RegisterHelperPatterns('rje_r000helper_patterns');
+		$rje_r000sample_patterns = new App\Patterns\RegisterSamplePatterns('rje_r000sample_patterns');
+	}
+
+	/**
+	 * unregister RJE Block Patterns.
+	 */
+	public function unregister_patterns() {
+		new App\Patterns\RemoveBlockPatterns();
 	}
 
 	/**

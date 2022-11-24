@@ -14,17 +14,53 @@ class RegisterSamplePatterns {
 	/**
 	 * construct
 	 */
-	public function __construct() {
-		define( 'RJE_R000SAMPLE_KEY', 'RJE_R000SAMPLE' ); // どの類人猿プロダクトなのかを示すキー
+	public function __construct( $variable_name ) {
+		//LPパターン集が有効な場合は離脱（パターンが重複してしまうため）
+		if ( class_exists( '\Ruijinen\Pattern\R002LP\Bootstrap' ) ) { return; }
 
-		//LPパターン集が有効でなければサンプルパターンやカテゴリを登録（スタイルも読みこむ）
-		if ( !class_exists( '\Ruijinen\Pattern\R002LP\Bootstrap' ) ) {
-			add_action( 'init', array( $this, 'register_pattern_cat' ), 10 ); //パターンカテゴリー登録
-			add_filter( 'rje_register_patterns_args', array( $this, 'hero_one_column' ), 10 );
-			add_filter( 'rje_register_patterns_args', array( $this, 'message_accent2' ), 10 );
-			add_filter( 'rje_register_patterns_args', array( $this, 'flow' ), 10 );
-			$this->common_styles();
+		define( 'RJE_R000SAMPLE_KEY', 'RJE_R000SAMPLE' ); // どの類人猿プロダクトなのかを示すキー
+		add_action( 'init', array( $this, 'register_pattern_cat' ), 10 ); //パターンカテゴリー登録
+
+		//フィルターに登録したいメソッドの情報
+		$methods = array(
+			array(
+				'name' => 'hero_one_column',
+				'label' => 'Heroイメージ（1カラム)',
+				'priority' => 10
+			),
+			array(
+				'name' => 'message_accent2',
+				'label' => '伝えたいこと',
+				'priority' => 10
+			),
+			array(
+				'name' => 'flow',
+				'label' => '流れ・手順',
+				'priority' => 10
+			)
+		);
+
+		//オプションページの選択肢用の情報を登録
+		add_filter(
+			'rje_option_args',
+			function ( $args ) use ( $variable_name, $methods ) {
+				$sample = array(
+					'section_id'   => $variable_name,
+					'section_name' => 'サンプルパターン',
+					'fields' => $methods
+				);
+				array_push( $args, $sample );
+				return $args;
+			}
+		);
+
+		//パターンの情報をフィルターに登録
+		foreach ( $methods as $method ) {
+			add_filter( 'rje_register_patterns_args', array( $this, $method['name'] ), $method['priority'] );
 		}
+
+		//スタイルを読み込む
+		$this->common_styles();
 	}
 
 	/**
