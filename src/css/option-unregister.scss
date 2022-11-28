@@ -1,0 +1,113 @@
+// ======================================================
+//
+// パターン無効化設定ページのスタイル
+//
+// ======================================================
+@use "sass:math";
+@use "./import" as i;
+
+//ローカル変数
+$accent_color: #cd162c;
+
+//スタイル
+.form-table{
+  margin-top: 3em;
+  th{
+    display: block;
+    width: unset;
+    margin: 0;
+    padding: 0 0 0.75em;
+    font-size: 1.2em;
+  }
+  td{
+    display: flex;
+    flex-wrap: wrap;
+    margin: -0.5em;
+    padding: unset;
+  }
+}
+
+//チェックボックスのwrapper
+.input_wrap{
+  width: calc(100% - 1em);
+  margin: 0.5em;
+  @include i.mq(md){
+    width: calc(50% - 1em);
+  }
+  @include i.mq(lg){
+    width: calc(33% - 1em);
+  }
+}
+
+//チェックボタン
+.input_unregister:not(:root){
+  display: none;
+}
+
+//ラベル
+.input_label{
+  display: flex;
+  align-items: center;
+  padding: 1em 1em 1em 0.75em;
+  background-color: #fff;
+  border: 1px solid #999;
+  border-radius: 0.25em;
+  font-weight: bold;
+  color: #333;
+  &:hover{
+    border-color: $accent_color;
+  }
+}
+
+//トグルボタン
+.input_toggle{
+  position: relative;
+  flex-shrink: 0;
+  width: 25px;
+  height: 1em;
+  margin-right: 0.5em;
+  background-color: $accent_color;
+  border-radius: 72px;
+  transition: all 100ms ease-out;
+  &::before {
+    bottom: -6px;
+    content: "";
+    left: -6px;
+    position: absolute;
+    right: -6px;
+    top: -6px;
+  }
+  &::after{
+    transition: all 100ms ease-out;
+    background-color: #fff;
+    border-radius: 50%;
+    content: "";
+    height: 12px;
+    left: 12px;
+    position: absolute;
+    top: 1px;
+    width: 12px;
+  }
+}
+
+//無効時のスタイル
+.input_unregister:checked{
+  + .input_label{
+    border-color: #ccc;
+    background-color: unset;
+    color: #999;
+    &:hover{
+      border-color: #777;
+      .input_toggle{
+        background-color: #777;
+      }
+    }
+    .input_toggle{
+      background-color: #dfe1e4;
+      &::after{
+        background-color: #fff;
+        left: 2px;
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
 /**
  * Plugin name: 類人猿ブロックパターン
  * Description: Snow Monkeyサイトをより素敵にするブロックパターンを提供
- * Version: 1.13.0
+ * Version: 2.0.0
  * Tested up to: 6.0
  * Requires at least: 6.0
  * Author: mgn Inc.,
@@ -25,6 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * declaration constant.
  */
+define( 'RJE_BP_KEY', 'RJE_R000MASTER' ); // どの類人猿プロダクトなのかを示すキー
 define( 'RJE_BP_PLUGIN_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) . '/' );  // このプラグインのURL.
 define( 'RJE_BP_PLUGIN_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) . '/' ); // このプラグインのパス.
 define( 'RJE_BP_PLUGIN_BASENAME', plugin_basename( __FILE__ ) ); // このプラグインのベースネーム.
@@ -60,6 +61,7 @@ class Bootstrap {
 		//初期実行
 		new App\Setup\AutoUpdate(); //自動更新確認
 		new App\Setup\DashboardWidget(); //ダッシュボードウィジェット
+		new App\Setup\InPluginUpdateMessage(); //更新アラートメッセージに追加でメッセージを表示
 
 		//アクティベートチェックを行い問題がある場合はメッセージを出し離脱する.
 		$activate_check = new App\Setup\ActivateCheck();
@@ -68,12 +70,16 @@ class Bootstrap {
 			return;
 		}
 
-		//ヘルパー・サンプルパターンの追加
-		new App\Patterns\RegisterHelperPatterns();
-		new App\Patterns\RegisterSamplePatterns();
+		//パターン情報の削除（remove_filter）
+		new App\Patterns\RemoveBlockPatterns();
+
+		//オプションページ作成
+		new App\Setup\OptionUnregister();
 
 		//パターンの登録
 		add_theme_support( 'editor-styles' );
+		$this->add_patterns();
+		add_action( 'after_setup_theme', [ $this, 'unregister_patterns' ], 100 );
 		add_action( 'after_setup_theme', [ $this, 'register_patterns' ], 9999 );
 	}
 
@@ -88,8 +94,17 @@ class Bootstrap {
 	 * register Helper and Sample Patterns.
 	 */
 	public function add_patterns() {
-		new App\Patterns\RegisterHelperPatterns();
-		new App\Patterns\RegisterSamplePatterns();
+		//ヘルパー・サンプルパターンの追加
+		global $rje_r000helper_patterns, $rje_r000sample_patterns;
+		$rje_r000helper_patterns = new App\Patterns\RegisterHelperPatterns('rje_r000helper_patterns');
+		$rje_r000sample_patterns = new App\Patterns\RegisterSamplePatterns('rje_r000sample_patterns');
+	}
+
+	/**
+	 * unregister RJE Block Patterns.
+	 */
+	public function unregister_patterns() {
+		new App\Patterns\RemoveBlockPatterns();
 	}
 
 	/**

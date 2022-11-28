@@ -4,6 +4,14 @@ vendor/
 node_modules/
 *.sql
 
+# yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # This Plugin Specific ignore
 ## dist file
 dist/
