@@ -81,7 +81,7 @@ class OptionUnregister {
 	*/
 	public function setting_menu(){
 		add_options_page(
-			'[類人猿] ブロックパターンの無効化', //ページタイトル
+			'[類人猿] ブロックパターンの無効化（ベータ版）', //ページタイトル
 			'類人猿', //メニューのラベル
 			'manage_options', //どの権限ユーザに見せるか
 			$this->page_slug, //メニューslug名
