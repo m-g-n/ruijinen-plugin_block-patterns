@@ -17,7 +17,7 @@ class RemoveBlockPatterns {
 	 * constructer
 	 */
 	public function __construct() {
-		$option = get_option('rje_option');
+		$option = get_option('rje_patterns_unregister');
 		if ( !$option ) { return; }
 		$this->remove_fileter_patterns( $option );
 	}

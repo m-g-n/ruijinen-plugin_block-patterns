@@ -74,7 +74,7 @@ class Bootstrap {
 		new App\Patterns\RemoveBlockPatterns();
 
 		//オプションページ作成
-		new App\Setup\OptionPage();
+		new App\Setup\OptionUnregister();
 
 		//パターンの登録
 		add_theme_support( 'editor-styles' );

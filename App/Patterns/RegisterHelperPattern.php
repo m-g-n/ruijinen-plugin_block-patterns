@@ -31,9 +31,9 @@ class RegisterHelperPatterns {
 			)
 		);
 
-		//オプションページの選択肢用の情報を登録
+		//オプション パターン使用の選択肢用の情報を登録
 		add_filter(
-			'rje_option_args',
+			'rje_option_unregister_args',
 			function ( $args ) use ( $variable_name, $methods ) {
 				$helper = array(
 					'section_id'   => $variable_name,

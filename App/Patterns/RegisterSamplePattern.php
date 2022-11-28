@@ -42,7 +42,7 @@ class RegisterSamplePatterns {
 
 		//オプションページの選択肢用の情報を登録
 		add_filter(
-			'rje_option_args',
+			'rje_option_unregister_args',
 			function ( $args ) use ( $variable_name, $methods ) {
 				$sample = array(
 					'section_id'   => $variable_name,
