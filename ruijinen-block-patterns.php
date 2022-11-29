@@ -2,9 +2,9 @@
 /**
  * Plugin name: 類人猿ブロックパターン
  * Description: Snow Monkeyサイトをより素敵にするブロックパターンを提供
- * Version: 2.0.0
- * Tested up to: 6.0
- * Requires at least: 6.0
+ * Version: 2.0.1
+ * Tested up to: 6.1.1
+ * Requires at least: 6.1
  * Author: mgn Inc.,
  * Author URI: https://rui-jin-en.com/
  * License: GPL2 or later
