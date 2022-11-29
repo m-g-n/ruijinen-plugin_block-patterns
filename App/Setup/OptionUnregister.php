@@ -60,11 +60,11 @@ class OptionUnregister {
 						foreach ( $fields as $field ) {
 							printf(
 								'<div class="input_wrap"><input type="checkbox" id="%s" name="%s" value="%s"%s class="input_unregister"><label for="%s" class="input_label"><span class="input_toggle"></span>%s</label></div>',
-								$field['name'], //id
+								$section_id . '_' . $field['name'], //id
 								$this->group_name.'['.$section_id.'][]', //name
 								$field['name'], //value
 								isset( $this->options[$section_id] ) && in_array($field['name'], $this->options[$section_id]) ? ' checked' : '', //checked
-								$field['name'], //label for
+								$section_id . '_' . $field['name'], //label for
 								$field['label'] //label text
 							);
 						}
