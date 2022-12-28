@@ -13,22 +13,12 @@ class ActivateCheck {
 
 	//初期処理
 	public function __construct() {
-		// $this->check_snow_monkey_activate();
 		$this->check_snow_monkey_blocks_activate();
 	}
-
-	//Snow Monkeyテーマが有効かチェック.
-	// public function check_snow_monkey_activate () {
-	// 	$theme = wp_get_theme( get_template() );
-	// 	if ( 'snow-monkey' != $theme->template && 'snow-monkey/resources' != $theme->template ) {
-	// 		$this->messages['snow_monkey'] = 'Snow Monkeyテーマが必要です';
-	// 	}
-	// }
 
 	//Snow Monkey Blocksが有効かチェック.
 	public function check_snow_monkey_blocks_activate () {
 		if ( !class_exists('\Snow_Monkey\Plugin\Blocks\Bootstrap') ) {
-		// if ( is_plugin_active( 'snow-monkey-blocks/snow-monkey-blocks.php' ) ) {
 			$this->messages['snow_monkey_blocks'] = 'Snow Monkey Blocksプラグインが必要です';
 		}
 	}

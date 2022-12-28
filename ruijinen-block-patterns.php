@@ -113,6 +113,20 @@ class Bootstrap {
 	public function register_patterns() {
 		new \Ruijinen\Pattern\RegisterBlockPatterns();
 	}
+
+	/**
+	 * Get Activate Themes.
+	 * TODO：定数の存在チェックは `defined('{定数名}')`
+	 */
+	public function get_activate_theme() {
+		$theme = wp_get_theme( get_template() );
+		if ( 'snow-monkey/resources' === $theme->template ) { //古いバージョンのSnow Monkey対応
+			$name = 'snow-monkey';
+		} else {
+			$name = $theme->template;
+		}
+		define( 'RJE_ACTIVATE_THEME', $name );
+	}
 }
 
 new Bootstrap();
