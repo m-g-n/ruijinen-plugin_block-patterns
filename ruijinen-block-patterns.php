@@ -70,6 +70,9 @@ class Bootstrap {
 			return;
 		}
 
+		//アクティベートテーマのチェック
+		$this->get_activate_theme();
+
 		//パターン情報の削除（remove_filter）
 		new App\Patterns\RemoveBlockPatterns();
 
