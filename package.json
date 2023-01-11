@@ -35,8 +35,8 @@
   "author": "mgn",
   "license": "GPL-2.0+",
   "devDependencies": {
-    "@wordpress/env": "^5.7.0",
-    "@wordpress/scripts": "^24.6.0",
+    "@wordpress/env": "^5.8.0",
+    "@wordpress/scripts": "^25.0.0",
     "autoprefixer": "^10.4.13",
     "backstopjs": "^6.1.4",
     "cpy-cli": "^4.2.0",
@@ -50,15 +50,15 @@
     "imagemin-svgo": "10.0.1",
     "imagemin-webp": "7.0.0",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.4.19",
-    "postcss-cli": "^10.0.0",
+    "postcss": "^8.4.20",
+    "postcss-cli": "^10.1.0",
     "postcss-sort-media-queries": "^4.3.0",
     "postcss-sorting": "^7.0.1",
     "rimraf": "^3.0.2",
-    "sass": "^1.56.1",
+    "sass": "^1.57.1",
     "stylelint-order": "^5.0.0",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.0"
+    "webpack-cli": "^5.0.1"
   },
   "browserslist": [
     ">0.25% in JP",
