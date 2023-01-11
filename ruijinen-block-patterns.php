@@ -2,7 +2,7 @@
 /**
  * Plugin name: 類人猿ブロックパターン
  * Description: Snow Monkeyサイトをより素敵にするブロックパターンを提供
- * Version: 2.0.1
+ * Version: 3.0.0
  * Tested up to: 6.1.1
  * Requires at least: 6.1
  * Author: mgn Inc.,
@@ -70,6 +70,9 @@ class Bootstrap {
 			return;
 		}
 
+		//アクティベートテーマのチェック
+		$this->get_activate_theme();
+
 		//パターン情報の削除（remove_filter）
 		new App\Patterns\RemoveBlockPatterns();
 
@@ -112,6 +115,20 @@ class Bootstrap {
 	 */
 	public function register_patterns() {
 		new \Ruijinen\Pattern\RegisterBlockPatterns();
+	}
+
+	/**
+	 * Get Activate Themes.
+	 * TODO：定数の存在チェックは `defined('{定数名}')`
+	 */
+	public function get_activate_theme() {
+		$theme = wp_get_theme( get_template() );
+		if ( 'snow-monkey/resources' === $theme->template ) { //古いバージョンのSnow Monkey対応
+			$name = 'snow-monkey';
+		} else {
+			$name = $theme->template;
+		}
+		define( 'RJE_ACTIVATE_THEME', $name );
 	}
 }
 
