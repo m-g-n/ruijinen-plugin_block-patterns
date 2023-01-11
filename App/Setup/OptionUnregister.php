@@ -36,6 +36,10 @@ class OptionUnregister {
 				$section_id = $value['section_id'];
 				$fields     = $value['fields'];
 
+				//fields配列を優先度順に並び替え
+				$key = array_column($fields, 'priority');
+				array_multisort($key, SORT_ASC, $fields);
+
 				//フィールド値がない場合はこのループは離脱
 				if ( !$fields ) { continue; }
 
