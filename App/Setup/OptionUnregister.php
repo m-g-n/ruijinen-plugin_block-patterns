@@ -89,7 +89,7 @@ class OptionUnregister {
 			'類人猿', //メニューのラベル
 			'manage_options', //どの権限ユーザに見せるか
 			$this->page_slug, //メニューslug名
-			array( $this, 'option_page_content'), //callback
+			array( $this, 'option_page_content') //callback
 		);
 	}
 
