@@ -2,7 +2,7 @@
 /**
  * Plugin name: 類人猿ブロックパターン
  * Description: Snow Monkeyサイトをより素敵にするブロックパターンを提供
- * Version: 3.0.3
+ * Version: 3.1.0
  * Tested up to: 6.1.1
  * Requires at least: 6.1
  * Author: mgn Inc.,
@@ -67,6 +67,8 @@ class Bootstrap {
 		$activate_check = new App\Setup\ActivateCheck();
 		if ( !empty( $activate_check->messages ) ) {
 			add_action('admin_notices', array( $activate_check,'make_alert_message'));
+		}
+		if ( true === $activate_check->inactivate ) {
 			return;
 		}
 
