@@ -20,6 +20,7 @@
 			position: relative;
 			margin-bottom: 0;
 			padding: 1.875rem;
+      flex-direction: initial;
 			&::after{
 				content: "";
 				position: absolute;
@@ -189,7 +190,7 @@
 	}
 	.smb-panels__item__body{
 		padding: 1.5rem 0 0 0;
-		
+
 	}
 	.smb-panels__item__title{
 		@include i.heading4;
