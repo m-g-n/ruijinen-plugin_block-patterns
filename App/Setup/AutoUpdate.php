@@ -46,9 +46,9 @@ class AutoUpdate {
 				// 'low' => '', // Image URL 772×250
 				// 'high' => '', // Image URL 1554×500
 				// ],
-				'tested' => '6.1.1', // Tested up WordPress version
-				'requires_php' => '5.6.0', // Requires PHP version
-				'requires' => '6.1', // Requires WordPress version
+				'tested' => '6.2.2', // Tested up WordPress version
+				'requires_php' => '7.4.0', // Requires PHP version
+				'requires' => '6.2', // Requires WordPress version
 			]
 		);
 	}
