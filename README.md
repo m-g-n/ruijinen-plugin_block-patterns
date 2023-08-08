@@ -14,6 +14,10 @@ WordPressテーマ Snow Monkeyを拡張するブロックパターン集のプ�
 - npm run build でCSSにコンパイル（コマンド走ったときだけCSSをコンパイル）
 
 # 変更履歴
+## 3.1.1
+- yarnからnpmへ変更
+- GitHub Actionsのbuildの実行をyarnからnpmへ変更
+- サンプルパターンのスタイル調整
 ## 3.1.0
 - PHP7.3以下の環境の場合にアラートを出すようにする
 - Nodeパッケージの更新
