@@ -7,7 +7,7 @@
 // ------------------------------------------------------
 // 設定・読み込み・変数など
 // ------------------------------------------------------
-// @use "../../../../src/css/import" as i;
+@use "../../../../src/css/import" as i;
 
 // ------------------------------------------------------
 // スタイル
@@ -16,19 +16,24 @@
 	.smb-panels__item--horizontal,
 	.smb-panels__item--free{
 		position: relative;
-		&::before{
-			content: "このパターン内では非推奨です";
-			position: absolute;
-			top: 0;
-			left: 0;
-			display: block;
-			padding: 0.25rem;
-			background-color: rgba(#e00, 0.7);
-			font-size: 0.75rem;
-			font-weight: bold;
-			color: #fff;
-			z-index: 2;
+		.smb-panels__item__body{
+			position: static;
+			&::before{
+				content: "このパターン内では非推奨です";
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: block;
+				padding: 0.25rem;
+				background-color: rgba(#e00, 0.7);
+				font-size: 0.75rem;
+				font-weight: bold;
+				color: #fff;
+				z-index: 2;
+			}
 		}
+
+
 		&::after{
 			content: none;
 		}

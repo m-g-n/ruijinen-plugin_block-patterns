@@ -13,13 +13,16 @@
 // スタイル
 // ------------------------------------------------------
 .is-style-RJE_R002LP_flow_panels:not(:root){
+  overflow: hidden; //リストのネガティブマージン分スクロールを出さないため
 	> .c-row{
+    --_gap: 3.75rem;
 		counter-reset: flow-no;
-		margin: -1.875rem;
+    margin: calc(var(--_gap) * .5 * -1);
 		> .c-row__col{
 			position: relative;
-			margin-bottom: 0;
-			padding: 1.875rem;
+      margin-bottom: 0;
+      padding-top: calc( (var(--_gap) * .5)); //0.25remはナンバリングではみ出た分
+      padding-bottom: calc( var(--_gap) * .5 );
       flex-direction: initial;
 			&::after{
 				content: "";
@@ -149,6 +152,7 @@
 	}
 	.smb-panels__item{
 		position: relative;
+    margin-top: 1em;
 		padding-top: 4rem;
 		padding-right: 2.19rem;
 		padding-bottom: 2.5rem;
