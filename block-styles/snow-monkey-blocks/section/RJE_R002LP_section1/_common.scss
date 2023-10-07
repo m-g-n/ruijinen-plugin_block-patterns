@@ -89,7 +89,7 @@
 				}
 			}
 			> .smb-section__body, // @deprecated - SMB v12.6.1まで
-			> .smb-section__contents-wrapper > .smb-section__body{ // SMB v13.0.0から
+			> .smb-section__contents-wrapper > .smb-section__body{ // SMB v13.0.0から 
 				text-align: left;
 			}
 		}
@@ -101,7 +101,7 @@
 	&.smb-section--left{
 		> .smb-section__inner{
 			> .c-container, // @deprecated - SMB v12.6.1まで
-			> .c-container > .smb-section__contents-wrapper > .smb-section__header{ // SMB v13.0.0から
+			> .c-container > .smb-section__contents-wrapper > .smb-section__header{ // SMB v13.0.0から 
 				> .smb-section__lede-wrapper{
 					@include i.mq(lg){
 						margin-left: 0;

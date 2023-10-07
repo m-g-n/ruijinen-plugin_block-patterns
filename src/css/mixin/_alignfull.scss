@@ -1,6 +1,6 @@
 @mixin alignfull() {
-	margin-right: calc(50% - 50vw);
-	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw) !important;
+	margin-left: calc(50% - 50vw) !important;
 	width: auto;
 	max-width: none;
 }
