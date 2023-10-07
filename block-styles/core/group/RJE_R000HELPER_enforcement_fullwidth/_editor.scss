@@ -12,20 +12,27 @@
 // ------------------------------------------------------
 // スタイル
 // ------------------------------------------------------
-.is-style-RJE_R000HELPER_enforcement_fullwidth{
-	position: relative;
-	padding: 1.25rem;
-	border: 1px dotted #e00;
-	&::before{
-		content:"このグループ内は強制的にフル幅になります";
-		position: absolute;
-		top:-0.5rem;
-		left: 0.5rem;
-		display: block;
-		padding: 0.1em 0.4em;
-		font-size: 12px;
-		font-weight: bold;
-		background-color: #d00;
-		color: #fff;
-	}
+@mixin styles () {
+  .is-style-RJE_R000HELPER_enforcement_fullwidth{
+    position: relative;
+    padding: 1.25rem;
+    border: 1px dotted #e00;
+    &::before{
+      content:"このグループ内は強制的にフル幅になります";
+      position: absolute;
+      top:-0.5rem;
+      left: 0.5rem;
+      display: block;
+      padding: 0.1em 0.4em;
+      font-size: 12px;
+      font-weight: bold;
+      background-color: #d00;
+      color: #fff;
+    }
+  }
+}
+
+@include styles;
+.editor-styles-wrapper{
+  @include styles;
 }

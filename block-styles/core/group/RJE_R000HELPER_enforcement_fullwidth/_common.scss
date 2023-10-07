@@ -13,6 +13,6 @@
 // スタイル
 // ------------------------------------------------------
 //強制的にフル幅にする
-.is-style-RJE_R000HELPER_enforcement_fullwidth{
+.is-style-RJE_R000HELPER_enforcement_fullwidth:not(:root){
 	@include i.alignfull;
 }
