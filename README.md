@@ -14,6 +14,8 @@ WordPressテーマ Snow Monkeyを拡張するブロックパターン集のプ�
 - npm run build でCSSにコンパイル（コマンド走ったときだけCSSをコンパイル）
 
 # 変更履歴
+## 3.1.4
+- composerパッケージを更新
 ## 3.1.3
 - composer、Nodeのパッケージを更新
 ## 3.1.2
