@@ -38,7 +38,7 @@
     "@wordpress/env": "^5.16.0",
     "@wordpress/scripts": "^30.4.0",
     "autoprefixer": "^10.4.20",
-    "backstopjs": "^6.1.4",
+    "backstopjs": "^6.3.25",
     "cpy-cli": "^4.2.0",
     "cssnano": "^5.1.15",
     "del-cli": "^5.1.0",
