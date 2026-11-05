@@ -6,14 +6,79 @@ WordPressテーマ Snow Monkeyを拡張するブロックパターン集のプ�
 他のパターンが必要な場合は別途ブロックパターンプラグインアドオンの入手をお願いします。
 （※アドオンは準備中です。少々お待ちください）
 
-# SCSSのコンパイル方法
+# 開発環境
+
+Node.js 24 を使用します（`.node-version` で指定。nvm・nodenv・fnm・mise など `.node-version` に対応したツールで切り替えられます）。
+
 当プラグインディレクトリーまで移動したあと、
 
-- npm i でpackegeをインストール
-- npm run watch でSCSSファイルの修正を常時監視（SCSSを修正したら即時CSSにコンパイルしてくれる）
-- npm run build でCSSにコンパイル（コマンド走ったときだけCSSをコンパイル）
+- `npm ci` でパッケージをインストール
+- `composer install` でcomposerパッケージをインストール
+
+# SCSSのコンパイル方法
+
+- `npm run watch` でSCSSファイルの修正を常時監視（SCSSを修正したら即時CSSにコンパイルしてくれる）
+- `npm run build` でCSS・画像をビルド（コマンド走ったときだけコンパイル）
+
+# テスト
+
+`npm start` で wp-env を起動した状態で実行してください。初回のみ `npx playwright install chromium` でブラウザをインストールします。
+
+## 見た目の差分チェック
+
+固定ページ（`rje_r000helper_*`・`rje_r002lp_*`）のフロント画面を Playwright で撮影し、基準画像と比較します（以前は BackstopJS を利用）。
+
+- `npm run test:visual:update` で基準画像を作成・更新（変更前の状態で実行。`tests/visual/__screenshots__` に保存され、Git には含めません）
+- `npm run test:visual` で基準画像と比較（差分がある場合は `artifacts/visual-report` に差分画像を出力）
+
+対象ページ・除外する要素は `tests/visual/scenarios.json`、画面幅（sp / md / lg / xg）は `tests/visual/playwright.config.js` で設定します。
+
+## エディターのテスト（E2Eテスト）
+
+各ブロックパターンをエディターで挿入・編集できるかを Playwright で確認します。
+
+- `npm run test:e2e:setup` でテスト用ユーザー（e2e-admin）を作成（初回のみ）
+- `npm run test:e2e` でテストを実行（結果は `artifacts/playwright-report` に出力）
+
+確認内容：
+
+- パターンの挿入（`tests/e2e/specs/pattern-insert.spec.js`）
+	- インサーターでパターン名を検索し、クリックで挿入できること
+	- 挿入されたブロックがパターンの内容と一致し、ブロック検証エラー・未登録ブロック・未登録のブロックスタイルがないこと
+	- 保存・再読み込み後も壊れず、フロントでブロックスタイル用のCSSが読み込まれること
+- パターンの編集（`tests/e2e/specs/editor-editable.spec.js`）
+	- テキストを入力して保存でき、再読み込み後も壊れないこと
+	- 画像の差し替え・メディアの左右入れ替えをして保存でき、再読み込み後も壊れないこと
+	- 登録済みパターンと既存の固定ページの内容をコピーした一時的な下書きでテストし、終了後に削除します（元の固定ページは変更しません）
+- パターンの無効化（`tests/e2e/specs/pattern-unregister.spec.js`）
+	- 設定 > 類人猿 で無効化したパターンだけが登録されなくなり、「設定をリセット」で元に戻ること（テスト後は設定をリセットします）
+
+対象のパターンは `App/Patterns/RegisterHelperPattern.php`・`App/Patterns/RegisterSamplePattern.php` の登録内容から自動で取得します。
+
+# リリース手順
+
+1. プラグインのルートファイル（`ruijinen-block-patterns.php`）の `Version` を上げ、README.md の「変更履歴」に同じバージョンの節（`## 3.2.0` など）を追加します
+2. 作業ブランチを dev にマージすると、dev → main のリリースPRが自動作成（既存ならタイトル・本文を更新）されます
+	- タイトルには `Version` が使われます
+	- 本文には README.md の変更履歴の該当バージョンの節と、main に未反映のマージ済みPRの一覧が自動で入ります
+3. リリースPRを main にマージすると、`Version` をタグ名としてリリースとzipが作成されます
+	- 同じバージョンのタグが既に存在する場合、リリースはスキップされます（バージョンを上げ忘れた場合など）
+	- リリースPRの本文がリリースノートになります
+	- zipは直下に `ruijinen-block-patterns/` フォルダを1つだけ含む形で作成されます（プラグイン更新時にディレクトリー名が変わらないようにするため）
+4. main の内容を dev へ反映するPRが自動作成されます
 
 # 変更履歴
+## 3.2.0
+- WordPress 7.1 で動作確認（Tested up to を 7.1 に変更）
+- プラグインを更新すると、プラグインのディレクトリ名がランダムな文字列付きの名前に変わってしまう不具合の修正（リリース用のzipをプラグイン名のフォルダに格納する形に変更し、更新時にディレクトリ名を維持する処理を追加）
+- ダッシュボードウィジェット・オプションページ・更新メッセージの出力をエスケープ
+- 更新メッセージの取得をWordPressのHTTP APIに変更し、取得結果をキャッシュ
+- オプションページの保存値を検証するように修正
+- パターンの無効化が一部のタイミングで効かない場合がある不具合の修正
+- 翻訳ファイルの読み込みパスの修正
+- Node.jsを24に変更し、Node・composerのパッケージを更新（Voltaの利用を廃止）
+- GitHub Actionsの整備（ルートファイルのバージョンでリリース、同じバージョンのタグがある場合はリリースをスキップ、リリースPRの本文を自動作成）
+- 見た目の差分チェックを BackstopJS から Playwright に変更し、エディターでのパターンの挿入・編集・無効化のE2Eテストを追加
 ## 3.1.4
 - composerパッケージを更新
 ## 3.1.3

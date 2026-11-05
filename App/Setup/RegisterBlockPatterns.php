@@ -87,12 +87,14 @@ class RegisterBlockPatterns {
 					$this->load_specific_script_handle[ $pattern['key'] ]['use_list'][] = $pattern['title'];
 				}
 
-				// パターンの内容を取得.
-				$contents = '';
+				// パターンの内容を取得（同じパターンが複数回登録されても内容が空にならないよう include を使う）.
+				$pattern_file = $pattern['path'] . 'patterns/' . $pattern['key'] . '/pattern.php';
+				if ( ! file_exists( $pattern_file ) ) {
+					continue;
+				}
 				ob_start();
-				require_once $pattern['path'] . 'patterns/' . $pattern['key'] . '/pattern.php';
-				$contents = ob_get_contents();
-				ob_end_clean();
+				include $pattern_file;
+				$contents = ob_get_clean();
 
 				// パターン登録.
 				register_block_pattern(
