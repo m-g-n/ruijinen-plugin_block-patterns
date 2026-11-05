@@ -2,10 +2,10 @@
 Contributors: mgn
 Donate link: https://rui-jin-en.com/
 Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, landing page, microcopy, steps, call to action
-Requires at least: 5.8
-Tested up to: 5.8
-Stable tag: 0.0.1.2
-Requires PHP: 7.3
+Requires at least: 6.3
+Tested up to: 7.1
+Stable tag: 3.2.0
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,8 @@ WordPressテーマ Snow Monkeyを拡張するブロックパターン
 
 ## 動作環境
 現在確認されている動作環境は以下のとおりです
-- WordPress 5.8 以上
+- WordPress 6.3 以上
+- PHP 7.4 以上
 - Snow Monkey v15 以上
 - Snow Monkey Blocks v12 以上
 
