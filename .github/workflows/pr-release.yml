@@ -1,32 +1,89 @@
-name: Create release pull requests
+name: Create release pull request
 
+# dev へ PR がマージされたら、dev → main のリリース PR を作成（既存なら更新）する。
+# PR タイトルはプラグインのルートファイルの Version ヘッダーから、
+# PR 本文は README.md の変更履歴の該当バージョンの節と、main 未反映のマージ済み PR 一覧から作成する。
 on:
   pull_request:
     branches:
       - dev
     types: [closed]
 
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: release-pr
+  cancel-in-progress: false
+
+env:
+  PLUGIN_SLUG: ruijinen-block-patterns
+
 jobs:
   create-release-pr:
-    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'main') == false
+    # main → dev の同期 PR（リリース残処理）では動かさない
+    if: github.event.pull_request.merged == true && github.event.pull_request.head.ref != 'main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
         with:
+          ref: dev
           fetch-depth: 0
 
-      - name: Get Version
-        id: get_version
-        uses: bbonkr/get-version-action@v1.0.1
-        with:
-          project: "./version.json"
+      - name: Get plugin version
+        id: version
+        run: |
+          version=$(sed -n 's/^[[:space:]]*\*[[:space:]]*Version:[[:space:]]*\([^[:space:]]*\).*/\1/p' "$PLUGIN_SLUG.php" | head -n 1)
+          if [ -z "$version" ]; then
+            echo "::error file=$PLUGIN_SLUG.php::Version header not found"
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Version=$version"
 
-      - name: Create a release pull request
-        uses: bakunyo/git-pr-release-action@master
+      - name: Create release notes
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_PR_RELEASE_BRANCH_PRODUCTION: main
-          GIT_PR_RELEASE_BRANCH_STAGING: dev
-          GIT_PR_RELEASE_LABELS: release
-          PKG_VERSION: ${{ steps.get_version.outputs.version}}
-          GIT_PR_RELEASE_TEMPLATE: .github/git-pr-release/.git-pr-release-template
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          # README.md の「## <バージョン>」から次の見出しまでを抜き出す
+          notes=$(awk -v version="$VERSION" '
+            $0 == "## " version { found = 1; next }
+            found && /^##? / { exit }
+            found { print }
+          ' README.md | sed -e :a -e '/^[[:space:]]*$/{$d;N;ba' -e '}')
+          if [ -z "$notes" ]; then
+            echo "::warning file=README.md::README.md に ${VERSION} の変更履歴がありません"
+            notes="（README.md に ${VERSION} の変更履歴がありません）"
+          fi
+
+          # main に未反映のコミットに含まれるマージ済み PR（main → dev の同期 PR を除く）
+          git rev-list origin/main..origin/dev > "$RUNNER_TEMP/commits.txt"
+          prs=$(gh pr list --base dev --state merged --limit 200 \
+            --json number,title,headRefName,mergeCommit \
+            | jq -r --rawfile commits "$RUNNER_TEMP/commits.txt" '
+                ($commits | split("\n") | map(select(. != ""))) as $shas
+                | map(select(.headRefName != "main" and .mergeCommit != null and (.mergeCommit.oid | IN($shas[]))))
+                | sort_by(.number)
+                | .[] | "- #\(.number) \(.title)"')
+          if [ -z "$prs" ]; then
+            prs="（該当する PR はありません）"
+          fi
+
+          printf '## 変更内容\n%s\n\n## 含まれる PR\n%s\n' "$notes" "$prs" > release-notes.md
+          cat release-notes.md
+
+      - name: Create or update release pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          number=$(gh pr list --base main --head dev --state open --json number --jq '.[0].number // empty')
+          if [ -n "$number" ]; then
+            gh pr edit "$number" --title "$VERSION" --body-file release-notes.md
+            echo "Updated release PR #$number"
+          else
+            gh pr create --base main --head dev --title "$VERSION" \
+              --body-file release-notes.md --label release
+          fi

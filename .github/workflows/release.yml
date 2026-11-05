@@ -1,82 +1,143 @@
 name: Create Release
 
+# main へ PR がマージされたら、プラグインのルートファイルの Version をタグとしてリリースを作成する。
+# 同じバージョンのタグが既に存在する場合はリリースをスキップする。
 on:
   pull_request:
     types: [closed]
     branches:
       - main
 
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  PLUGIN_SLUG: ruijinen-block-patterns
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  check:
     if: github.event.pull_request.merged == true
-    #nodeのバージョン設定 参考 https://docs.github.com/ja/free-pro-team@latest/actions/guides/building-and-testing-nodejs
-    strategy:
-      matrix:
-        node-version: [14.x]
-
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      released: ${{ steps.tag.outputs.released }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@master
+      - uses: actions/checkout@v7
 
-      #scriptの実施
-      - uses: actions/checkout@v3
+      - name: Get plugin version
+        id: version
+        run: |
+          version=$(sed -n 's/^[[:space:]]*\*[[:space:]]*Version:[[:space:]]*\([^[:space:]]*\).*/\1/p' "$PLUGIN_SLUG.php" | head -n 1)
+          if [ -z "$version" ]; then
+            echo "::error file=$PLUGIN_SLUG.php::Version header not found"
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Version=$version"
+
+      - name: Check existing tag
+        id: tag
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          if git ls-remote --exit-code --tags origin "refs/tags/$VERSION" > /dev/null; then
+            echo "released=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Tag $VERSION already exists. Skip release."
+          else
+            echo "released=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  release:
+    needs: check
+    if: needs.check.outputs.released == 'false'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+
+      # .node-version に定義した Node.js をインストールする
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v7
         with:
-          node-version: '14.x'
+          node-version-file: .node-version
+          cache: npm
+
       - name: Install dependencies
         run: npm ci
-      - name: build css and js
+
+      - name: Build css and images
         run: npm run build
 
-      #composerの実施
+      - name: Use PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: composer:v2
+          coverage: none
+
       - name: Composer install
-        uses: docker://composer:1.9.1
-        with:
-          args: install
+        run: composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
 
-      # release作成
+      # WordPress はzip直下が単一ディレクトリの場合のみ、そのディレクトリ名をプラグインのディレクトリ名に使う。
+      # 直下にファイルを平置きすると一時ディレクトリ名（ランダム文字列付き）でインストールされるため、
+      # プラグインスラッグ名のフォルダに格納してからzip化する。
+      - name: Zip plugin
+        run: |
+          zip -rq "$RUNNER_TEMP/flat.zip" . -x@.distignore
+          mkdir -p "$RUNNER_TEMP/dist"
+          unzip -q "$RUNNER_TEMP/flat.zip" -d "$RUNNER_TEMP/dist/$PLUGIN_SLUG"
+          (cd "$RUNNER_TEMP/dist" && zip -rq "$GITHUB_WORKSPACE/$PLUGIN_SLUG.zip" "$PLUGIN_SLUG")
+          # zip 直下が単一のプラグインディレクトリーであり、ルートファイルを含むことを確認する
+          roots=$(zipinfo -1 "$PLUGIN_SLUG.zip" | cut -d/ -f1 | sort -u)
+          if [ "$roots" != "$PLUGIN_SLUG" ] || ! zipinfo -1 "$PLUGIN_SLUG.zip" "$PLUGIN_SLUG/$PLUGIN_SLUG.php" > /dev/null; then
+            echo "::error::Invalid zip structure"
+            zipinfo -1 "$PLUGIN_SLUG.zip" | head -n 20
+            exit 1
+          fi
+          unzip -l "$PLUGIN_SLUG.zip" | head -n 10
+
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.event.pull_request.title }}
-          release_name: ${{ github.event.pull_request.title }}
-          body: ${{ github.event.pull_request.body }}
-          draft: false
-          prerelease: false
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ needs.check.outputs.version }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          if [ "$PR_TITLE" != "$VERSION" ]; then
+            echo "::warning::PR title ($PR_TITLE) differs from plugin version ($VERSION). Using plugin version."
+          fi
+          printf '%s\n' "$PR_BODY" > release-notes.md
+          gh release create "$VERSION" "$PLUGIN_SLUG.zip" \
+            --target "$GITHUB_SHA" \
+            --title "$VERSION" \
+            --notes-file release-notes.md
 
-      # release用のzip作成 https://github.com/marketplace/actions/zip-release
-      - name: Zip Release
-        uses: TheDoctor0/zip-release@0.4.1
-        with:
-          filename: 'ruijinen-block-patterns.zip' # ファイル名
-          exclusions: '*.git* /*node_modules/* .editorconfig /*src/*scss/*' # 除外設定
-          directory: '.'
-          path: '.'
-          type: 'zip'
-
-      # releaseにzipファイルを添付
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
+  sync-dev:
+    # リリースの成否（スキップ含む）に関わらず、main の内容を dev へ反映する PR を作成する
+    needs: [check, release]
+    if: always() && needs.check.result == 'success' && needs.release.result != 'failure'
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Create pull request main → dev
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./ruijinen-block-patterns.zip
-          asset_name: ruijinen-block-patterns.zip
-          asset_content_type: application/zip
-
-      # mainからdevにPR生成
-      - name: create-pull-request
-        uses: repo-sync/pull-request@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          destination_branch: 'dev'
-          pr_title: "リリース残処理：mainの内容をdevへ反映"
-          pr_body: "Pulling main into dev"
-          pr_allow_empty: true
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if [ -n "$(gh pr list --base dev --head main --state open --json number --jq '.[0].number // empty')" ]; then
+            echo "Sync PR already exists."
+            exit 0
+          fi
+          if [ "$(gh api "repos/$GITHUB_REPOSITORY/compare/dev...main" --jq '.ahead_by')" = "0" ]; then
+            echo "main has no commits to sync into dev."
+            exit 0
+          fi
+          gh pr create --base dev --head main \
+            --title "リリース残処理：mainの内容をdevへ反映" \
+            --body "Pulling main into dev"

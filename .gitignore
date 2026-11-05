@@ -20,7 +20,8 @@ dist/
 /.export/wp-content/
 /.export/sql/
 
-## Backstop JS
-backstop_data/bitmaps_reference/
-backstop_data/bitmaps_test/
-backstop_data/html_report/
+## 見た目の差分チェック（基準画像はローカル環境ごとに作成）
+tests/visual/__screenshots__/
+
+## E2E (Playwright)
+/artifacts/

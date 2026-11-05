@@ -1,0 +1,32 @@
+[
+  {
+    "label": "sample_hero_one_column",
+    "path": "/rje_r002lp_hero_one_column",
+    "selector": ".l-contents__container",
+    "hide": [".p-breadcrumbs-wrapper", ".c-entry__header"]
+  },
+  {
+    "label": "sample_message_accent2",
+    "path": "/rje_r002lp_message_accent2",
+    "selector": ".l-contents__container",
+    "hide": [".p-breadcrumbs-wrapper", ".c-entry__header"]
+  },
+  {
+    "label": "sample_flow",
+    "path": "/rje_r002lp_flow",
+    "selector": ".l-contents__container",
+    "hide": [".p-breadcrumbs-wrapper", ".c-entry__header"]
+  },
+  {
+    "label": "helper_enforcement_fullwidth",
+    "path": "/rje_r000helper_enforcement_fullwidth",
+    "selector": ".l-contents__container",
+    "hide": [".p-breadcrumbs-wrapper", ".c-entry__header"]
+  },
+  {
+    "label": "helper_fullwidth_min_padding",
+    "path": "/rje_r000helper_fullwidth_min_padding",
+    "selector": ".l-contents__container",
+    "hide": [".p-breadcrumbs-wrapper", ".c-entry__header"]
+  }
+]
