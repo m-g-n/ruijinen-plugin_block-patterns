@@ -1,19 +1,19 @@
 <?php
 /**
- * @package ruijinen-skin-r001-corp
+ * @package ruijinen-block-patterns
  * @author mgn
  * @license GPL-2.0+
  */
 
 namespace Ruijinen\Pattern\Master\App\Setup;
 
-class TextDomain{
+class TextDomain {
 	/**
 	 * Constructor.
 	 */
 	public function __construct() {
-		load_plugin_textdomain( RJE_BP_TEXTDOMAIN, false, RJE_BP_PLUGIN_PATH . '/languages' );
-		add_filter( 'load_textdomain_mofile', [ $this, 'load_textdomain_mofile' ], 10, 2 );
+		add_filter( 'load_textdomain_mofile', array( $this, 'load_textdomain_mofile' ), 10, 2 );
+		load_plugin_textdomain( RJE_BP_TEXTDOMAIN, false, dirname( RJE_BP_PLUGIN_BASENAME ) . '/languages' );
 	}
 
 	/**
@@ -25,8 +25,7 @@ class TextDomain{
 	 */
 	public function load_textdomain_mofile( $mofile, $domain ) {
 		if ( RJE_BP_TEXTDOMAIN === $domain ) {
-			$mofilename   = basename( $mofile );
-			$local_mofile = RJE_BP_PLUGIN_PATH . '/languages/' . $mofilename;
+			$local_mofile = RJE_BP_PLUGIN_PATH . 'languages/' . basename( $mofile );
 			if ( file_exists( $local_mofile ) ) {
 				return $local_mofile;
 			}

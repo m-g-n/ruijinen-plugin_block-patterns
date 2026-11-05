@@ -8,7 +8,7 @@
 namespace Ruijinen\Pattern\Master\App\Setup;
 
 /**
- * ブロックパターンの登録に関する処理のクラス
+ * ダッシュボードウィジェットの登録に関する処理のクラス
  */
 class DashboardWidget {
 
@@ -26,85 +26,80 @@ class DashboardWidget {
 		//ダッシュボードを追加.
 		add_action(
 			'wp_dashboard_setup',
-			function() {
+			function () {
 				wp_add_dashboard_widget( $this->widget_slug, '類人猿ブロックパターン関連の新着情報', array( $this, 'widget_content' ) );
 			}
 		);
 		//ダッシュボード用のスタイルを設定
-		add_action( 'admin_enqueue_scripts', array( $this, 'enuqeue_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 	}
 
 	/**
 	 * ダッシュボードウィジェットに表示する内容.
 	 */
 	public function widget_content() {
-		global $wp_version;
-		$transient = get_transient( $this->widget_slug );
-		echo $this->rje_news_rss();
-		echo $this->footer_menu();
+		$this->rje_news_rss();
+		$this->footer_menu();
 	}
 
 	/**
-	 * お知らせRSSの取得.
+	 * お知らせRSSの表示.
 	 */
 	private function rje_news_rss() {
-		include_once(ABSPATH . WPINC . '/feed.php');
-		$rss      = fetch_feed( $this->rss_url ); // RSSのURLを指定
-		$maxitems = 0;
-		if ( !is_wp_error( $rss ) ) {
-			$maxitems  = $rss->get_item_quantity( $this->rss_item_num );
-			$rss_items = $rss->get_items( 0, $maxitems );
+		include_once ABSPATH . WPINC . '/feed.php';
+		$rss       = fetch_feed( $this->rss_url ); // RSSのURLを指定
+		$rss_items = array();
+		if ( ! is_wp_error( $rss ) ) {
+			$rss_items = $rss->get_items( 0, $rss->get_item_quantity( $this->rss_item_num ) );
 		}
-		ob_start();
 		?>
 		<div class="rss-widget rje-dashboard_widget_news">
 			<ul>
-				<?php if ( $maxitems == 0 ) : ?>
+				<?php if ( empty( $rss_items ) ) : ?>
 				<li>お知らせはありません</li>
-				<?php else: ?>
-				<?php foreach( $rss_items as $item ) : ?>
+				<?php else : ?>
+					<?php foreach ( $rss_items as $item ) : ?>
 				<li class="hentry">
-					<a href="<?php echo $item->get_permalink(); ?>">
-						<span class="entry-title"><?php echo $item->get_title(); ?></span>
+					<a href="<?php echo esc_url( $item->get_permalink() ); ?>">
+						<span class="entry-title"><?php echo esc_html( wp_strip_all_tags( $item->get_title() ) ); ?></span>
 					</a>
 				</li>
-				<?php endforeach; ?>
+					<?php endforeach; ?>
 				<?php endif; ?>
 			</ul>
 		</div>
 		<?php
-		$html = ob_get_contents();
-		ob_end_clean(); 
-		return $html;
 	}
 
 	/**
 	 * フッターのリンク集.
 	 */
 	private function footer_menu() {
-		ob_start();
 		?>
 		<div class="rje-dashboard_widget_footer">
 			<ul>
-				<li><a href="https://rui-jin-en.com" target="_blank"  rel="noopener noreferrer">公式サイト<span class="screen-reader-text">(新しいタブで開く)</span><span aria-hidden="true" class="dashicons dashicons-external"></span></a></li>
-				<li><a href="https://rui-jin-en.com/news/" target="_blank"  rel="noopener noreferrer">お知らせ/ブログ<span class="screen-reader-text">(新しいタブで開く)</span><span aria-hidden="true" class="dashicons dashicons-external"></span></a></li>
+				<li><a href="https://rui-jin-en.com" target="_blank" rel="noopener noreferrer">公式サイト<span class="screen-reader-text">(新しいタブで開く)</span><span aria-hidden="true" class="dashicons dashicons-external"></span></a></li>
+				<li><a href="https://rui-jin-en.com/news/" target="_blank" rel="noopener noreferrer">お知らせ/ブログ<span class="screen-reader-text">(新しいタブで開く)</span><span aria-hidden="true" class="dashicons dashicons-external"></span></a></li>
 			</ul>
 		</div>
 		<?php
-		$html = ob_get_contents();
-		ob_end_clean(); 
-		return $html;
 	}
 
 	/**
-	 * styles.
+	 * ダッシュボード用のスタイル（ダッシュボード画面のみ読み込む）.
+	 *
+	 * @param string $hook_suffix 現在の管理画面のフック名.
 	 */
-	function enuqeue_styles() {
+	public function enqueue_styles( $hook_suffix ) {
+		$path = 'dist/css/dashboard-widget.css';
+		if ( 'index.php' !== $hook_suffix || ! file_exists( RJE_BP_PLUGIN_PATH . $path ) ) {
+			return;
+		}
 		wp_enqueue_style(
 			'rje-dashboard-widget',
-			RJE_BP_PLUGIN_URL . 'dist/css/dashboard-widget.css',
+			RJE_BP_PLUGIN_URL . $path,
 			array(),
-			filemtime( RJE_BP_PLUGIN_PATH . 'dist/css/dashboard-widget.css' )
+			filemtime( RJE_BP_PLUGIN_PATH . $path )
 		);
 	}
 }

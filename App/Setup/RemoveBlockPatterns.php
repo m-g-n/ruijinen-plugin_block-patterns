@@ -10,38 +10,45 @@
 namespace Ruijinen\Pattern\Master\App\Patterns;
 
 /**
- * ブロックパターンの登録に関する処理のクラス
+ * オプションページで無効化されたブロックパターンをフィルターから外すクラス
  */
 class RemoveBlockPatterns {
+	/**
+	 * パターン情報を登録するフィルター名
+	 */
+	const FILTER_NAME = 'rje_register_patterns_args';
+
 	/**
 	 * constructer
 	 */
 	public function __construct() {
-		$option = get_option('rje_patterns_unregister');
-		if ( !$option ) { return; }
-		$this->remove_fileter_patterns( $option );
+		// パターンの登録（RegisterBlockPatterns::register_patterns / init 15）の直前に外す.
+		add_action( 'init', array( $this, 'remove_filter_patterns' ), 14 );
 	}
 
 	/**
-	 * Remove_the_hook
+	 * 無効化されたパターンのフィルターを外す
 	 */
-	public function remove_fileter_patterns ( $removes = array() ) {
-		if ( !$removes )
+	public function remove_filter_patterns() {
+		$removes = get_option( 'rje_patterns_unregister' );
+		if ( ! $removes || ! is_array( $removes ) ) {
 			return;
-		add_action(
-			'plugins_loaded',
-			function () use( $removes ) {
-				foreach ($removes as $key => $methods) {
-					if ( !$methods ) { continue; }
-					global ${$key};
-					foreach ( $methods as $method ) {
-						$filter_name = 'rje_register_patterns_args';
-						$priority    = has_filter( $filter_name, array(${$key}, $method));
-						remove_filter( $filter_name, array(${$key}, $method), $priority);
-					}
+		}
+		foreach ( $removes as $key => $methods ) {
+			// キーはパターン登録クラスのインスタンスを格納したグローバル変数名.
+			if ( ! $methods || ! is_array( $methods ) || ! is_string( $key ) || ! isset( $GLOBALS[ $key ] ) || ! is_object( $GLOBALS[ $key ] ) ) {
+				continue;
+			}
+			$instance = $GLOBALS[ $key ];
+			foreach ( $methods as $method ) {
+				if ( ! is_string( $method ) ) {
+					continue;
 				}
-			},
-			9999
-		);
+				$priority = has_filter( self::FILTER_NAME, array( $instance, $method ) );
+				if ( false !== $priority ) {
+					remove_filter( self::FILTER_NAME, array( $instance, $method ), $priority );
+				}
+			}
+		}
 	}
 }
