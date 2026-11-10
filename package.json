@@ -63,7 +63,11 @@
     "Android >= 7"
   ],
   "overrides": {
-    "qs": "^6.16.1"
+    "qs": "^6.16.1",
+    "isomorphic-git": "^1.38.6",
+    "@wordpress/env": {
+      "rimraf": "^6.1.4"
+    }
   },
   "allowScripts": {
     "@parcel/watcher": false,
